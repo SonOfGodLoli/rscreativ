@@ -4,6 +4,12 @@ RS CREATIV - Pagina Web Oficial
 URL del sitio:
 https://sonofgodloli.github.io/rscreativ/
 
+Las rutas usan HashRouter:
+- Inicio:     https://sonofgodloli.github.io/rscreativ/
+- Servicios:  https://sonofgodloli.github.io/rscreativ/#/servicios
+- Portafolio: https://sonofgodloli.github.io/rscreativ/#/portfolio
+- Contacto:   https://sonofgodloli.github.io/rscreativ/#/contacto
+
 URL del repositorio:
 https://github.com/SonOfGodLoli/rscreativ
 
