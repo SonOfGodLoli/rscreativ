@@ -1,0 +1,78 @@
+/**
+ * Estilos globales del proyecto RS Creativ
+ * 
+ * Este archivo contiene:
+ * - Importación de Tailwind CSS v4
+ * - Importación de fuentes de Google Fonts (Inter y Playfair Display)
+ * - Configuración de temas personalizados para Tailwind
+ * - Estilos base globales
+ * - Scrollbar personalizada
+ * - Estilos de selección de texto
+ */
+
+/* Importación de fuentes de Google Fonts - DEBE ir antes de Tailwind */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,700&display=swap');
+
+/* Importación de Tailwind CSS v4 */
+@import "tailwindcss";
+
+/*
+ * PALETA DE COLORES EXTRAÍDA DEL SITIO WIX ORIGINAL:
+ * https://rscreativoficial.wixsite.com/my-site-1
+ *
+ * --color_11: 255,255,255 (fondo principal blanco)
+ * --color_15: 0,0,0       (texto primario negro)
+ * --color_14: 64,64,64    (texto secundario gris oscuro)
+ * --color_18: 234,121,123 (acento rosa/salmón - COLOR DE ACCIÓN)
+ * --color_41: 139,25,19   (footer rojo oscuro/marrón)
+ * --color_20: 4,10,51     (navy oscuro para hero)
+ */
+@theme {
+  /* Colores extraídos del Wix - Paleta exacta de RS Creativ */
+  --color-primary: #ffffff;      /* Fondo principal - blanco (color_11) */
+  --color-secondary: #040a33;    /* Navy oscuro para hero/texto (color_20) */
+  --color-accent: #ea797b;       /* Acento rosa/salmón (color_18) */
+  --color-accent-hover: #d4686a; /* Rosa más oscuro en hover */
+  --color-dark: #8b1913;         /* Rojo oscuro footer (color_41) */
+  --color-dark-hover: #a02018;   /* Rojo más claro en hover */
+  --color-text: #000000;         /* Texto primario - negro (color_15) */
+  --color-text-secondary: #404040; /* Texto secundario - gris (color_14) */
+  --color-bg-gray: #f5f5f5;      /* Fondo gris claro para secciones */
+  --color-border: #e0e0e0;       /* Bordes suaves */
+  
+  /* Fuentes tipográficas - Montserrat como en el sitio original */
+  --font-heading: 'Montserrat', sans-serif;
+  --font-body: 'Montserrat', sans-serif;
+}
+
+/* Estilos base globales */
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-primary);
+  color: var(--color-text);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar personalizada - estilo consistente con la marca */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f0f0f0;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-accent);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-hover);
+}
+
+/* Estilos de selección - rosa salmón sobre fondo blanco */
+::selection {
+  background-color: var(--color-accent);
+  color: #ffffff;
+}
