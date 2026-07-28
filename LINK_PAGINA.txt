@@ -1,0 +1,16 @@
+RS CREATIV - Pagina Web Oficial
+================================
+
+URL del sitio:
+https://sonofgodloli.github.io/rscreativ/
+
+URL del repositorio:
+https://github.com/SonOfGodLoli/rscreativ
+
+Colores de marca:
+- #9a171c (rojo profundo)
+- #b24940 (rojo medio)
+- #eb9192 (rosa claro)
+
+Frontend: React + TypeScript + Vite + Tailwind CSS + Framer Motion
+Deploy: GitHub Pages (automatico via GitHub Actions)
