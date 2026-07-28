@@ -1,7 +1,8 @@
 /**
  * Componente Card reutilizable - Tema claro
  * 
- * Tarjeta con fondo blanco y borde sutil, como en el diseño Wix original.
+ * Tarjeta con fondo blanco y borde sutil.
+ * Hover: sombra rosa con color #eb9192.
  */
 
 import { motion } from 'framer-motion';
@@ -38,7 +39,7 @@ export default function Card({
       `}
       whileHover={hover ? { 
         y: -8, 
-        boxShadow: '0 20px 40px rgba(234, 121, 123, 0.15)',
+        boxShadow: '0 20px 40px rgba(235, 145, 146, 0.15)',
       } : undefined}
       transition={{ duration: 0.3 }}
     >

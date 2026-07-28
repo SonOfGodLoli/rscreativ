@@ -1,14 +1,11 @@
 /**
  * Página Home - Inicio de RS Creativ
  * 
- * Página principal inspirada en el sitio Wix original.
- * 
- * Colores del Wix extraídos:
- * - color_11: 255,255,255 (fondo blanco)
- * - color_15: 0,0,0 (texto negro)
- * - color_18: 234,121,123 (acento rosa/salmón)
- * - color_20: 4,10,51 (navy oscuro hero)
- * - color_41: 139,25,19 (footer rojo oscuro)
+ * Página principal con los colores oficiales de marca:
+ * - #9a171c (rojo profundo) → footer, secciones oscuras
+ * - #b24940 (rojo medio) → gradientes, acentos
+ * - #eb9192 (rosa claro) → highlights, botones
+ * - #040a33 (navy oscuro) → hero section
  */
 
 import { motion } from 'framer-motion';
@@ -84,7 +81,7 @@ export default function Home() {
   return (
     <PageTransition>
       {/* ==================== HERO ==================== */}
-      {/* Hero con fondo navy oscuro (#040a33) como en el Wix */}
+      {/* Hero con fondo navy oscuro (#040a33) */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Fondo navy oscuro con imagen de fondo */}
         <div className="absolute inset-0 z-0">

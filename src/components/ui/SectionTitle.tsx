@@ -1,7 +1,7 @@
 /**
  * Componente SectionTitle reutilizable - Tema claro
  * 
- * Título de sección con línea decorativa rosa/salmón.
+ * Título de sección con línea decorativa rosa (#eb9192).
  */
 
 import { motion } from 'framer-motion';

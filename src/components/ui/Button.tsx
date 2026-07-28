@@ -1,12 +1,15 @@
 /**
  * Componente Button reutilizable - Tema claro
  * 
- * Botón con color rosa/salmón (#ea797b) como en el sitio Wix original.
+ * Botón con colores oficiales de marca RS Creativ:
+ * - #eb9192 (rosa claro) → primary
+ * - #b24940 (rojo medio) → hover
+ * - #9a171c (rojo profundo) → dark
  * 
  * Variantes:
- * - primary: Fondo rosa/salmón, texto blanco
+ * - primary: Fondo rosa claro, texto blanco
  * - secondary: Borde rosa, fondo transparente
- * - dark: Fondo rojo oscuro, texto blanco
+ * - dark: Fondo rojo profundo, texto blanco
  */
 
 import { motion } from 'framer-motion';

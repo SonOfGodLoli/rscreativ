@@ -3,10 +3,11 @@
  * 
  * Barra de navegación responsive inspirada en el sitio Wix original de RS Creativ.
  * 
- * Colores extraídos del Wix:
- * - Header gradient: linear-gradient(180deg, #EA797B 87%, #8B1913 100%)
- * - Texto blanco sobre el header
- * - Fondo blanco al hacer scroll
+ * Colores de marca oficiales:
+ * - #9a171c (rojo profundo)
+ * - #b24940 (rojo medio)
+ * - #eb9192 (rosa claro)
+ * - Header gradient: linear-gradient(180deg, #b24940 87%, #9a171c 100%)
  */
 
 import { useState, useEffect } from 'react';
@@ -41,7 +42,7 @@ export default function Navbar() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
           ? 'bg-white shadow-lg shadow-black/10'
-          : 'bg-gradient-to-b from-accent to-dark'
+          : 'bg-gradient-to-b from-mid to-dark'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -51,9 +52,9 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
-            <Palette className="w-8 h-8 text-white group-hover:rotate-12 transition-transform" />
-            <span className="text-xl font-heading font-bold text-white">
-              RS <span className="text-white">CREATIV</span>
+            <Palette className={`w-8 h-8 group-hover:rotate-12 transition-transform ${isScrolled ? 'text-dark' : 'text-white'}`} />
+            <span className={`text-xl font-heading font-bold ${isScrolled ? 'text-dark' : 'text-white'}`}>
+              RS <span className={isScrolled ? 'text-dark' : 'text-white'}>CREATIV</span>
             </span>
           </Link>
 

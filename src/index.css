@@ -17,30 +17,28 @@
 @import "tailwindcss";
 
 /*
- * PALETA DE COLORES EXTRAÍDA DEL SITIO WIX ORIGINAL:
- * https://rscreativoficial.wixsite.com/my-site-1
+ * PALETA DE COLORES OFICIAL DE RS CREATIV
+ * Colores principales de marca para pantalla, impresiones CMYK, WEB
  *
- * --color_11: 255,255,255 (fondo principal blanco)
- * --color_15: 0,0,0       (texto primario negro)
- * --color_14: 64,64,64    (texto secundario gris oscuro)
- * --color_18: 234,121,123 (acento rosa/salmón - COLOR DE ACCIÓN)
- * --color_41: 139,25,19   (footer rojo oscuro/marrón)
- * --color_20: 4,10,51     (navy oscuro para hero)
+ * #9a171c - Rojo profundo (C:0 M:97 Y:80 K:42) → footer, secciones oscuras
+ * #b24940 - Rojo medio    (C:0 M:75 Y:62 K:32) → gradientes, acentos
+ * #eb9192 - Rosa claro    (C:0 M:53 Y:31 K:4)  → highlights, botones, hover
  */
 @theme {
-  /* Colores extraídos del Wix - Paleta exacta de RS Creativ */
-  --color-primary: #ffffff;      /* Fondo principal - blanco (color_11) */
-  --color-secondary: #040a33;    /* Navy oscuro para hero/texto (color_20) */
-  --color-accent: #ea797b;       /* Acento rosa/salmón (color_18) */
-  --color-accent-hover: #d4686a; /* Rosa más oscuro en hover */
-  --color-dark: #8b1913;         /* Rojo oscuro footer (color_41) */
-  --color-dark-hover: #a02018;   /* Rojo más claro en hover */
-  --color-text: #000000;         /* Texto primario - negro (color_15) */
-  --color-text-secondary: #404040; /* Texto secundario - gris (color_14) */
+  /* Paleta oficial RS Creativ */
+  --color-primary: #ffffff;      /* Fondo principal - blanco */
+  --color-secondary: #040a33;    /* Navy oscuro para hero/texto */
+  --color-accent: #eb9192;       /* Rosa claro - color de acción */
+  --color-accent-hover: #b24940; /* Rojo medio en hover */
+  --color-dark: #9a171c;         /* Rojo profundo - footer, secciones oscuras */
+  --color-dark-hover: #b24940;   /* Rojo medio en hover */
+  --color-mid: #b24940;          /* Rojo medio - gradientes, acentos secundarios */
+  --color-text: #000000;         /* Texto primario - negro */
+  --color-text-secondary: #404040; /* Texto secundario - gris */
   --color-bg-gray: #f5f5f5;      /* Fondo gris claro para secciones */
   --color-border: #e0e0e0;       /* Bordes suaves */
-  
-  /* Fuentes tipográficas - Montserrat como en el sitio original */
+
+  /* Fuentes tipográficas - Montserrat */
   --font-heading: 'Montserrat', sans-serif;
   --font-body: 'Montserrat', sans-serif;
 }

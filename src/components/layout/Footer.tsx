@@ -1,7 +1,7 @@
 /**
  * Componente Footer - Pie de página
  * 
- * Footer con fondo rojo oscuro/marrón (#8B1913) como en el sitio Wix original.
+ * Footer con fondo rojo profundo (#9a171c) - color oficial de marca.
  * Contiene: Logo, horarios, contacto, redes sociales y copyright.
  */
 
@@ -50,7 +50,7 @@ export default function Footer() {
           {/* Horarios */}
           <motion.div variants={itemVariants}>
             <h3 className="text-white font-heading font-bold text-lg mb-4 flex items-center gap-2">
-              <Clock className="w-5 h-5 text-white" />
+              <Clock className="w-5 h-5 text-accent" />
               HORARIO
             </h3>
             <ul className="space-y-2">
@@ -66,20 +66,20 @@ export default function Footer() {
           {/* Contacto */}
           <motion.div variants={itemVariants}>
             <h3 className="text-white font-heading font-bold text-lg mb-4 flex items-center gap-2">
-              <Phone className="w-5 h-5 text-white" />
+              <Phone className="w-5 h-5 text-accent" />
               CONTÁCTANOS
             </h3>
             <ul className="space-y-3">
               <li className="flex items-center gap-2 text-white/70 text-sm">
-                <Phone className="w-4 h-4 text-white" />
+                <Phone className="w-4 h-4 text-accent" />
                 +51 933 866 156
               </li>
               <li className="flex items-center gap-2 text-white/70 text-sm">
-                <Mail className="w-4 h-4 text-white" />
+                <Mail className="w-4 h-4 text-accent" />
                 rs.creativ.oficial@gmail.com
               </li>
               <li className="flex items-center gap-2 text-white/70 text-sm">
-                <MapPin className="w-4 h-4 text-white" />
+                <MapPin className="w-4 h-4 text-accent" />
                 Perú
               </li>
             </ul>
