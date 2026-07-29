@@ -249,9 +249,9 @@ export default function Home() {
                   Nuestra Misión
                 </h3>
                 <p className="text-text-secondary leading-relaxed">
-                  Ofrecer soluciones creativas y de alta calidad que superen las
-                  expectativas de nuestros clientes, combinando innovación, pasión
-                  y compromiso en cada proyecto.
+                  Nuestra misión es brindar un servicio de calidad a nuestros clientes,
+                  transformando ideas creativas en piezas gráficas funcionales y atractivas,
+                  que comuniquen de manera efectiva y aporten valor a sus proyectos.
                 </p>
               </div>
             </motion.div>
@@ -269,9 +269,10 @@ export default function Home() {
                   Nuestra Visión
                 </h3>
                 <p className="text-text-secondary leading-relaxed">
-                  Ser reconocidos como líderes en diseño gráfico y soluciones creativas
-                  en Perú, destacando por nuestra calidad, innovación y el compromiso
-                  satisfacer a nuestros clientes.
+                  Nuestra visión es consolidarnos como una agencia en el mercado,
+                  destacando por ofrecer soluciones integrales en diseño gráfico,
+                  impresión, y merchandising con altos estándares de calidad y
+                  atención personalizada.
                 </p>
               </div>
             </motion.div>
