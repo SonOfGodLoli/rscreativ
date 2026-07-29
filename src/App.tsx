@@ -23,6 +23,7 @@ import Home from './pages/Home';
 import Services from './pages/Services';
 import Portfolio from './pages/Portfolio';
 import Contact from './pages/Contact';
+import Terminos from './pages/Terminos';
 
 /**
  * Componente que maneja el scroll al inicio al cambiar de ruta.
@@ -52,6 +53,7 @@ function AnimatedRoutes() {
         <Route path="/servicios" element={<Services />} />
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/contacto" element={<Contact />} />
+        <Route path="/terminos-y-condiciones" element={<Terminos />} />
       </Routes>
     </AnimatePresence>
   );

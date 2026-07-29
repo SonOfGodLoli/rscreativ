@@ -18,13 +18,12 @@ import {
   Star,
   Award,
   Heart,
-  Quote,
+  Target,
+  Eye,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 import {
-  fadeInLeft,
-  fadeInRight,
   containerVariants,
   itemVariants,
   viewportConfig,
@@ -112,7 +111,7 @@ export default function Home() {
             className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-2 mb-8"
           >
             <Star className="w-4 h-4 text-accent" />
-            <span className="text-white/90 text-sm font-medium">Diseño & Impresión en Perú</span>
+            <span className="text-white/90 text-sm font-medium">Diseño & Impresión en Lima - Perú</span>
           </motion.div>
 
           {/* Título principal */}
@@ -141,11 +140,8 @@ export default function Home() {
             transition={{ delay: 0.8, duration: 0.6 }}
             className="flex justify-center mb-8"
           >
-            <div className="w-40 h-40 rounded-full bg-white/10 flex items-center justify-center border-2 border-accent/30">
-              <div className="text-center">
-                <Palette className="w-12 h-12 text-accent mx-auto mb-2" />
-                <span className="text-white font-heading font-bold text-lg">RS</span>
-              </div>
+            <div className="w-40 h-40 rounded-full bg-white/10 flex items-center justify-center border-2 border-accent/30 overflow-hidden">
+              <img src="/rs logo.svg" alt="RS Creativ" className="w-28 h-28 object-contain" />
             </div>
           </motion.div>
 
@@ -184,96 +180,122 @@ export default function Home() {
       {/* ==================== ABOUT - ¿QUIÉNES SOMOS? ==================== */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Texto */}
+          <motion.div
+            className="max-w-3xl mx-auto text-center"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={viewportConfig}
+          >
+            <span className="text-accent text-sm font-bold tracking-widest uppercase">
+              ACERCA DE
+            </span>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-text mt-4 mb-6">
+              ¿QUIENES SOMOS?
+            </h2>
+            <div className="flex items-center justify-center gap-2 mb-6">
+              <div className="h-1 w-12 bg-accent rounded-full" />
+              <div className="h-1 w-6 bg-accent/60 rounded-full" />
+              <div className="h-1 w-3 bg-accent/40 rounded-full" />
+            </div>
+            <p className="text-text-secondary leading-relaxed mb-4 text-lg">
+              Somos RS Creativ, especialistas en diseño gráfico y soluciones creativas.
+              Nos apasiona transformar tus ideas en diseños únicos, desde contenido para
+              redes sociales hasta identidad visual y material publicitario.
+            </p>
+            <p className="text-text-secondary leading-relaxed mb-6 text-lg">
+              Ofrecemos servicios de impresión y soluciones digitales, adaptadas a cada necesidad.
+              Además, contamos con una línea de productos personalizados, perfectos para regalar
+              o impulsar tu marca.
+            </p>
+            <p className="text-accent font-heading font-bold text-lg italic">
+              En RS Creativ, hacemos realidad tus ideas con creatividad, dedicación y estilo.
+            </p>
+            
+            <div className="grid grid-cols-2 gap-4 mt-8 max-w-md mx-auto">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
+                  <Award className="w-5 h-5 text-accent" />
+                </div>
+                <div>
+                  <div className="text-text font-medium text-sm">Calidad</div>
+                  <div className="text-text-secondary text-xs">Premium</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
+                  <Heart className="w-5 h-5 text-accent" />
+                </div>
+                <div>
+                  <div className="text-text font-medium text-sm">Pasión</div>
+                  <div className="text-text-secondary text-xs">Creativa</div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ==================== MISIÓN Y VISIÓN ==================== */}
+      <section className="py-20 bg-bg-gray">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={viewportConfig}
+          >
+            <span className="text-accent text-sm font-bold tracking-widest uppercase">
+              Nuestro Propósito
+            </span>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-text mt-4">
+              Misión y Visión
+            </h2>
+            <div className="flex items-center justify-center gap-2 mt-4">
+              <div className="h-1 w-12 bg-accent rounded-full" />
+              <div className="h-1 w-6 bg-accent/60 rounded-full" />
+              <div className="h-1 w-3 bg-accent/40 rounded-full" />
+            </div>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <motion.div
-              variants={fadeInLeft}
-              initial="hidden"
-              whileInView="visible"
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={viewportConfig}
             >
-              <span className="text-accent text-sm font-bold tracking-widest uppercase">
-                ACERCA DE
-              </span>
-              <h2 className="text-3xl md:text-4xl font-heading font-bold text-text mt-4 mb-6">
-                ¿QUIENES SOMOS?
-              </h2>
-              <div className="flex gap-2 mb-6">
-                <div className="h-1 w-12 bg-accent rounded-full" />
-                <div className="h-1 w-6 bg-accent/60 rounded-full" />
-                <div className="h-1 w-3 bg-accent/40 rounded-full" />
-              </div>
-              <p className="text-text-secondary leading-relaxed mb-4">
-                Somos RS Creativ, especialistas en diseño gráfico y soluciones creativas.
-                Nos apasiona transformar tus ideas en diseños únicos, desde contenido para
-                redes sociales hasta identidad visual y material publicitario.
-              </p>
-              <p className="text-text-secondary leading-relaxed mb-6">
-                Ofrecemos servicios de impresión y soluciones digitales, adaptadas a cada necesidad.
-                Además, contamos con una línea de productos personalizados, perfectos para regalar
-                o impulsar tu marca.
-              </p>
-              <p className="text-accent font-heading font-bold text-lg italic">
-                En RS Creativ, hacemos realidad tus ideas con creatividad, dedicación y estilo.
-              </p>
-              
-              <div className="grid grid-cols-2 gap-4 mt-8">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
-                    <Award className="w-5 h-5 text-accent" />
-                  </div>
-                  <div>
-                    <div className="text-text font-medium text-sm">Calidad</div>
-                    <div className="text-text-secondary text-xs">Premium</div>
-                  </div>
+              <div className="bg-white rounded-2xl p-8 border border-border h-full">
+                <div className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mb-6">
+                  <Target className="w-7 h-7 text-accent" />
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
-                    <Heart className="w-5 h-5 text-accent" />
-                  </div>
-                  <div>
-                    <div className="text-text font-medium text-sm">Pasión</div>
-                    <div className="text-text-secondary text-xs">Creativa</div>
-                  </div>
-                </div>
+                <h3 className="text-xl font-heading font-bold text-text mb-4">
+                  Nuestra Misión
+                </h3>
+                <p className="text-text-secondary leading-relaxed">
+                  Ofrecer soluciones creativas y de alta calidad que superen las
+                  expectativas de nuestros clientes, combinando innovación, pasión
+                  y compromiso en cada proyecto.
+                </p>
               </div>
             </motion.div>
 
-            {/* Imagen decorativa */}
             <motion.div
-              variants={fadeInRight}
-              initial="hidden"
-              whileInView="visible"
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={viewportConfig}
-              className="relative"
             >
-              <Card className="relative overflow-hidden" padding="lg">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 rounded-full -translate-y-1/2 translate-x-1/2" />
-                <div className="absolute bottom-0 left-0 w-24 h-24 bg-accent/5 rounded-full translate-y-1/2 -translate-x-1/2" />
-                <div className="relative z-10">
-                  <div className="w-20 h-20 rounded-2xl bg-accent/10 flex items-center justify-center mb-6">
-                    <Palette className="w-10 h-10 text-accent" />
-                  </div>
-                  <h3 className="text-xl font-heading font-bold text-text mb-4">
-                    Nuestra Misión
-                  </h3>
-                  <p className="text-text-secondary leading-relaxed mb-6">
-                    Ofrecer soluciones creativas y de alta calidad que superen las
-                    expectativas de nuestros clientes, combinando innovación, pasión
-                    y compromiso en cada proyecto.
-                  </p>
-                  <div className="flex items-center gap-3">
-                    <div className="flex -space-x-2">
-                      <div className="w-8 h-8 rounded-full bg-accent flex items-center justify-center text-white font-bold text-xs">R</div>
-                      <div className="w-8 h-8 rounded-full bg-secondary border-2 border-accent flex items-center justify-center text-white font-bold text-xs">S</div>
-                    </div>
-                    <div>
-                      <div className="text-text text-sm font-medium">Ricardo & Sarai</div>
-                      <div className="text-text-secondary text-xs">Fundadores</div>
-                    </div>
-                  </div>
+              <div className="bg-white rounded-2xl p-8 border border-border h-full">
+                <div className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mb-6">
+                  <Eye className="w-7 h-7 text-accent" />
                 </div>
-              </Card>
+                <h3 className="text-xl font-heading font-bold text-text mb-4">
+                  Nuestra Visión
+                </h3>
+                <p className="text-text-secondary leading-relaxed">
+                  Ser reconocidos como líderes en diseño gráfico y soluciones creativas
+                  en Perú, destacando por nuestra calidad, innovación y el compromiso
+                  satisfacer a nuestros clientes.
+                </p>
+              </div>
             </motion.div>
           </div>
         </div>
@@ -352,14 +374,16 @@ export default function Home() {
           >
             {teamMembers.map((member, index) => (
               <motion.div key={index} variants={itemVariants}>
-                <Card className="text-center group" hover padding="lg">
+                <Card className="text-center group h-full" hover padding="lg">
                   <motion.div
-                    className="w-24 h-24 rounded-full bg-accent/10 border-2 border-accent/20 flex items-center justify-center mx-auto mb-6 group-hover:border-accent/50 transition-colors"
+                    className="w-24 h-24 rounded-full bg-accent/10 border-2 border-accent/20 flex items-center justify-center mx-auto mb-6 group-hover:border-accent/50 transition-colors overflow-hidden"
                     whileHover={{ scale: 1.1 }}
                   >
-                    <span className="text-3xl font-heading font-bold text-accent">
-                      {member.initial}
-                    </span>
+                    <img
+                      src={index === 0 ? '/Ricardo.png' : '/Sarai.png'}
+                      alt={member.name}
+                      className="w-full h-full object-cover"
+                    />
                   </motion.div>
                   <h3 className="text-xl font-heading font-bold text-text mb-2 uppercase">
                     {member.name}
@@ -370,11 +394,6 @@ export default function Home() {
                   <p className="text-text-secondary text-sm leading-relaxed">
                     {member.description}
                   </p>
-                  <div className="flex justify-center gap-1 mt-6">
-                    <div className="h-1 w-6 bg-accent/30 rounded-full" />
-                    <div className="h-1 w-3 bg-accent/50 rounded-full" />
-                    <div className="h-1 w-6 bg-accent/30 rounded-full" />
-                  </div>
                 </Card>
               </motion.div>
             ))}
@@ -391,40 +410,29 @@ export default function Home() {
           />
 
           <motion.div
-            className="max-w-3xl mx-auto"
+            className="flex flex-wrap justify-center items-center gap-10 mt-12"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={viewportConfig}
           >
-            <Card padding="lg" className="text-center relative overflow-hidden">
-              <Quote className="w-12 h-12 text-accent/20 mx-auto mb-6" />
-              <p className="text-xl md:text-2xl text-text-secondary italic leading-relaxed mb-8 font-heading">
-                "RS Creativ transformó nuestra visión en realidad. Su atención al detalle
-                y creatividad superaron nuestras expectativas. ¡Totalmente recomendados!"
-              </p>
-              <div className="flex items-center justify-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center">
-                  <span className="text-accent font-bold">CL</span>
-                </div>
-                <div className="text-left">
-                  <div className="text-text font-medium">Cliente Satisfecho</div>
-                  <div className="text-text-secondary text-sm">RS Creativ</div>
-                </div>
-              </div>
-            </Card>
-          </motion.div>
-
-          {/* Logos de clientes */}
-          <motion.div
-            className="flex flex-wrap justify-center items-center gap-8 mt-12 opacity-50"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 0.5 }}
-            viewport={viewportConfig}
-          >
-            {['Sazón Criollo', 'C&G Asociados', 'JPGE Dentica', 'Agrobel'].map((name, i) => (
-              <div key={i} className="w-28 h-16 bg-white rounded-lg flex items-center justify-center border border-border shadow-sm">
-                <span className="text-text-secondary text-xs font-medium text-center px-2">{name}</span>
-              </div>
+            {[
+              { name: 'Sazón Criollo', logo: '/SAZON CRIOLLO LOGO.png' },
+              { name: 'C&G Asociados', logo: '/LOGO C&G ASOCIADOS.png' },
+              { name: 'Dentica', logo: '/DENTICA.png' },
+              { name: 'Agrobel', logo: '/AGROBEL.png' },
+              { name: 'Caji Fiestas', logo: '/CAJI FIESTAS.png' },
+            ].map((client, i) => (
+              <motion.div 
+                key={i} 
+                className="w-32 h-20 bg-white rounded-xl flex items-center justify-center border border-border shadow-sm p-3 hover:shadow-md transition-shadow"
+                whileHover={{ scale: 1.05, y: -4 }}
+              >
+                <img 
+                  src={client.logo} 
+                  alt={client.name} 
+                  className="max-w-full max-h-full object-contain"
+                />
+              </motion.div>
             ))}
           </motion.div>
         </div>

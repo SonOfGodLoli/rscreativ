@@ -6,7 +6,7 @@
  */
 
 import { motion } from 'framer-motion';
-import { Phone, Mail, Clock, MapPin, Palette } from 'lucide-react';
+import { Mail, Clock, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { containerVariants, itemVariants } from '@/animations/variants';
 
@@ -17,9 +17,9 @@ const schedule = [
 ];
 
 const socialLinks = [
-  { name: 'WhatsApp', url: 'https://web.whatsapp.com/', icon: '💬' },
   { name: 'Facebook', url: 'https://www.facebook.com/profile.php?id=61562236591988', icon: '📘' },
   { name: 'Instagram', url: 'https://www.instagram.com/rs.creativ', icon: '📷' },
+  { name: 'TikTok', url: 'https://www.tiktok.com/@rs.creativ', icon: '🎵' },
 ];
 
 export default function Footer() {
@@ -36,7 +36,7 @@ export default function Footer() {
           {/* Logo y descripción */}
           <motion.div variants={itemVariants}>
             <Link to="/" className="flex items-center gap-2 mb-4">
-              <Palette className="w-8 h-8 text-white" />
+              <img src="/rs logo.svg" alt="RS Creativ" className="w-8 h-8 object-contain brightness-0 invert" />
               <span className="text-xl font-heading font-bold text-white">
                 RS CREATIV
               </span>
@@ -65,13 +65,11 @@ export default function Footer() {
 
           {/* Contacto */}
           <motion.div variants={itemVariants}>
-            <h3 className="text-white font-heading font-bold text-lg mb-4 flex items-center gap-2">
-              <Phone className="w-5 h-5 text-accent" />
+            <h3 className="text-white font-heading font-bold text-lg mb-4">
               CONTÁCTANOS
             </h3>
             <ul className="space-y-3">
               <li className="flex items-center gap-2 text-white/70 text-sm">
-                <Phone className="w-4 h-4 text-accent" />
                 +51 933 866 156
               </li>
               <li className="flex items-center gap-2 text-white/70 text-sm">
@@ -80,7 +78,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-2 text-white/70 text-sm">
                 <MapPin className="w-4 h-4 text-accent" />
-                Perú
+                Lima - Perú
               </li>
             </ul>
           </motion.div>
@@ -113,6 +111,9 @@ export default function Footer() {
           <p className="text-white/50 text-sm">
             © {new Date().getFullYear()} RS CREATIV. Todos los derechos reservados.
           </p>
+          <Link to="/terminos-y-condiciones" className="text-white/40 text-xs hover:text-white/60 transition-colors mt-2 inline-block">
+            Términos y Condiciones
+          </Link>
         </div>
       </div>
     </footer>

@@ -13,7 +13,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Palette } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 const navLinks = [
   { name: 'INICIO', path: '/' },
@@ -52,7 +52,11 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
-            <Palette className={`w-8 h-8 group-hover:rotate-12 transition-transform ${isScrolled ? 'text-dark' : 'text-white'}`} />
+            <img 
+              src="/rs logo.svg" 
+              alt="RS Creativ" 
+              className={`w-10 h-10 object-contain transition-transform group-hover:rotate-12 ${isScrolled ? 'brightness-0' : 'brightness-0 invert'}`}
+            />
             <span className={`text-xl font-heading font-bold ${isScrolled ? 'text-dark' : 'text-white'}`}>
               RS <span className={isScrolled ? 'text-dark' : 'text-white'}>CREATIV</span>
             </span>
