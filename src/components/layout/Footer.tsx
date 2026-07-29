@@ -63,7 +63,7 @@ export default function Footer() {
             <Link to="/" className="flex items-center gap-2 mb-4">
               <img src={`${import.meta.env.BASE_URL}rs-logo.svg`} alt="RS Creativ" className="h-32 w-auto object-contain brightness-0 invert" />
             </Link>
-            <p className="text-white/70 text-sm leading-relaxed">
+            <p className="text-white/70 text-sm leading-relaxed ml-1">
               Especialistas en diseño gráfico y soluciones creativas.
               Transformamos tus ideas en diseños únicos.
             </p>
@@ -75,7 +75,7 @@ export default function Footer() {
               <Clock className="w-5 h-5 text-accent" />
               HORARIO
             </h3>
-            <ul className="space-y-2">
+            <ul className="space-y-2 pl-7">
               {schedule.map((item, index) => (
                 <li key={index} className="text-white/70 text-sm">
                   <span className="text-white font-medium">{item.day}:</span>{' '}

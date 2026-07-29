@@ -55,7 +55,7 @@ export default function Navbar() {
             <img 
               src={`${import.meta.env.BASE_URL}rs-logo.svg`} 
               alt="RS Creativ" 
-              className={`h-40 w-auto object-contain transition-transform group-hover:rotate-12 ${isScrolled ? 'brightness-0' : 'brightness-0 invert'}`}
+              className={`h-40 w-auto object-contain transition-all duration-300 ${isScrolled ? 'brightness-0 group-hover:brightness-100' : 'brightness-0 invert group-hover:invert-0 group-hover:brightness-100'}`}
             />
           </Link>
 
