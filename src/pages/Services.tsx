@@ -186,7 +186,7 @@ export default function Services() {
                         onKeyDown={(e) => { if (e.key === 'Enter') setActiveCategory(cat.id); }}
                       >
                       <Card 
-                        className="h-[320px] group flex flex-col" 
+                        className="h-full group flex flex-col" 
                         hover 
                         padding="lg"
                       >
