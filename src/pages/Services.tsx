@@ -186,7 +186,7 @@ export default function Services() {
                         onKeyDown={(e) => { if (e.key === 'Enter') setActiveCategory(cat.id); }}
                       >
                       <Card 
-                        className="h-full group" 
+                        className="h-[320px] group flex flex-col" 
                         hover 
                         padding="lg"
                       >
@@ -208,7 +208,7 @@ export default function Services() {
                           </div>
                         </div>
                         
-                        <div className="mt-4">
+                        <div className="mt-4 flex-1">
                           <h4 className="text-text font-medium text-xs mb-3 uppercase tracking-wider">
                             Incluye:
                           </h4>

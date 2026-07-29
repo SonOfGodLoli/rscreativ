@@ -15,7 +15,6 @@ import {
   Sparkles, 
   PartyPopper, 
   ArrowRight,
-  Star,
   Award,
   Heart,
   Target,
@@ -105,23 +104,12 @@ export default function Home() {
 
         {/* Contenido del Hero */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20">
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-2 mb-8"
-          >
-            <Star className="w-4 h-4 text-accent" />
-            <span className="text-white/90 text-sm font-medium">Diseño & Impresión en Lima - Perú</span>
-          </motion.div>
-
           {/* Título principal */}
           <motion.h1
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-white mb-2 leading-tight"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
           >
             Creatividad que se
           </motion.h1>
@@ -130,7 +118,7 @@ export default function Home() {
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-white mb-6 leading-tight italic"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
           >
             diseña e imprime
           </motion.h1>
@@ -139,12 +127,10 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.8, duration: 0.6 }}
+            transition={{ delay: 0.6, duration: 0.6 }}
             className="flex justify-center mb-8"
           >
-            <div className="w-40 h-40 rounded-full bg-white/10 flex items-center justify-center border-2 border-accent/30 overflow-hidden">
-              <img src={`${BASE}rs-logo.svg`} alt="RS Creativ" className="w-28 h-28 object-contain" />
-            </div>
+            <img src={`${BASE}rs-logo.svg`} alt="RS Creativ" className="w-32 h-32 object-contain" />
           </motion.div>
 
           {/* Botones CTA */}
@@ -152,13 +138,13 @@ export default function Home() {
             className="flex flex-col sm:flex-row gap-4 justify-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.0 }}
+            transition={{ delay: 0.8 }}
           >
             <Link to="/contacto">
-              <Button variant="primary" size="lg">
+              <button className="bg-[#9a171c] hover:bg-[#7a1216] text-white font-bold py-4 px-10 rounded-lg text-lg transition-colors cursor-pointer inline-flex items-center gap-2">
                 Contáctanos
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
+                <ArrowRight className="w-5 h-5" />
+              </button>
             </Link>
           </motion.div>
         </div>
@@ -416,7 +402,7 @@ export default function Home() {
             ].map((client, i) => (
               <motion.div 
                 key={i} 
-                className="w-32 h-20 bg-white rounded-xl flex items-center justify-center border border-border shadow-sm p-3 hover:shadow-md transition-shadow"
+                className="w-44 h-28 bg-white rounded-xl flex items-center justify-center border border-border shadow-sm p-4 hover:shadow-lg transition-shadow"
                 whileHover={{ scale: 1.05, y: -4 }}
               >
                 <img 
