@@ -167,8 +167,7 @@ export default function Services() {
             {activeCategory === 'all' ? (
               <motion.div
                 key="all"
-                className="grid grid-cols-1 md:grid-cols-2 gap-8"
-                style={{ gridAutoRows: '1fr' }}
+                className="grid grid-cols-1 md:grid-cols-2 gap-8 [grid-auto-rows:1fr]"
                 variants={containerVariants(0.15)}
                 initial="hidden"
                 animate="visible"
@@ -178,9 +177,9 @@ export default function Services() {
                   const Icon = cat.icon;
                   
                   return (
-                    <motion.div key={cat.id} variants={itemVariants} className="h-full flex flex-col">
+                    <motion.div key={cat.id} variants={itemVariants}>
                       <div 
-                        className="cursor-pointer"
+                        className="cursor-pointer h-full flex flex-col"
                         onClick={() => setActiveCategory(cat.id)}
                         role="button"
                         tabIndex={0}
