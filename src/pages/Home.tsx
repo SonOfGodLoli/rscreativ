@@ -402,7 +402,7 @@ export default function Home() {
             ].map((client, i) => (
               <motion.div 
                 key={i} 
-                className="w-44 h-28 bg-white rounded-xl flex items-center justify-center border border-border shadow-sm p-4 hover:shadow-lg transition-shadow"
+                className="w-56 h-36 bg-white rounded-xl flex items-center justify-center border border-border shadow-sm p-5 hover:shadow-lg transition-shadow"
                 whileHover={{ scale: 1.05, y: -4 }}
               >
                 <img 
