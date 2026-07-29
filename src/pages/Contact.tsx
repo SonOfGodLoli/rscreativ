@@ -422,7 +422,7 @@ export default function Contact() {
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`flex-1 flex items-center justify-center gap-3 px-6 py-3 rounded-lg bg-bg-gray text-text text-sm font-medium transition-colors ${social.color}`}
+                      className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-bg-gray text-text text-sm font-medium transition-colors ${social.color}`}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
