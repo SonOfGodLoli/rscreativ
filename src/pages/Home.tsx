@@ -66,13 +66,13 @@ const teamMembers = [
     name: 'Ricardo',
     role: 'Diseñador Gráfico y Encargado de Acabados',
     description: 'Apasionado por el diseño y los detalles. Transforma ideas en productos terminados con acabados perfectos.',
-    initial: 'R',
+    image: '/Ricardo.png',
   },
   {
     name: 'Sarai',
     role: 'Administradora y Diseñadora',
     description: 'La mente organizativa detrás de RS Creativ. Combina creatividad con gestión eficiente.',
-    initial: 'S',
+    image: '/Sarai.png',
   },
 ];
 
@@ -141,7 +141,7 @@ export default function Home() {
             className="flex justify-center mb-8"
           >
             <div className="w-40 h-40 rounded-full bg-white/10 flex items-center justify-center border-2 border-accent/30 overflow-hidden">
-              <img src="/rs logo.svg" alt="RS Creativ" className="w-28 h-28 object-contain" />
+              <img src="/rs-logo.svg" alt="RS Creativ" className="w-28 h-28 object-contain" />
             </div>
           </motion.div>
 
@@ -192,11 +192,6 @@ export default function Home() {
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-text mt-4 mb-6">
               ¿QUIENES SOMOS?
             </h2>
-            <div className="flex items-center justify-center gap-2 mb-6">
-              <div className="h-1 w-12 bg-accent rounded-full" />
-              <div className="h-1 w-6 bg-accent/60 rounded-full" />
-              <div className="h-1 w-3 bg-accent/40 rounded-full" />
-            </div>
             <p className="text-text-secondary leading-relaxed mb-4 text-lg">
               Somos RS Creativ, especialistas en diseño gráfico y soluciones creativas.
               Nos apasiona transformar tus ideas en diseños únicos, desde contenido para
@@ -250,11 +245,6 @@ export default function Home() {
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-text mt-4">
               Misión y Visión
             </h2>
-            <div className="flex items-center justify-center gap-2 mt-4">
-              <div className="h-1 w-12 bg-accent rounded-full" />
-              <div className="h-1 w-6 bg-accent/60 rounded-full" />
-              <div className="h-1 w-3 bg-accent/40 rounded-full" />
-            </div>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -380,7 +370,7 @@ export default function Home() {
                     whileHover={{ scale: 1.1 }}
                   >
                     <img
-                      src={index === 0 ? '/Ricardo.png' : '/Sarai.png'}
+                      src={member.image}
                       alt={member.name}
                       className="w-full h-full object-cover"
                     />
@@ -416,11 +406,11 @@ export default function Home() {
             viewport={viewportConfig}
           >
             {[
-              { name: 'Sazón Criollo', logo: '/SAZON CRIOLLO LOGO.png' },
-              { name: 'C&G Asociados', logo: '/LOGO C&G ASOCIADOS.png' },
+              { name: 'Sazón Criollo', logo: '/SAZON-CRIOLLO-LOGO.png' },
+              { name: 'C&G Asociados', logo: '/LOGO-C&G-ASOCIADOS.png' },
               { name: 'Dentica', logo: '/DENTICA.png' },
               { name: 'Agrobel', logo: '/AGROBEL.png' },
-              { name: 'Caji Fiestas', logo: '/CAJI FIESTAS.png' },
+              { name: 'Caji Fiestas', logo: '/CAJI-FIESTAS.png' },
             ].map((client, i) => (
               <motion.div 
                 key={i} 

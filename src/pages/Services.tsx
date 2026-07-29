@@ -7,6 +7,7 @@ import {
   Sparkles, 
   Filter,
   ArrowRight,
+  CheckCircle,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -28,231 +29,81 @@ const categories = [
   { id: 'personalizados', name: 'Personalizados', icon: Sparkles },
 ];
 
-const allServices = [
+const mainCategories = [
   {
-    id: 1,
-    category: 'impresion',
+    id: 'impresion',
     icon: Printer,
-    title: 'Impresión de Banner',
-    description: 'Impresión de alta calidad en banners publicitarios para todo tipo de eventos y campañas.',
+    title: 'Impresión',
+    description: 'Impresión de alta calidad para todos tus materiales publicitarios.',
     color: 'from-blue-500 to-blue-600',
+    features: ['Banner', 'Volante', 'Tarjetas', 'Stickers', 'Vinil', 'Vinil sobre Foam'],
   },
   {
-    id: 2,
-    category: 'impresion',
-    icon: Printer,
-    title: 'Impresión de Volante',
-    description: 'Volantes promocionales con acabado profesional para difusión de tu marca.',
-    color: 'from-blue-500 to-blue-600',
-  },
-  {
-    id: 3,
-    category: 'impresion',
-    icon: Printer,
-    title: 'Impresión de Tarjetas',
-    description: 'Tarjetas de presentación y comerciales con diseño y acabado premium.',
-    color: 'from-blue-500 to-blue-600',
-  },
-  {
-    id: 4,
-    category: 'impresion',
-    icon: Printer,
-    title: 'Impresión de Stickers',
-    description: 'Stickers personalizados en diversos materiales y tamaños para tu marca.',
-    color: 'from-blue-500 to-blue-600',
-  },
-  {
-    id: 5,
-    category: 'impresion',
-    icon: Printer,
-    title: 'Impresión en Vinil',
-    description: 'Impresión en vinil de alta resistencia para rotulación y publicidad exterior.',
-    color: 'from-blue-500 to-blue-600',
-  },
-  {
-    id: 6,
-    category: 'impresion',
-    icon: Printer,
-    title: 'Vinil sobre Foam',
-    description: 'Impresión de vinil montado sobre foam para señalización y displays.',
-    color: 'from-blue-500 to-blue-600',
-  },
-  {
-    id: 7,
-    category: 'diseno',
+    id: 'diseno',
     icon: Palette,
-    title: 'Diseño de Tarjetas',
-    description: 'Diseño profesional de tarjetas de presentación que reflejan tu identidad.',
+    title: 'Diseño',
+    description: 'Diseños profesionales que comunican la esencia de tu marca.',
     color: 'from-purple-500 to-purple-600',
+    features: ['Tarjetas', 'Hang Tags', 'Volantes', 'Logos', 'Post para Redes', 'Banner', 'Invitaciones Video', 'Invitaciones Web'],
   },
   {
-    id: 8,
-    category: 'diseno',
-    icon: Palette,
-    title: 'Diseño de Hang Tags',
-    description: 'Etiquetas y hang tags con diseño único para productos y ropa.',
-    color: 'from-purple-500 to-purple-600',
-  },
-  {
-    id: 9,
-    category: 'diseno',
-    icon: Palette,
-    title: 'Diseño de Volantes',
-    description: 'Volantes promocionales con diseños atractivos y efectivos.',
-    color: 'from-purple-500 to-purple-600',
-  },
-  {
-    id: 10,
-    category: 'diseno',
-    icon: Palette,
-    title: 'Diseño de Logos',
-    description: 'Creación de logotipos únicos y profesionales para tu marca.',
-    color: 'from-purple-500 to-purple-600',
-  },
-  {
-    id: 11,
-    category: 'diseno',
-    icon: Palette,
-    title: 'Post para Redes',
-    description: 'Diseño de publicaciones para Instagram, Facebook y otras redes sociales.',
-    color: 'from-purple-500 to-purple-600',
-  },
-  {
-    id: 12,
-    category: 'diseno',
-    icon: Palette,
-    title: 'Banner Publicitario',
-    description: 'Diseño de banners para eventos, ferias y campañas publicitarias.',
-    color: 'from-purple-500 to-purple-600',
-  },
-  {
-    id: 13,
-    category: 'diseno',
-    icon: Palette,
-    title: 'Invitaciones de Video',
-    description: 'Diseño de invitaciones animadas en formato video para eventos.',
-    color: 'from-purple-500 to-purple-600',
-  },
-  {
-    id: 14,
-    category: 'diseno',
-    icon: Palette,
-    title: 'Invitaciones Web',
-    description: 'Invitaciones digitales interactivas para compartir en línea.',
-    color: 'from-purple-500 to-purple-600',
-  },
-  {
-    id: 15,
-    category: 'celebraciones',
+    id: 'celebraciones',
     icon: PartyPopper,
-    title: 'Diseño de Puertas',
-    description: 'Puertas decorativas personalizadas para celebraciones y eventos.',
+    title: 'Celebraciones',
+    description: 'Acabados especiales para tus eventos más importantes.',
     color: 'from-pink-500 to-pink-600',
+    features: ['Puertas', 'Circulares', 'Cilindros', 'Torteros', 'Troquelado'],
   },
   {
-    id: 16,
-    category: 'celebraciones',
-    icon: PartyPopper,
-    title: 'Circulares',
-    description: 'Circulares decorativos para fiestas y eventos especiales.',
-    color: 'from-pink-500 to-pink-600',
-  },
-  {
-    id: 17,
-    category: 'celebraciones',
-    icon: PartyPopper,
-    title: 'Cilindros',
-    description: 'Cilindros decorativos con diseños personalizados para celebraciones.',
-    color: 'from-pink-500 to-pink-600',
-  },
-  {
-    id: 18,
-    category: 'celebraciones',
-    icon: PartyPopper,
-    title: 'Torteros',
-    description: 'Torteros decorativos para fiestas de cumpleaños y eventos.',
-    color: 'from-pink-500 to-pink-600',
-  },
-  {
-    id: 19,
-    category: 'celebraciones',
-    icon: PartyPopper,
-    title: 'Troquelado en Vinil',
-    description: 'Troquelado decorativo en vinil para elementos de celebración.',
-    color: 'from-pink-500 to-pink-600',
-  },
-  {
-    id: 20,
-    category: 'personalizados',
+    id: 'personalizados',
     icon: Sparkles,
-    title: 'Estampado DTF',
-    description: 'Estampado directo a film de alta calidad en prendas textiles.',
+    title: 'Personalizados',
+    description: 'Productos personalizados con técnicas especializadas.',
     color: 'from-amber-500 to-amber-600',
-  },
-  {
-    id: 21,
-    category: 'personalizados',
-    icon: Sparkles,
-    title: 'Sublimación',
-    description: 'Impresión por sublimación en diversos productos personalizados.',
-    color: 'from-amber-500 to-amber-600',
-  },
-  {
-    id: 22,
-    category: 'personalizados',
-    icon: Sparkles,
-    title: 'Llaveros Metálicos',
-    description: 'Llaveros metálicos personalizados con grabado de alta precisión.',
-    color: 'from-amber-500 to-amber-600',
-  },
-  {
-    id: 23,
-    category: 'personalizados',
-    icon: Sparkles,
-    title: 'Imanes Metálicos',
-    description: 'Imanes metálicos personalizados para promoción de tu marca.',
-    color: 'from-amber-500 to-amber-600',
-  },
-  {
-    id: 24,
-    category: 'personalizados',
-    icon: Sparkles,
-    title: 'Llaveros en Acrílico',
-    description: 'Llaveros de acrílico con diseños personalizados y coloridos.',
-    color: 'from-amber-500 to-amber-600',
-  },
-  {
-    id: 25,
-    category: 'personalizados',
-    icon: Sparkles,
-    title: 'Serigrafía en Bolsos Notex',
-    description: 'Serigrafía profesional en bolsos notex para tu empresa o evento.',
-    color: 'from-amber-500 to-amber-600',
-  },
-  {
-    id: 26,
-    category: 'personalizados',
-    icon: Sparkles,
-    title: 'Lanyard',
-    description: 'Lanyards personalizados con logo para eventos y empresas.',
-    color: 'from-amber-500 to-amber-600',
-  },
-  {
-    id: 27,
-    category: 'personalizados',
-    icon: Sparkles,
-    title: 'Tarjetas PVC',
-    description: 'Tarjetas PVC personalizadas para membresías, credenciales y más.',
-    color: 'from-amber-500 to-amber-600',
+    features: ['Estampado DTF', 'Sublimación', 'Llaveros', 'Imanes', 'Serigrafía', 'Lanyard', 'Tarjetas PVC'],
   },
 ];
 
+const subServices: Record<string, { title: string; description: string }[]> = {
+  impresion: [
+    { title: 'Impresión de Banner', description: 'Banners publicitarios de alta calidad para eventos y campañas.' },
+    { title: 'Impresión de Volante', description: 'Volantes promocionales con acabado profesional.' },
+    { title: 'Impresión de Tarjetas', description: 'Tarjetas de presentación y comerciales premium.' },
+    { title: 'Impresión de Stickers', description: 'Stickers personalizados en diversos materiales.' },
+    { title: 'Impresión en Vinil', description: 'Vinil de alta resistencia para rotulación exterior.' },
+    { title: 'Vinil sobre Foam', description: 'Vinil montado sobre foam para señalización.' },
+  ],
+  diseno: [
+    { title: 'Diseño de Tarjetas', description: 'Tarjetas de presentación con identidad de marca.' },
+    { title: 'Diseño de Hang Tags', description: 'Etiquetas y hang tags para productos y ropa.' },
+    { title: 'Diseño de Volantes', description: 'Volantes promocionales atractivos y efectivos.' },
+    { title: 'Diseño de Logos', description: 'Logotipos únicos y profesionales.' },
+    { title: 'Post para Redes', description: 'Publicaciones para Instagram, Facebook y más.' },
+    { title: 'Banner Publicitario', description: 'Banners para eventos y campañas.' },
+    { title: 'Invitaciones de Video', description: 'Invitaciones animadas en formato video.' },
+    { title: 'Invitaciones Web', description: 'Invitaciones digitales interactivas.' },
+  ],
+  celebraciones: [
+    { title: 'Diseño de Puertas', description: 'Puertas decorativas personalizadas.' },
+    { title: 'Circulares', description: 'Circulares decorativos para fiestas.' },
+    { title: 'Cilindros', description: 'Cilindros decorativos personalizados.' },
+    { title: 'Torteros', description: 'Torteros decorativos para celebraciones.' },
+    { title: 'Troquelado en Vinil', description: 'Troquelado decorativo en vinil.' },
+  ],
+  personalizados: [
+    { title: 'Estampado DTF', description: 'Estampado directo a film de alta calidad.' },
+    { title: 'Sublimación', description: 'Impresión por sublimación en diversos productos.' },
+    { title: 'Llaveros Metálicos', description: 'Llaveros metálicos con grabado de precisión.' },
+    { title: 'Imanes Metálicos', description: 'Imanes metálicos para promoción de marca.' },
+    { title: 'Llaveros en Acrílico', description: 'Llaveros de acrílico coloridos y personalizados.' },
+    { title: 'Serigrafía en Bolsos Notex', description: 'Serigrafía profesional en bolsos.' },
+    { title: 'Lanyard', description: 'Lanyards personalizados con logo.' },
+    { title: 'Tarjetas PVC', description: 'Tarjetas PVC para membresías y credenciales.' },
+  ],
+};
+
 export default function Services() {
   const [activeCategory, setActiveCategory] = useState('all');
-
-  const filteredServices = activeCategory === 'all' 
-    ? allServices 
-    : allServices.filter(service => service.category === activeCategory);
 
   return (
     <PageTransition>
@@ -312,40 +163,106 @@ export default function Services() {
 
       <section className="py-16 bg-white min-h-[60vh]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.p
-            className="text-text-secondary text-sm mb-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-          >
-            Mostrando {filteredServices.length} servicio{filteredServices.length !== 1 ? 's' : ''}
-          </motion.p>
-
           <AnimatePresence mode="wait">
-            <motion.div
-              key={activeCategory}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-              variants={containerVariants(0.1)}
-              initial="hidden"
-              animate="visible"
-              exit={{ opacity: 0, transition: { duration: 0.2 } }}
-            >
-              {filteredServices.map((service) => {
-                const Icon = service.icon;
-                
-                return (
-                  <motion.div
-                    key={service.id}
-                    variants={itemVariants}
-                    layout
+            {activeCategory === 'all' ? (
+              <motion.div
+                key="all"
+                className="grid grid-cols-1 md:grid-cols-2 gap-8"
+                variants={containerVariants(0.15)}
+                initial="hidden"
+                animate="visible"
+                exit={{ opacity: 0, transition: { duration: 0.2 } }}
+              >
+                {mainCategories.map((cat) => {
+                  const Icon = cat.icon;
+                  
+                  return (
+                    <motion.div key={cat.id} variants={itemVariants}>
+                      <Card 
+                        className="h-full group cursor-pointer" 
+                        hover 
+                        padding="lg"
+                        onClick={() => setActiveCategory(cat.id)}
+                      >
+                        <div className="flex items-start gap-4 mb-4">
+                          <div className={`
+                            w-16 h-16 rounded-2xl bg-gradient-to-br ${cat.color} 
+                            flex items-center justify-center flex-shrink-0
+                            group-hover:scale-110 transition-transform duration-300
+                          `}>
+                            <Icon className="w-8 h-8 text-white" />
+                          </div>
+                          <div>
+                            <h3 className="text-xl font-heading font-bold text-text mb-2">
+                              Servicio de {cat.title}
+                            </h3>
+                            <p className="text-text-secondary text-sm leading-relaxed">
+                              {cat.description}
+                            </p>
+                          </div>
+                        </div>
+                        
+                        <div className="mt-4">
+                          <h4 className="text-text font-medium text-xs mb-3 uppercase tracking-wider">
+                            Incluye:
+                          </h4>
+                          <div className="grid grid-cols-2 gap-2">
+                            {cat.features.map((feature, fIndex) => (
+                              <div key={fIndex} className="flex items-center gap-2 text-sm text-text-secondary">
+                                <CheckCircle className="w-4 h-4 text-accent flex-shrink-0" />
+                                {feature}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                        
+                        <div className="mt-6 pt-4 border-t border-border">
+                          <span className="inline-flex items-center gap-2 text-accent text-sm font-medium group-hover:gap-3 transition-all">
+                            Ver servicios
+                            <ArrowRight className="w-4 h-4" />
+                          </span>
+                        </div>
+                      </Card>
+                    </motion.div>
+                  );
+                })}
+              </motion.div>
+            ) : (
+              <motion.div
+                key={activeCategory}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, transition: { duration: 0.2 } }}
+              >
+                <div className="mb-8">
+                  <button
+                    onClick={() => setActiveCategory('all')}
+                    className="inline-flex items-center gap-2 text-accent hover:text-accent-hover transition-colors text-sm font-medium cursor-pointer"
                   >
-                    <Card className="h-full group" hover padding="md">
-                      <div className="flex flex-col h-full">
+                    ← Volver a todos los servicios
+                  </button>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {subServices[activeCategory]?.map((service, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.05 }}
+                    >
+                      <Card className="h-full group" hover padding="md">
                         <div className={`
-                          w-12 h-12 rounded-xl bg-gradient-to-br ${service.color} 
-                          flex items-center justify-center flex-shrink-0 mb-4
+                          w-10 h-10 rounded-xl bg-gradient-to-br ${mainCategories.find(c => c.id === activeCategory)?.color} 
+                          flex items-center justify-center mb-4
                           group-hover:scale-110 transition-transform duration-300
                         `}>
-                          <Icon className="w-6 h-6 text-white" />
+                          {(() => {
+                            const cat = mainCategories.find(c => c.id === activeCategory);
+                            if (!cat) return null;
+                            const Icon = cat.icon;
+                            return <Icon className="w-5 h-5 text-white" />;
+                          })()}
                         </div>
                         
                         <h3 className="text-lg font-heading font-bold text-text mb-2">
@@ -365,12 +282,12 @@ export default function Services() {
                             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                           </Link>
                         </div>
-                      </div>
-                    </Card>
-                  </motion.div>
-                );
-              })}
-            </motion.div>
+                      </Card>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            )}
           </AnimatePresence>
         </div>
       </section>
