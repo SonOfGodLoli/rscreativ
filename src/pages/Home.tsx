@@ -388,22 +388,22 @@ export default function Home() {
           />
 
           <motion.div
-            className="flex flex-wrap justify-center items-center gap-10 mt-12"
+            className="flex flex-wrap justify-center items-center gap-8 mt-12"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={viewportConfig}
           >
             {[
-              { name: 'Sazón Criollo', logo: `${BASE}SAZON-CRIOLLO-LOGO.png`, big: true },
-              { name: 'C&G Asociados', logo: `${BASE}LOGO-CG-ASOCIADOS.png`, big: false },
-              { name: 'Dentica', logo: `${BASE}DENTICA.png`, big: true },
-              { name: 'Agrobel', logo: `${BASE}AGROBEL.png`, big: true },
-              { name: 'Caji Fiestas', logo: `${BASE}CAJI-FIESTAS.png`, big: false },
-              { name: 'Recurso 20', logo: `${BASE}Recurso-20.png`, big: true },
+              { name: 'Sazón Criollo', logo: `${BASE}SAZON-CRIOLLO-LOGO.png` },
+              { name: 'C&G Asociados', logo: `${BASE}LOGO-CG-ASOCIADOS.png` },
+              { name: 'Dentica', logo: `${BASE}DENTICA.png` },
+              { name: 'Agrobel', logo: `${BASE}AGROBEL.png` },
+              { name: 'Caji Fiestas', logo: `${BASE}CAJI-FIESTAS.png` },
+              { name: 'Recurso 20', logo: `${BASE}Recurso-20.png` },
             ].map((client, i) => (
               <motion.div 
                 key={i} 
-                className={`bg-white rounded-xl flex items-center justify-center border border-border shadow-sm p-5 hover:shadow-lg transition-shadow ${client.big ? 'w-64 h-40' : 'w-44 h-28'}`}
+                className="w-48 h-32 bg-white rounded-xl flex items-center justify-center border border-border shadow-sm p-4 hover:shadow-lg transition-shadow"
                 whileHover={{ scale: 1.05, y: -4 }}
               >
                 <img 
