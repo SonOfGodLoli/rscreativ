@@ -178,11 +178,17 @@ export default function Services() {
                   
                   return (
                     <motion.div key={cat.id} variants={itemVariants}>
+                      <div 
+                        className="cursor-pointer"
+                        onClick={() => setActiveCategory(cat.id)}
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={(e) => { if (e.key === 'Enter') setActiveCategory(cat.id); }}
+                      >
                       <Card 
-                        className="h-full group cursor-pointer" 
+                        className="h-full group" 
                         hover 
                         padding="lg"
-                        onClick={() => setActiveCategory(cat.id)}
                       >
                         <div className="flex items-start gap-4 mb-4">
                           <div className={`
@@ -223,6 +229,7 @@ export default function Services() {
                           </span>
                         </div>
                       </Card>
+                      </div>
                     </motion.div>
                   );
                 })}
