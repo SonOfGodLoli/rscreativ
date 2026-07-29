@@ -394,15 +394,16 @@ export default function Home() {
             viewport={viewportConfig}
           >
             {[
-              { name: 'Sazón Criollo', logo: `${BASE}SAZON-CRIOLLO-LOGO.png` },
-              { name: 'C&G Asociados', logo: `${BASE}LOGO-CG-ASOCIADOS.png` },
-              { name: 'Dentica', logo: `${BASE}DENTICA.png` },
-              { name: 'Agrobel', logo: `${BASE}AGROBEL.png` },
-              { name: 'Caji Fiestas', logo: `${BASE}CAJI-FIESTAS.png` },
+              { name: 'Sazón Criollo', logo: `${BASE}SAZON-CRIOLLO-LOGO.png`, big: true },
+              { name: 'C&G Asociados', logo: `${BASE}LOGO-CG-ASOCIADOS.png`, big: false },
+              { name: 'Dentica', logo: `${BASE}DENTICA.png`, big: true },
+              { name: 'Agrobel', logo: `${BASE}AGROBEL.png`, big: true },
+              { name: 'Caji Fiestas', logo: `${BASE}CAJI-FIESTAS.png`, big: false },
+              { name: 'Recurso 20', logo: `${BASE}Recurso-20.png`, big: true },
             ].map((client, i) => (
               <motion.div 
                 key={i} 
-                className="w-56 h-36 bg-white rounded-xl flex items-center justify-center border border-border shadow-sm p-5 hover:shadow-lg transition-shadow"
+                className={`bg-white rounded-xl flex items-center justify-center border border-border shadow-sm p-5 hover:shadow-lg transition-shadow ${client.big ? 'w-64 h-40' : 'w-44 h-28'}`}
                 whileHover={{ scale: 1.05, y: -4 }}
               >
                 <img 
