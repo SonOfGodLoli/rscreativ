@@ -289,7 +289,7 @@ export default function Home() {
           />
 
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch"
             variants={containerVariants(0.15)}
             initial="hidden"
             whileInView="visible"
@@ -307,10 +307,10 @@ export default function Home() {
                   <p className="text-text-secondary text-sm mb-4 leading-relaxed">
                     {service.description}
                   </p>
-                  <ul className="space-y-2">
+                  <ul className="grid grid-cols-2 gap-x-4 gap-y-2">
                     {service.features.map((feature, fIndex) => (
                       <li key={fIndex} className="flex items-center gap-2 text-sm text-text-secondary">
-                        <div className="w-1.5 h-1.5 rounded-full bg-accent" />
+                        <div className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
                         {feature}
                       </li>
                     ))}
