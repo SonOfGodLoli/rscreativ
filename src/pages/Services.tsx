@@ -168,6 +168,7 @@ export default function Services() {
               <motion.div
                 key="all"
                 className="grid grid-cols-1 md:grid-cols-2 gap-8"
+                style={{ gridAutoRows: '1fr' }}
                 variants={containerVariants(0.15)}
                 initial="hidden"
                 animate="visible"
@@ -177,7 +178,7 @@ export default function Services() {
                   const Icon = cat.icon;
                   
                   return (
-                    <motion.div key={cat.id} variants={itemVariants}>
+                    <motion.div key={cat.id} variants={itemVariants} className="h-full flex flex-col">
                       <div 
                         className="cursor-pointer"
                         onClick={() => setActiveCategory(cat.id)}
@@ -186,7 +187,7 @@ export default function Services() {
                         onKeyDown={(e) => { if (e.key === 'Enter') setActiveCategory(cat.id); }}
                       >
                       <Card 
-                        className="h-full group flex flex-col" 
+                        className="flex-1 group flex flex-col" 
                         hover 
                         padding="lg"
                       >

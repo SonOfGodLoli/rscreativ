@@ -289,15 +289,16 @@ export default function Home() {
           />
 
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+            style={{ gridAutoRows: '1fr' }}
             variants={containerVariants(0.15)}
             initial="hidden"
             whileInView="visible"
             viewport={viewportConfig}
           >
             {services.map((service, index) => (
-              <motion.div key={index} variants={itemVariants} className="h-full">
-                <Card className="h-full group" hover padding="lg">
+              <motion.div key={index} variants={itemVariants} className="h-full flex flex-col">
+                <Card className="flex-1 group" hover padding="lg">
                   <div className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mb-5 group-hover:bg-accent/20 transition-colors">
                     <service.icon className="w-7 h-7 text-accent" />
                   </div>
