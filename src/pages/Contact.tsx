@@ -415,14 +415,14 @@ export default function Contact() {
                 <p className="text-text-secondary text-sm mb-6">
                   Siguenos en nuestras redes para ver nuestro trabajo.
                 </p>
-                <div className="flex gap-4">
+                <div className="flex gap-2">
                   {socialLinks.map((social) => (
                     <motion.a
                       key={social.name}
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-bg-gray text-text text-sm font-medium transition-colors ${social.color}`}
+                      className={`flex-1 flex items-center justify-center gap-1.5 px-2 py-2.5 rounded-lg bg-bg-gray text-text text-xs font-medium transition-colors ${social.color}`}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
