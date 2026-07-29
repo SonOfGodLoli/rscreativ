@@ -53,7 +53,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link to="/" className="flex items-center group">
             <img 
-              src="/rs-logo.svg" 
+              src={`${import.meta.env.BASE_URL}rs-logo.svg`} 
               alt="RS Creativ" 
               className={`h-10 w-auto object-contain transition-transform group-hover:rotate-12 ${isScrolled ? 'brightness-0' : 'brightness-0 invert'}`}
             />

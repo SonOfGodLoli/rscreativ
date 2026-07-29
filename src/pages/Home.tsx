@@ -34,6 +34,8 @@ import Card from '@/components/ui/Card';
 import SectionTitle from '@/components/ui/SectionTitle';
 import PageTransition from '@/components/ui/PageTransition';
 
+const BASE = import.meta.env.BASE_URL;
+
 const services = [
   {
     icon: Printer,
@@ -66,13 +68,13 @@ const teamMembers = [
     name: 'Ricardo',
     role: 'Diseñador Gráfico y Encargado de Acabados',
     description: 'Apasionado por el diseño y los detalles. Transforma ideas en productos terminados con acabados perfectos.',
-    image: '/Ricardo.png',
+    image: `${BASE}Ricardo.png`,
   },
   {
     name: 'Sarai',
     role: 'Administradora y Diseñadora',
     description: 'La mente organizativa detrás de RS Creativ. Combina creatividad con gestión eficiente.',
-    image: '/Sarai.png',
+    image: `${BASE}Sarai.png`,
   },
 ];
 
@@ -141,7 +143,7 @@ export default function Home() {
             className="flex justify-center mb-8"
           >
             <div className="w-40 h-40 rounded-full bg-white/10 flex items-center justify-center border-2 border-accent/30 overflow-hidden">
-              <img src="/rs-logo.svg" alt="RS Creativ" className="w-28 h-28 object-contain" />
+              <img src={`${BASE}rs-logo.svg`} alt="RS Creativ" className="w-28 h-28 object-contain" />
             </div>
           </motion.div>
 
@@ -406,11 +408,11 @@ export default function Home() {
             viewport={viewportConfig}
           >
             {[
-              { name: 'Sazón Criollo', logo: '/SAZON-CRIOLLO-LOGO.png' },
-              { name: 'C&G Asociados', logo: '/LOGO-CG-ASOCIADOS.png' },
-              { name: 'Dentica', logo: '/DENTICA.png' },
-              { name: 'Agrobel', logo: '/AGROBEL.png' },
-              { name: 'Caji Fiestas', logo: '/CAJI-FIESTAS.png' },
+              { name: 'Sazón Criollo', logo: `${BASE}SAZON-CRIOLLO-LOGO.png` },
+              { name: 'C&G Asociados', logo: `${BASE}LOGO-CG-ASOCIADOS.png` },
+              { name: 'Dentica', logo: `${BASE}DENTICA.png` },
+              { name: 'Agrobel', logo: `${BASE}AGROBEL.png` },
+              { name: 'Caji Fiestas', logo: `${BASE}CAJI-FIESTAS.png` },
             ].map((client, i) => (
               <motion.div 
                 key={i} 
