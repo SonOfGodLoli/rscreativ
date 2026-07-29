@@ -296,7 +296,7 @@ export default function Home() {
             viewport={viewportConfig}
           >
             {services.map((service, index) => (
-              <motion.div key={index} variants={itemVariants}>
+              <motion.div key={index} variants={itemVariants} className="h-full">
                 <Card className="h-full group" hover padding="lg">
                   <div className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mb-5 group-hover:bg-accent/20 transition-colors">
                     <service.icon className="w-7 h-7 text-accent" />

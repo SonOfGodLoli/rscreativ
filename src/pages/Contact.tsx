@@ -415,7 +415,7 @@ export default function Contact() {
                 <p className="text-text-secondary text-sm mb-6">
                   Siguenos en nuestras redes para ver nuestro trabajo.
                 </p>
-                <div className="flex gap-3">
+                <div className="flex gap-4">
                   {socialLinks.map((social) => (
                     <motion.a
                       key={social.name}

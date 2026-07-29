@@ -315,7 +315,7 @@ export default function Services() {
             </p>
             
             <Link to="/contacto">
-              <Button variant="primary" size="lg">
+              <Button variant="dark" size="lg">
                 Hablar con Nosotros
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>

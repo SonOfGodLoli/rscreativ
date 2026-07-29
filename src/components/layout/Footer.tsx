@@ -6,7 +6,7 @@
  */
 
 import { motion } from 'framer-motion';
-import { Mail, Clock, MapPin } from 'lucide-react';
+import { Phone, Mail, Clock, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { containerVariants, itemVariants } from '@/animations/variants';
 
@@ -92,6 +92,7 @@ export default function Footer() {
             </h3>
             <ul className="space-y-3">
               <li className="flex items-center gap-2 text-white/70 text-sm">
+                <Phone className="w-4 h-4 text-accent" />
                 +51 933 866 156
               </li>
               <li className="flex items-center gap-2 text-white/70 text-sm">
