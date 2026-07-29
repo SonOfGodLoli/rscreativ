@@ -59,19 +59,21 @@ export default function Footer() {
           viewport={{ once: true }}
         >
           {/* Logo y descripción */}
-          <motion.div variants={itemVariants}>
-            <Link to="/" className="flex items-center gap-2 mb-4">
-              <img src={`${import.meta.env.BASE_URL}rs-logo.svg`} alt="RS Creativ" className="h-32 w-auto object-contain" />
-            </Link>
-            <p className="text-white/70 text-sm leading-relaxed mt-2">
+          <motion.div variants={itemVariants} className="flex flex-col justify-between">
+            <div>
+              <Link to="/" className="inline-block mb-4">
+                <img src={`${import.meta.env.BASE_URL}rs-logo.svg`} alt="RS Creativ" className="h-32 w-auto object-contain brightness-0 invert" />
+              </Link>
+            </div>
+            <p className="text-white/70 text-sm leading-relaxed">
               Especialistas en diseño gráfico y soluciones creativas.
               Transformamos tus ideas en diseños únicos.
             </p>
           </motion.div>
 
           {/* Horarios */}
-          <motion.div variants={itemVariants}>
-            <h3 className="text-white font-heading font-bold text-lg mb-6 flex items-center gap-2">
+          <motion.div variants={itemVariants} className="flex flex-col justify-between">
+            <h3 className="text-white font-heading font-bold text-lg mb-4 flex items-center gap-2">
               <Clock className="w-5 h-5 text-accent" />
               HORARIO
             </h3>
