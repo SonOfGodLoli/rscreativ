@@ -51,15 +51,12 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 group">
+          <Link to="/" className="flex items-center group">
             <img 
               src="/rs-logo.svg" 
               alt="RS Creativ" 
-              className={`w-10 h-10 object-contain transition-transform group-hover:rotate-12 ${isScrolled ? 'brightness-0' : 'brightness-0 invert'}`}
+              className={`h-10 w-auto object-contain transition-transform group-hover:rotate-12 ${isScrolled ? 'brightness-0' : 'brightness-0 invert'}`}
             />
-            <span className={`text-xl font-heading font-bold ${isScrolled ? 'text-dark' : 'text-white'}`}>
-              RS <span className={isScrolled ? 'text-dark' : 'text-white'}>CREATIV</span>
-            </span>
           </Link>
 
           {/* Enlaces de escritorio */}

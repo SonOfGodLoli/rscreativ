@@ -61,10 +61,7 @@ export default function Footer() {
           {/* Logo y descripción */}
           <motion.div variants={itemVariants}>
             <Link to="/" className="flex items-center gap-2 mb-4">
-              <img src="/rs-logo.svg" alt="RS Creativ" className="w-8 h-8 object-contain brightness-0 invert" />
-              <span className="text-xl font-heading font-bold text-white">
-                RS CREATIV
-              </span>
+              <img src="/rs-logo.svg" alt="RS Creativ" className="h-8 w-auto object-contain brightness-0 invert" />
             </Link>
             <p className="text-white/70 text-sm leading-relaxed">
               Especialistas en diseño gráfico y soluciones creativas.

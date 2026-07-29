@@ -407,7 +407,7 @@ export default function Home() {
           >
             {[
               { name: 'Sazón Criollo', logo: '/SAZON-CRIOLLO-LOGO.png' },
-              { name: 'C&G Asociados', logo: '/LOGO-C&G-ASOCIADOS.png' },
+              { name: 'C&G Asociados', logo: '/LOGO-CG-ASOCIADOS.png' },
               { name: 'Dentica', logo: '/DENTICA.png' },
               { name: 'Agrobel', logo: '/AGROBEL.png' },
               { name: 'Caji Fiestas', logo: '/CAJI-FIESTAS.png' },
