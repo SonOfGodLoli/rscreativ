@@ -88,14 +88,14 @@ export default function Home() {
           <img 
             src={`${BASE}COMPUTADORA.png`} 
             alt="RS Creativ" 
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover object-left"
           />
-          {/* Texto y botón encima del fondo */}
-          <div className="absolute inset-0 flex items-center">
-            <div className="max-w-7xl mx-auto px-8 w-full">
-              <div className="max-w-2xl ml-auto mr-0 text-left pr-8">
+          {/* Texto y botón en el área blanca (derecha) */}
+          <div className="absolute inset-0 flex items-center justify-end">
+            <div className="pr-16 xl:pr-24 2xl:pr-32">
+              <div className="text-left">
                 <motion.h1
-                  className="text-6xl xl:text-7xl font-heading font-bold text-text mb-2 leading-tight"
+                  className="text-5xl xl:text-6xl 2xl:text-7xl font-heading font-bold text-text mb-2 leading-tight"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.8 }}
@@ -103,7 +103,7 @@ export default function Home() {
                   Creatividad
                 </motion.h1>
                 <motion.h1
-                  className="text-6xl xl:text-7xl font-heading font-bold text-text mb-2 leading-tight"
+                  className="text-5xl xl:text-6xl 2xl:text-7xl font-heading font-bold text-text mb-2 leading-tight"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3, duration: 0.8 }}
@@ -111,7 +111,7 @@ export default function Home() {
                   que se
                 </motion.h1>
                 <motion.h1
-                  className="text-6xl xl:text-7xl font-heading font-bold text-text mb-2 leading-tight"
+                  className="text-5xl xl:text-6xl 2xl:text-7xl font-heading font-bold text-text mb-2 leading-tight"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4, duration: 0.8 }}
@@ -119,7 +119,7 @@ export default function Home() {
                   Diseña e
                 </motion.h1>
                 <motion.h1
-                  className="text-6xl xl:text-7xl font-heading font-bold text-text mb-8 leading-tight"
+                  className="text-5xl xl:text-6xl 2xl:text-7xl font-heading font-bold text-text mb-8 leading-tight"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5, duration: 0.8 }}
@@ -148,13 +148,14 @@ export default function Home() {
           <img 
             src={`${BASE}TABLET HORIZONTAL.png`} 
             alt="RS Creativ" 
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover object-left"
           />
-          <div className="absolute inset-0 flex items-center">
-            <div className="max-w-5xl mx-auto px-6 w-full">
-              <div className="max-w-xl ml-auto mr-0 text-left pr-4">
+          {/* Texto en el área blanca (derecha) */}
+          <div className="absolute inset-0 flex items-center justify-end">
+            <div className="pr-10 md:pr-16">
+              <div className="text-left">
                 <motion.h1
-                  className="text-5xl font-heading font-bold text-text mb-2 leading-tight"
+                  className="text-4xl md:text-5xl font-heading font-bold text-text mb-2 leading-tight"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.8 }}
@@ -162,7 +163,7 @@ export default function Home() {
                   Creatividad
                 </motion.h1>
                 <motion.h1
-                  className="text-5xl font-heading font-bold text-text mb-2 leading-tight"
+                  className="text-4xl md:text-5xl font-heading font-bold text-text mb-2 leading-tight"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3, duration: 0.8 }}
@@ -170,7 +171,7 @@ export default function Home() {
                   que se
                 </motion.h1>
                 <motion.h1
-                  className="text-5xl font-heading font-bold text-text mb-2 leading-tight"
+                  className="text-4xl md:text-5xl font-heading font-bold text-text mb-2 leading-tight"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4, duration: 0.8 }}
@@ -178,7 +179,7 @@ export default function Home() {
                   Diseña e
                 </motion.h1>
                 <motion.h1
-                  className="text-5xl font-heading font-bold text-text mb-6 leading-tight"
+                  className="text-4xl md:text-5xl font-heading font-bold text-text mb-6 leading-tight"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5, duration: 0.8 }}
@@ -207,9 +208,10 @@ export default function Home() {
           <img 
             src={`${BASE}TABLET VERTICAL.png`} 
             alt="RS Creativ" 
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover object-top"
           />
-          <div className="absolute inset-0 flex items-end justify-center pb-16">
+          {/* Texto en la parte superior (área blanca) */}
+          <div className="absolute inset-0 flex items-start justify-center pt-20">
             <div className="text-center px-6">
               <motion.h1
                 className="text-4xl font-heading font-bold text-text mb-1 leading-tight"
@@ -248,12 +250,13 @@ export default function Home() {
           <img 
             src={`${BASE}CELULAR.png`} 
             alt="RS Creativ" 
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover object-top"
           />
-          <div className="absolute inset-0 flex items-end justify-center pb-12">
+          {/* Texto en la parte superior (área blanca) */}
+          <div className="absolute inset-0 flex items-start justify-center pt-16">
             <div className="text-center px-4">
               <motion.h1
-                className="text-3xl font-heading font-bold text-text mb-1 leading-tight"
+                className="text-2xl sm:text-3xl font-heading font-bold text-text mb-1 leading-tight"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.8 }}
@@ -261,7 +264,7 @@ export default function Home() {
                 Creatividad que se
               </motion.h1>
               <motion.h1
-                className="text-3xl font-heading font-bold text-text mb-5 leading-tight"
+                className="text-2xl sm:text-3xl font-heading font-bold text-text mb-5 leading-tight"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.8 }}
