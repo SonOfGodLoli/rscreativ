@@ -81,176 +81,207 @@ export default function Home() {
   return (
     <PageTransition>
       {/* ==================== HERO ==================== */}
-      {/* Hero responsive - imagen según dispositivo */}
-      <section className="relative min-h-screen overflow-hidden bg-white">
-        {/* Fondo decorativo sutil */}
-        <div className="absolute inset-0 z-0">
-          <div className="absolute top-20 right-20 w-72 h-72 bg-accent/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-20 left-20 w-96 h-96 bg-accent/3 rounded-full blur-3xl" />
-        </div>
-
-        {/* ========== DESKTOP (>=1024px) ========== */}
-        <div className="hidden lg:flex relative z-10 max-w-7xl mx-auto px-8 min-h-screen items-center">
-          {/* Imagen a la izquierda */}
-          <motion.div 
-            className="w-1/2 flex justify-center"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <img 
-              src={`${BASE}COMPUTADORA.png`} 
-              alt="RS Creativ - Creatividad que se diseña e imprime" 
-              className="w-full max-w-lg object-contain"
-            />
-          </motion.div>
-          {/* Texto a la derecha */}
-          <div className="w-1/2 pl-8">
-            <motion.h1
-              className="text-5xl lg:text-6xl xl:text-7xl font-heading font-bold text-text mb-2 leading-tight"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
-            >
-              Creatividad que se
-            </motion.h1>
-            <motion.h1
-              className="text-5xl lg:text-6xl xl:text-7xl font-heading font-bold text-text mb-8 leading-tight"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.8 }}
-            >
-              Diseña e Imprime
-            </motion.h1>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-            >
-              <Link to="/contacto">
-                <button className="bg-[#9a171c] hover:bg-[#7a1216] text-white font-bold py-4 px-10 rounded-lg text-lg transition-colors cursor-pointer inline-flex items-center gap-2">
-                  Contáctanos
-                  <ArrowRight className="w-5 h-5" />
-                </button>
-              </Link>
-            </motion.div>
+      {/* Hero con imagen de fondo a pantalla completa y texto encima */}
+      <section className="relative min-h-screen overflow-hidden">
+        {/* ========== DESKTOP (>=1024px) - Fondo COMPUTADORA ========== */}
+        <div className="hidden lg:block absolute inset-0">
+          <img 
+            src={`${BASE}COMPUTADORA.png`} 
+            alt="RS Creativ" 
+            className="w-full h-full object-cover object-center"
+          />
+          {/* Texto y botón encima del fondo */}
+          <div className="absolute inset-0 flex items-center">
+            <div className="max-w-7xl mx-auto px-8 w-full">
+              <div className="max-w-2xl ml-auto mr-0 text-left pr-8">
+                <motion.h1
+                  className="text-6xl xl:text-7xl font-heading font-bold text-text mb-2 leading-tight"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2, duration: 0.8 }}
+                >
+                  Creatividad
+                </motion.h1>
+                <motion.h1
+                  className="text-6xl xl:text-7xl font-heading font-bold text-text mb-2 leading-tight"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3, duration: 0.8 }}
+                >
+                  que se
+                </motion.h1>
+                <motion.h1
+                  className="text-6xl xl:text-7xl font-heading font-bold text-text mb-2 leading-tight"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4, duration: 0.8 }}
+                >
+                  Diseña e
+                </motion.h1>
+                <motion.h1
+                  className="text-6xl xl:text-7xl font-heading font-bold text-text mb-8 leading-tight"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5, duration: 0.8 }}
+                >
+                  Imprime
+                </motion.h1>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7 }}
+                >
+                  <Link to="/contacto">
+                    <button className="bg-[#9a171c] hover:bg-[#7a1216] text-white font-bold py-4 px-10 rounded-lg text-lg transition-colors cursor-pointer inline-flex items-center gap-2">
+                      Contáctanos
+                      <ArrowRight className="w-5 h-5" />
+                    </button>
+                  </Link>
+                </motion.div>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* ========== TABLET HORIZONTAL (768px - 1023px) ========== */}
-        <div className="hidden md:flex lg:hidden relative z-10 max-w-5xl mx-auto px-6 min-h-screen items-center">
-          <motion.div 
-            className="w-1/2 flex justify-center"
-            initial={{ opacity: 0, x: -40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <img 
-              src={`${BASE}TABLET HORIZONTAL.png`} 
-              alt="RS Creativ - Creatividad que se diseña e imprime" 
-              className="w-full max-w-md object-contain"
-            />
-          </motion.div>
-          <div className="w-1/2 pl-6">
-            <motion.h1
-              className="text-4xl md:text-5xl font-heading font-bold text-text mb-2 leading-tight"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
-            >
-              Creatividad que se
-            </motion.h1>
-            <motion.h1
-              className="text-4xl md:text-5xl font-heading font-bold text-text mb-6 leading-tight"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.8 }}
-            >
-              Diseña e Imprime
-            </motion.h1>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-            >
-              <Link to="/contacto">
-                <button className="bg-[#9a171c] hover:bg-[#7a1216] text-white font-bold py-3 px-8 rounded-lg text-base transition-colors cursor-pointer inline-flex items-center gap-2">
-                  Contáctanos
-                  <ArrowRight className="w-5 h-5" />
-                </button>
-              </Link>
-            </motion.div>
+        {/* ========== TABLET HORIZONTAL (768px - 1023px) - Fondo TABLET HORIZONTAL ========== */}
+        <div className="hidden md:block lg:hidden absolute inset-0">
+          <img 
+            src={`${BASE}TABLET HORIZONTAL.png`} 
+            alt="RS Creativ" 
+            className="w-full h-full object-cover object-center"
+          />
+          <div className="absolute inset-0 flex items-center">
+            <div className="max-w-5xl mx-auto px-6 w-full">
+              <div className="max-w-xl ml-auto mr-0 text-left pr-4">
+                <motion.h1
+                  className="text-5xl font-heading font-bold text-text mb-2 leading-tight"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2, duration: 0.8 }}
+                >
+                  Creatividad
+                </motion.h1>
+                <motion.h1
+                  className="text-5xl font-heading font-bold text-text mb-2 leading-tight"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3, duration: 0.8 }}
+                >
+                  que se
+                </motion.h1>
+                <motion.h1
+                  className="text-5xl font-heading font-bold text-text mb-2 leading-tight"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4, duration: 0.8 }}
+                >
+                  Diseña e
+                </motion.h1>
+                <motion.h1
+                  className="text-5xl font-heading font-bold text-text mb-6 leading-tight"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5, duration: 0.8 }}
+                >
+                  Imprime
+                </motion.h1>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7 }}
+                >
+                  <Link to="/contacto">
+                    <button className="bg-[#9a171c] hover:bg-[#7a1216] text-white font-bold py-3 px-8 rounded-lg text-base transition-colors cursor-pointer inline-flex items-center gap-2">
+                      Contáctanos
+                      <ArrowRight className="w-5 h-5" />
+                    </button>
+                  </Link>
+                </motion.div>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* ========== TABLET VERTICAL (640px - 767px) ========== */}
-        <div className="hidden sm:flex md:hidden relative z-10 flex-col min-h-screen items-center justify-center px-6 pt-24 pb-12">
-          <motion.div
-            className="text-center mb-6"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-          >
-            <h1 className="text-4xl font-heading font-bold text-text mb-2 leading-tight">
-              Creatividad que se
-            </h1>
-            <h1 className="text-4xl font-heading font-bold text-text mb-6 leading-tight">
-              Diseña e Imprime
-            </h1>
-            <Link to="/contacto">
-              <button className="bg-[#9a171c] hover:bg-[#7a1216] text-white font-bold py-3 px-8 rounded-lg text-base transition-colors cursor-pointer inline-flex items-center gap-2">
-                Contáctanos
-                <ArrowRight className="w-5 h-5" />
-              </button>
-            </Link>
-          </motion.div>
-          <motion.div 
-            className="flex-1 flex items-end justify-center"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
-          >
-            <img 
-              src={`${BASE}TABLET VERTICAL.png`} 
-              alt="RS Creativ - Creatividad que se diseña e imprime" 
-              className="w-full max-w-sm object-contain"
-            />
-          </motion.div>
+        {/* ========== TABLET VERTICAL (640px - 767px) - Fondo TABLET VERTICAL ========== */}
+        <div className="hidden sm:block md:hidden absolute inset-0">
+          <img 
+            src={`${BASE}TABLET VERTICAL.png`} 
+            alt="RS Creativ" 
+            className="w-full h-full object-cover object-center"
+          />
+          <div className="absolute inset-0 flex items-end justify-center pb-16">
+            <div className="text-center px-6">
+              <motion.h1
+                className="text-4xl font-heading font-bold text-text mb-1 leading-tight"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.8 }}
+              >
+                Creatividad que se
+              </motion.h1>
+              <motion.h1
+                className="text-4xl font-heading font-bold text-text mb-6 leading-tight"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.8 }}
+              >
+                Diseña e Imprime
+              </motion.h1>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+              >
+                <Link to="/contacto">
+                  <button className="bg-[#9a171c] hover:bg-[#7a1216] text-white font-bold py-3 px-8 rounded-lg text-base transition-colors cursor-pointer inline-flex items-center gap-2">
+                    Contáctanos
+                    <ArrowRight className="w-5 h-5" />
+                  </button>
+                </Link>
+              </motion.div>
+            </div>
+          </div>
         </div>
 
-        {/* ========== CELULAR (<640px) ========== */}
-        <div className="flex sm:hidden relative z-10 flex-col min-h-screen items-center justify-center px-4 pt-24 pb-8">
-          <motion.div
-            className="text-center mb-4"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-          >
-            <h1 className="text-3xl font-heading font-bold text-text mb-1 leading-tight">
-              Creatividad que se
-            </h1>
-            <h1 className="text-3xl font-heading font-bold text-text mb-5 leading-tight">
-              Diseña e Imprime
-            </h1>
-            <Link to="/contacto">
-              <button className="bg-[#9a171c] hover:bg-[#7a1216] text-white font-bold py-3 px-8 rounded-lg text-base transition-colors cursor-pointer inline-flex items-center gap-2">
-                Contáctanos
-                <ArrowRight className="w-5 h-5" />
-              </button>
-            </Link>
-          </motion.div>
-          <motion.div 
-            className="flex-1 flex items-end justify-center w-full"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
-          >
-            <img 
-              src={`${BASE}CELULAR.png`} 
-              alt="RS Creativ - Creatividad que se diseña e imprime" 
-              className="w-full max-w-xs object-contain"
-            />
-          </motion.div>
+        {/* ========== CELULAR (<640px) - Fondo CELULAR ========== */}
+        <div className="sm:hidden block absolute inset-0">
+          <img 
+            src={`${BASE}CELULAR.png`} 
+            alt="RS Creativ" 
+            className="w-full h-full object-cover object-center"
+          />
+          <div className="absolute inset-0 flex items-end justify-center pb-12">
+            <div className="text-center px-4">
+              <motion.h1
+                className="text-3xl font-heading font-bold text-text mb-1 leading-tight"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.8 }}
+              >
+                Creatividad que se
+              </motion.h1>
+              <motion.h1
+                className="text-3xl font-heading font-bold text-text mb-5 leading-tight"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.8 }}
+              >
+                Diseña e Imprime
+              </motion.h1>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+              >
+                <Link to="/contacto">
+                  <button className="bg-[#9a171c] hover:bg-[#7a1216] text-white font-bold py-3 px-8 rounded-lg text-base transition-colors cursor-pointer inline-flex items-center gap-2">
+                    Contáctanos
+                    <ArrowRight className="w-5 h-5" />
+                  </button>
+                </Link>
+              </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
