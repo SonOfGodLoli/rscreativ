@@ -81,88 +81,177 @@ export default function Home() {
   return (
     <PageTransition>
       {/* ==================== HERO ==================== */}
-      {/* Hero con fondo navy oscuro (#040a33) */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Fondo navy oscuro con imagen de fondo */}
+      {/* Hero responsive - imagen según dispositivo */}
+      <section className="relative min-h-screen overflow-hidden bg-white">
+        {/* Fondo decorativo sutil */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-secondary" />
-          {/* Gradiente sutil encima */}
-          <div className="absolute inset-0 bg-gradient-to-br from-secondary via-secondary/95 to-accent/10" />
-          
-          {/* Elementos decorativos animados */}
-          <motion.div
-            className="absolute top-20 right-20 w-72 h-72 bg-accent/5 rounded-full blur-3xl"
-            animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
-            transition={{ duration: 8, repeat: Infinity }}
-          />
-          <motion.div
-            className="absolute bottom-20 left-20 w-96 h-96 bg-accent/3 rounded-full blur-3xl"
-            animate={{ scale: [1.2, 1, 1.2], opacity: [0.2, 0.4, 0.2] }}
-            transition={{ duration: 10, repeat: Infinity }}
-          />
+          <div className="absolute top-20 right-20 w-72 h-72 bg-accent/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 left-20 w-96 h-96 bg-accent/3 rounded-full blur-3xl" />
         </div>
 
-        {/* Contenido del Hero */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20">
-          {/* Título principal */}
-          <motion.h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-white mb-2 leading-tight"
+        {/* ========== DESKTOP (>=1024px) ========== */}
+        <div className="hidden lg:flex relative z-10 max-w-7xl mx-auto px-8 min-h-screen items-center">
+          {/* Imagen a la izquierda */}
+          <motion.div 
+            className="w-1/2 flex justify-center"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <img 
+              src={`${BASE}COMPUTADORA.png`} 
+              alt="RS Creativ - Creatividad que se diseña e imprime" 
+              className="w-full max-w-lg object-contain"
+            />
+          </motion.div>
+          {/* Texto a la derecha */}
+          <div className="w-1/2 pl-8">
+            <motion.h1
+              className="text-5xl lg:text-6xl xl:text-7xl font-heading font-bold text-text mb-2 leading-tight"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.8 }}
+            >
+              Creatividad que se
+            </motion.h1>
+            <motion.h1
+              className="text-5xl lg:text-6xl xl:text-7xl font-heading font-bold text-text mb-8 leading-tight"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+            >
+              Diseña e Imprime
+            </motion.h1>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+            >
+              <Link to="/contacto">
+                <button className="bg-[#9a171c] hover:bg-[#7a1216] text-white font-bold py-4 px-10 rounded-lg text-lg transition-colors cursor-pointer inline-flex items-center gap-2">
+                  Contáctanos
+                  <ArrowRight className="w-5 h-5" />
+                </button>
+              </Link>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* ========== TABLET HORIZONTAL (768px - 1023px) ========== */}
+        <div className="hidden md:flex lg:hidden relative z-10 max-w-5xl mx-auto px-6 min-h-screen items-center">
+          <motion.div 
+            className="w-1/2 flex justify-center"
+            initial={{ opacity: 0, x: -40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <img 
+              src={`${BASE}TABLET HORIZONTAL.png`} 
+              alt="RS Creativ - Creatividad que se diseña e imprime" 
+              className="w-full max-w-md object-contain"
+            />
+          </motion.div>
+          <div className="w-1/2 pl-6">
+            <motion.h1
+              className="text-4xl md:text-5xl font-heading font-bold text-text mb-2 leading-tight"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.8 }}
+            >
+              Creatividad que se
+            </motion.h1>
+            <motion.h1
+              className="text-4xl md:text-5xl font-heading font-bold text-text mb-6 leading-tight"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+            >
+              Diseña e Imprime
+            </motion.h1>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+            >
+              <Link to="/contacto">
+                <button className="bg-[#9a171c] hover:bg-[#7a1216] text-white font-bold py-3 px-8 rounded-lg text-base transition-colors cursor-pointer inline-flex items-center gap-2">
+                  Contáctanos
+                  <ArrowRight className="w-5 h-5" />
+                </button>
+              </Link>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* ========== TABLET VERTICAL (640px - 767px) ========== */}
+        <div className="hidden sm:flex md:hidden relative z-10 flex-col min-h-screen items-center justify-center px-6 pt-24 pb-12">
+          <motion.div
+            className="text-center mb-6"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
           >
-            Creatividad que se
-          </motion.h1>
-          
-          <motion.h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-white mb-6 leading-tight italic"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
-          >
-            diseña e imprime
-          </motion.h1>
-
-          {/* Logo RS Creativ en el hero */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.6, duration: 0.6 }}
-            className="flex justify-center mb-8"
-          >
-            <img src={`${BASE}rs-logo.svg`} alt="RS Creativ" className="w-32 h-32 object-contain" />
-          </motion.div>
-
-          {/* Botones CTA */}
-          <motion.div
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8 }}
-          >
+            <h1 className="text-4xl font-heading font-bold text-text mb-2 leading-tight">
+              Creatividad que se
+            </h1>
+            <h1 className="text-4xl font-heading font-bold text-text mb-6 leading-tight">
+              Diseña e Imprime
+            </h1>
             <Link to="/contacto">
-              <button className="bg-[#9a171c] hover:bg-[#7a1216] text-white font-bold py-4 px-10 rounded-lg text-lg transition-colors cursor-pointer inline-flex items-center gap-2">
+              <button className="bg-[#9a171c] hover:bg-[#7a1216] text-white font-bold py-3 px-8 rounded-lg text-base transition-colors cursor-pointer inline-flex items-center gap-2">
                 Contáctanos
                 <ArrowRight className="w-5 h-5" />
               </button>
             </Link>
           </motion.div>
+          <motion.div 
+            className="flex-1 flex items-end justify-center"
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+          >
+            <img 
+              src={`${BASE}TABLET VERTICAL.png`} 
+              alt="RS Creativ - Creatividad que se diseña e imprime" 
+              className="w-full max-w-sm object-contain"
+            />
+          </motion.div>
         </div>
 
-        {/* Scroll indicator */}
-        <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
-            <motion.div
-              className="w-1.5 h-3 bg-white rounded-full mt-2"
-              animate={{ y: [0, 12, 0], opacity: [1, 0.3, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
+        {/* ========== CELULAR (<640px) ========== */}
+        <div className="flex sm:hidden relative z-10 flex-col min-h-screen items-center justify-center px-4 pt-24 pb-8">
+          <motion.div
+            className="text-center mb-4"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+          >
+            <h1 className="text-3xl font-heading font-bold text-text mb-1 leading-tight">
+              Creatividad que se
+            </h1>
+            <h1 className="text-3xl font-heading font-bold text-text mb-5 leading-tight">
+              Diseña e Imprime
+            </h1>
+            <Link to="/contacto">
+              <button className="bg-[#9a171c] hover:bg-[#7a1216] text-white font-bold py-3 px-8 rounded-lg text-base transition-colors cursor-pointer inline-flex items-center gap-2">
+                Contáctanos
+                <ArrowRight className="w-5 h-5" />
+              </button>
+            </Link>
+          </motion.div>
+          <motion.div 
+            className="flex-1 flex items-end justify-center w-full"
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+          >
+            <img 
+              src={`${BASE}CELULAR.png`} 
+              alt="RS Creativ - Creatividad que se diseña e imprime" 
+              className="w-full max-w-xs object-contain"
             />
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </section>
 
       {/* ==================== ABOUT - ¿QUIÉNES SOMOS? ==================== */}
@@ -383,40 +472,65 @@ export default function Home() {
       </section>
 
       {/* ==================== CLIENTS ==================== */}
-      <section className="py-20 bg-bg-gray">
+      <section className="py-20 bg-bg-gray overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle 
             title="Ellos Confiaron en Nosotros" 
             subtitle="Marcas y personas que eligieron RS Creativ para sus proyectos."
           />
+        </div>
 
-          <motion.div
-            className="flex flex-wrap justify-center items-center gap-8 mt-12"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={viewportConfig}
-          >
-            {[
-              { name: 'Sazón Criollo', logo: `${BASE}SAZON-CRIOLLO-LOGO.png` },
-              { name: 'C&G Asociados', logo: `${BASE}LOGO-CG-ASOCIADOS.png` },
-              { name: 'Dentica', logo: `${BASE}DENTICA.png` },
-              { name: 'Agrobel', logo: `${BASE}AGROBEL.png` },
-              { name: 'Caji Fiestas', logo: `${BASE}CAJI-FIESTAS.png` },
-              { name: 'Recurso 20', logo: `${BASE}Recurso-20.png` },
-            ].map((client, i) => (
-              <motion.div 
-                key={i} 
-                className="w-48 h-32 bg-white rounded-xl flex items-center justify-center border border-border shadow-sm p-4 hover:shadow-lg transition-shadow"
-                whileHover={{ scale: 1.05, y: -4 }}
-              >
-                <img 
-                  src={client.logo} 
-                  alt={client.name} 
-                  className="max-w-full max-h-full object-contain"
-                />
-              </motion.div>
-            ))}
-          </motion.div>
+        <div className="mt-12 relative">
+          {/* Degradado izquierdo para efecto de desvanecimiento */}
+          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-bg-gray to-transparent z-10 pointer-events-none" />
+          {/* Degradado derecho para efecto de desvanecimiento */}
+          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-bg-gray to-transparent z-10 pointer-events-none" />
+          
+          {/* Contenedor del carrusel */}
+          <div className="flex overflow-hidden">
+            <div className="flex animate-marquee gap-6">
+              {/* Primera serie de logos */}
+              {[
+                { name: 'Sazón Criollo', logo: `${BASE}SAZON-CRIOLLO-LOGO.png` },
+                { name: 'C&G Asociados', logo: `${BASE}LOGO-CG-ASOCIADOS.png` },
+                { name: 'Dentica', logo: `${BASE}DENTICA.png` },
+                { name: 'Agrobel', logo: `${BASE}AGROBEL.png` },
+                { name: 'Caji Fiestas', logo: `${BASE}CAJI-FIESTAS.png` },
+                { name: 'Recurso 20', logo: `${BASE}Recurso-20.png` },
+              ].map((client, i) => (
+                <div 
+                  key={`a-${i}`} 
+                  className="flex-shrink-0 w-48 h-32 bg-white rounded-xl flex items-center justify-center border border-border shadow-sm p-4 hover:shadow-lg hover:scale-105 transition-all duration-300"
+                >
+                  <img 
+                    src={client.logo} 
+                    alt={client.name} 
+                    className="max-w-full max-h-full object-contain"
+                  />
+                </div>
+              ))}
+              {/* Segunda serie de logos (duplicado para efecto infinito) */}
+              {[
+                { name: 'Sazón Criollo', logo: `${BASE}SAZON-CRIOLLO-LOGO.png` },
+                { name: 'C&G Asociados', logo: `${BASE}LOGO-CG-ASOCIADOS.png` },
+                { name: 'Dentica', logo: `${BASE}DENTICA.png` },
+                { name: 'Agrobel', logo: `${BASE}AGROBEL.png` },
+                { name: 'Caji Fiestas', logo: `${BASE}CAJI-FIESTAS.png` },
+                { name: 'Recurso 20', logo: `${BASE}Recurso-20.png` },
+              ].map((client, i) => (
+                <div 
+                  key={`b-${i}`} 
+                  className="flex-shrink-0 w-48 h-32 bg-white rounded-xl flex items-center justify-center border border-border shadow-sm p-4 hover:shadow-lg hover:scale-105 transition-all duration-300"
+                >
+                  <img 
+                    src={client.logo} 
+                    alt={client.name} 
+                    className="max-w-full max-h-full object-contain"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
