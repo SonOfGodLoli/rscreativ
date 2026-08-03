@@ -90,12 +90,11 @@ export default function Home() {
             alt="RS Creativ" 
             className="w-full h-full object-cover object-left"
           />
-          {/* Texto y botón en el área blanca (derecha) */}
           <div className="absolute inset-0 flex items-center justify-end">
             <div className="pr-16 xl:pr-24 2xl:pr-32">
               <div className="text-left">
                 <motion.h1
-                  className="text-5xl xl:text-6xl 2xl:text-7xl font-heading font-bold text-text mb-2 leading-tight"
+                  className="text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-heading font-bold text-text mb-2 leading-tight"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.8 }}
@@ -103,7 +102,7 @@ export default function Home() {
                   Creatividad que se
                 </motion.h1>
                 <motion.h1
-                  className="text-5xl xl:text-6xl 2xl:text-7xl font-heading font-bold text-text mb-8 leading-tight"
+                  className="text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-heading font-bold text-text mb-8 leading-tight"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4, duration: 0.8 }}
@@ -117,7 +116,7 @@ export default function Home() {
                   transition={{ delay: 0.7 }}
                 >
                   <Link to="/contacto">
-                    <button className="bg-[#9a171c] hover:bg-[#7a1216] text-white font-bold py-4 px-10 rounded-lg text-lg transition-colors cursor-pointer inline-flex items-center gap-2">
+                    <button className="bg-[#9a171c] hover:bg-[#7a1216] text-white font-bold py-3 lg:py-4 px-8 lg:px-10 rounded-lg text-base lg:text-lg transition-colors cursor-pointer inline-flex items-center gap-2">
                       Contáctanos
                       <ArrowRight className="w-5 h-5" />
                     </button>
@@ -135,41 +134,24 @@ export default function Home() {
             alt="RS Creativ" 
             className="w-full h-full object-cover object-left"
           />
-          {/* Texto en el área blanca (derecha) */}
           <div className="absolute inset-0 flex items-center justify-end">
             <div className="pr-10 md:pr-16">
               <div className="text-left">
                 <motion.h1
-                  className="text-4xl md:text-5xl font-heading font-bold text-text mb-2 leading-tight"
+                  className="text-3xl md:text-4xl font-heading font-bold text-text mb-2 leading-tight"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.8 }}
                 >
-                  Creatividad
+                  Creatividad que se
                 </motion.h1>
                 <motion.h1
-                  className="text-4xl md:text-5xl font-heading font-bold text-text mb-2 leading-tight"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3, duration: 0.8 }}
-                >
-                  que se
-                </motion.h1>
-                <motion.h1
-                  className="text-4xl md:text-5xl font-heading font-bold text-text mb-2 leading-tight"
+                  className="text-3xl md:text-4xl font-heading font-bold text-text mb-6 leading-tight"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4, duration: 0.8 }}
                 >
-                  Diseña e
-                </motion.h1>
-                <motion.h1
-                  className="text-4xl md:text-5xl font-heading font-bold text-text mb-6 leading-tight"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5, duration: 0.8 }}
-                >
-                  Imprime
+                  Diseña e Imprime
                 </motion.h1>
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -195,11 +177,10 @@ export default function Home() {
             alt="RS Creativ" 
             className="w-full h-full object-cover object-top"
           />
-          {/* Texto en la parte superior (área blanca) */}
           <div className="absolute inset-0 flex items-start justify-center pt-20">
             <div className="text-center px-6">
               <motion.h1
-                className="text-4xl font-heading font-bold text-text mb-1 leading-tight"
+                className="text-2xl sm:text-3xl font-heading font-bold text-text mb-1 leading-tight"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.8 }}
@@ -207,7 +188,7 @@ export default function Home() {
                 Creatividad que se
               </motion.h1>
               <motion.h1
-                className="text-4xl font-heading font-bold text-text mb-6 leading-tight"
+                className="text-2xl sm:text-3xl font-heading font-bold text-text mb-6 leading-tight"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.8 }}
@@ -237,11 +218,10 @@ export default function Home() {
             alt="RS Creativ" 
             className="w-full h-full object-cover object-top"
           />
-          {/* Texto en la parte superior (área blanca) */}
           <div className="absolute inset-0 flex items-start justify-center pt-16">
             <div className="text-center px-4">
               <motion.h1
-                className="text-2xl sm:text-3xl font-heading font-bold text-text mb-1 leading-tight"
+                className="text-xl sm:text-2xl font-heading font-bold text-text mb-1 leading-tight"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.8 }}
@@ -249,7 +229,7 @@ export default function Home() {
                 Creatividad que se
               </motion.h1>
               <motion.h1
-                className="text-2xl sm:text-3xl font-heading font-bold text-text mb-5 leading-tight"
+                className="text-xl sm:text-2xl font-heading font-bold text-text mb-5 leading-tight"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.8 }}
@@ -262,9 +242,9 @@ export default function Home() {
                 transition={{ delay: 0.6 }}
               >
                 <Link to="/contacto">
-                  <button className="bg-[#9a171c] hover:bg-[#7a1216] text-white font-bold py-3 px-8 rounded-lg text-base transition-colors cursor-pointer inline-flex items-center gap-2">
+                  <button className="bg-[#9a171c] hover:bg-[#7a1216] text-white font-bold py-2.5 px-6 rounded-lg text-sm transition-colors cursor-pointer inline-flex items-center gap-2">
                     Contáctanos
-                    <ArrowRight className="w-5 h-5" />
+                    <ArrowRight className="w-4 h-4" />
                   </button>
                 </Link>
               </motion.div>
