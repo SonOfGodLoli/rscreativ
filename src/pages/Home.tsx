@@ -83,10 +83,10 @@ export default function Home() {
       {/* ==================== HERO ==================== */}
       {/* Hero con imagen de fondo a pantalla completa y texto encima */}
       <section className="relative min-h-screen overflow-hidden">
-        {/* ========== DESKTOP (>=1024px) - Fondo COMPUTADORA ========== */}
+        {/* ========== DESKTOP (>=1024px) - Fondo deskot modificado ========== */}
         <div className="hidden lg:block absolute inset-0">
           <img 
-            src={`${BASE}COMPUTADORA.png`} 
+            src={`${BASE}deskot modificado5web 1.png`} 
             alt="RS Creativ" 
             className="w-full h-full object-cover object-left"
           />
@@ -100,33 +100,18 @@ export default function Home() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.8 }}
                 >
-                  Creatividad
-                </motion.h1>
-                <motion.h1
-                  className="text-5xl xl:text-6xl 2xl:text-7xl font-heading font-bold text-text mb-2 leading-tight"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3, duration: 0.8 }}
-                >
-                  que se
-                </motion.h1>
-                <motion.h1
-                  className="text-5xl xl:text-6xl 2xl:text-7xl font-heading font-bold text-text mb-2 leading-tight"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4, duration: 0.8 }}
-                >
-                  Diseña e
+                  Creatividad que se
                 </motion.h1>
                 <motion.h1
                   className="text-5xl xl:text-6xl 2xl:text-7xl font-heading font-bold text-text mb-8 leading-tight"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5, duration: 0.8 }}
+                  transition={{ delay: 0.4, duration: 0.8 }}
                 >
-                  Imprime
+                  Diseña e Imprime
                 </motion.h1>
                 <motion.div
+                  className="flex justify-center"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.7 }}
