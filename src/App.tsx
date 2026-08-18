@@ -17,6 +17,7 @@ import { useEffect } from 'react';
 // Componentes de layout
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
+import FloatingButtons from './components/ui/FloatingButtons';
 
 // Páginas
 import Home from './pages/Home';
@@ -73,6 +74,7 @@ function App() {
           <AnimatedRoutes />
         </main>
         <Footer />
+        <FloatingButtons />
       </div>
     </Router>
   );

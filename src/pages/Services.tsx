@@ -306,20 +306,24 @@ export default function Services() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={viewportConfig}
           >
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-6">
-              ¿No encuentras lo que buscas?
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
+              Solicita nuestro catálogo
             </h2>
             
             <p className="text-white/70 text-lg mb-8">
-              Contáctanos y crearemos una solución personalizada para ti.
+              Explora todos nuestros servicios y productos disponibles.
             </p>
             
-            <Link to="/contacto">
-              <Button variant="dark" size="lg">
-                Hablar con Nosotros
+            <a
+              href="https://canva.link/rs-creativ"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button variant="primary" size="lg">
+                Ver
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
-            </Link>
+            </a>
           </motion.div>
         </div>
       </section>

@@ -450,7 +450,7 @@ export default function Contact() {
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-text-secondary">Domingo</span>
-                    <span className="text-text font-medium">10:00 - 12:00</span>
+                    <span className="text-text font-medium">Casos Especiales</span>
                   </div>
                 </div>
               </Card>

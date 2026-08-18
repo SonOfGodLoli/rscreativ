@@ -13,7 +13,7 @@ import { containerVariants, itemVariants } from '@/animations/variants';
 const schedule = [
   { day: 'Lun - Vie', hours: '10:00 - 20:00' },
   { day: 'Sábado', hours: '11:00 - 17:00' },
-  { day: 'Domingo', hours: '10:00 - 12:00 (Recepción de pedidos)' },
+  { day: 'Domingo', hours: 'Casos Especiales' },
 ];
 
 const socialLinks = [

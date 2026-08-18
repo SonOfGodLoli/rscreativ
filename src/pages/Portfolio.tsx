@@ -439,20 +439,24 @@ export default function Portfolio() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={viewportConfig}
           >
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-6">
-              ¿Tienes un proyecto en mente?
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
+              Solicita nuestro catálogo
             </h2>
             
             <p className="text-white/70 text-lg mb-8">
-              Cuéntanos tu idea y la haremos realidad con la más alta calidad.
+              Explora todos nuestros servicios y productos disponibles.
             </p>
             
-            <Link to="/contacto">
+            <a
+              href="https://canva.link/rs-creativ"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Button variant="primary" size="lg">
-                Comenzar Proyecto
+                Ver
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
-            </Link>
+            </a>
           </motion.div>
         </div>
       </section>
