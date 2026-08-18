@@ -299,7 +299,7 @@ export default function Services() {
         </div>
       </section>
 
-      <section className="py-16 bg-dark">
+      <section className="py-16 bg-mid">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
