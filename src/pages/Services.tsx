@@ -259,6 +259,13 @@ export default function Services() {
                       transition={{ delay: index * 0.05 }}
                     >
                       <Card className="h-full group" hover padding="md">
+                        {service.title === 'Impresión de Banner' && (
+                          <img
+                            src={`${import.meta.env.BASE_URL}impresion/impresion banner.png`}
+                            alt="Impresión de Banner"
+                            className="w-full h-40 object-cover rounded-lg mb-4"
+                          />
+                        )}
                         <div className={`
                           w-10 h-10 rounded-xl bg-gradient-to-br ${mainCategories.find(c => c.id === activeCategory)?.color} 
                           flex items-center justify-center mb-4
