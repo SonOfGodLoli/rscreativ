@@ -103,6 +103,15 @@ const subServices: Record<string, { title: string; description: string }[]> = {
   ],
 };
 
+const serviceImages: Record<string, string> = {
+  'Impresión de Banner': 'impresion banner.png',
+  'Impresión de Volante': 'impresion volantes.png',
+  'Impresión de Tarjetas': 'impresion tarjetas.png',
+  'Impresión de Stickers': 'impresion stickers.png',
+  'Impresión en Vinil': 'impresion vinil.png',
+  'Vinil sobre Foam': 'impresion vinil sobre foam.png',
+};
+
 export default function Services() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
@@ -261,12 +270,12 @@ export default function Services() {
                       transition={{ delay: index * 0.05 }}
                     >
                       <Card className="h-full group" hover padding="md">
-                        {service.title === 'Impresión de Banner' && (
+                        {serviceImages[service.title] && (
                           <img
-                            src={`${import.meta.env.BASE_URL}impresion/impresion banner.png`}
-                            alt="Impresión de Banner"
+                            src={`${import.meta.env.BASE_URL}impresion/${serviceImages[service.title]}`}
+                            alt={service.title}
                             className="w-full rounded-lg mb-4 cursor-pointer hover:opacity-80 transition-opacity shadow-md"
-                            onClick={() => setLightboxImage(`${import.meta.env.BASE_URL}impresion/impresion banner.png`)}
+                            onClick={() => setLightboxImage(`${import.meta.env.BASE_URL}impresion/${serviceImages[service.title]}`)}
                           />
                         )}
                         <div className={`
