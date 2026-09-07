@@ -265,7 +265,7 @@ export default function Services() {
                           <img
                             src={`${import.meta.env.BASE_URL}impresion/impresion banner.png`}
                             alt="Impresión de Banner"
-                            className="w-full rounded-lg mb-4 cursor-pointer hover:opacity-80 transition-opacity"
+                            className="w-full rounded-lg mb-4 cursor-pointer hover:opacity-80 transition-opacity shadow-md"
                             onClick={() => setLightboxImage(`${import.meta.env.BASE_URL}impresion/impresion banner.png`)}
                           />
                         )}
