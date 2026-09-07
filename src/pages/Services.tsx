@@ -36,7 +36,7 @@ const mainCategories = [
     icon: Printer,
     title: 'Impresión',
     description: 'Impresión de alta calidad para todos tus materiales publicitarios.',
-    color: 'from-blue-500 to-blue-600',
+    color: 'from-[#9a171c] to-[#9a171c]',
     features: ['Banner', 'Volante', 'Tarjetas', 'Stickers', 'Vinil', 'Vinil sobre Foam'],
   },
   {
@@ -44,7 +44,7 @@ const mainCategories = [
     icon: Palette,
     title: 'Diseño',
     description: 'Diseños profesionales que comunican la esencia de tu marca.',
-    color: 'from-purple-500 to-purple-600',
+    color: 'from-[#b24940] to-[#b24940]',
     features: ['Tarjetas', 'Hang Tags', 'Volantes', 'Logos', 'Post para Redes', 'Banner', 'Invitaciones Video', 'Invitaciones Web'],
   },
   {
@@ -52,7 +52,7 @@ const mainCategories = [
     icon: PartyPopper,
     title: 'Celebraciones',
     description: 'Acabados especiales para tus eventos más importantes.',
-    color: 'from-pink-500 to-pink-600',
+    color: 'from-[#eb9192] to-[#eb9192]',
     features: ['Puertas', 'Circulares', 'Cilindros', 'Torteros', 'Troquelado'],
   },
   {
@@ -60,7 +60,7 @@ const mainCategories = [
     icon: Sparkles,
     title: 'Personalizados',
     description: 'Productos personalizados con técnicas especializadas.',
-    color: 'from-amber-500 to-amber-600',
+    color: 'from-[#9a171c] to-[#b24940]',
     features: ['Estampado DTF', 'Sublimación', 'Llaveros', 'Imanes', 'Serigrafía', 'Lanyard', 'Tarjetas PVC'],
   },
 ];
