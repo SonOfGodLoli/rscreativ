@@ -8,6 +8,7 @@ import {
   Filter,
   ArrowRight,
   CheckCircle,
+  X,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -104,6 +105,7 @@ const subServices: Record<string, { title: string; description: string }[]> = {
 
 export default function Services() {
   const [activeCategory, setActiveCategory] = useState('all');
+  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
 
   return (
     <PageTransition>
@@ -263,7 +265,8 @@ export default function Services() {
                           <img
                             src={`${import.meta.env.BASE_URL}impresion/impresion banner.png`}
                             alt="Impresión de Banner"
-                            className="w-full h-40 object-cover rounded-lg mb-4"
+                            className="w-full rounded-lg mb-4 cursor-pointer hover:opacity-80 transition-opacity"
+                            onClick={() => setLightboxImage(`${import.meta.env.BASE_URL}impresion/impresion banner.png`)}
                           />
                         )}
                         <div className={`
@@ -334,6 +337,38 @@ export default function Services() {
           </motion.div>
         </div>
       </section>
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {lightboxImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4 cursor-pointer"
+            onClick={() => setLightboxImage(null)}
+          >
+            <motion.button
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              className="absolute top-4 right-4 w-10 h-10 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-white cursor-pointer"
+              onClick={() => setLightboxImage(null)}
+            >
+              <X className="w-6 h-6" />
+            </motion.button>
+            <motion.img
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              src={lightboxImage}
+              alt="Vista ampliada"
+              className="max-w-full max-h-[90vh] object-contain rounded-lg"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </PageTransition>
   );
 }
