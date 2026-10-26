@@ -164,9 +164,7 @@ export const listMedia = () => api.get<MediaItem[]>('/admin/media');
 export const uploadMedia = (file: File) => {
   const form = new FormData();
   form.append('file', file);
-  return api.post<MediaUploadResult>('/admin/media', form, {
-    headers: { 'Content-Type': 'multipart/form-data' },
-  });
+  return api.post<MediaUploadResult>('/admin/media', form);
 };
 export const deleteMedia = (id: string) => api.delete(`/admin/media/${id}`);
 
