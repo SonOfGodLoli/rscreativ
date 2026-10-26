@@ -23,6 +23,7 @@ import Card from '@/components/ui/Card';
 import PageTransition from '@/components/ui/PageTransition';
 import CmsSections from '@/components/cms/CmsSections';
 import { getServices } from '@/services/api';
+import type { Service } from '@/services/api';
 
 const categories = [
   { id: 'all', name: 'Todos', icon: Filter },
@@ -120,6 +121,7 @@ export default function Services() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
   const [apiSubs, setApiSubs] = useState<Record<string, SubEntry[]>>({});
+  const [apiServices, setApiServices] = useState<Service[]>([]);
 
   useEffect(() => {
     let alive = true;
@@ -141,6 +143,7 @@ export default function Services() {
         }
 
         setApiSubs(grouped);
+        setApiServices(data);
       })
       .catch(() => {
         // Si el API no está disponible se mantiene el contenido estático.
@@ -152,6 +155,22 @@ export default function Services() {
   }, []);
 
   const categoryServices: SubEntry[] = (apiSubs[activeCategory] ?? subServices[activeCategory] ?? []) as SubEntry[];
+
+  const serviceCards = apiServices.length > 0
+    ? apiServices.map((service) => {
+        const meta = mainCategories.find((cat) => cat.id === service.category) ?? mainCategories[0];
+
+        return {
+          id: service.category,
+          icon: meta.icon,
+          title: service.title,
+          description: service.description,
+          color: meta.color,
+          features: service.features ?? [],
+          image: service.image,
+        };
+      })
+    : mainCategories.map((cat) => ({ ...cat, image: '' }));
 
   return (
     <PageTransition>
@@ -221,11 +240,11 @@ export default function Services() {
                 animate="visible"
                 exit={{ opacity: 0, transition: { duration: 0.2 } }}
               >
-                {mainCategories.map((cat) => {
+                {serviceCards.map((cat, cardIndex) => {
                   const Icon = cat.icon;
                   
                   return (
-                    <motion.div key={cat.id} variants={itemVariants}>
+                    <motion.div key={`${cat.id}-${cardIndex}`} variants={itemVariants}>
                       <div 
                         className="cursor-pointer h-full flex flex-col"
                         onClick={() => setActiveCategory(cat.id)}
@@ -238,6 +257,13 @@ export default function Services() {
                         hover 
                         padding="lg"
                       >
+                        {cat.image && (
+                          <img
+                            src={cat.image}
+                            alt={cat.title}
+                            className="w-full h-40 object-cover rounded-xl mb-4 shadow-sm"
+                          />
+                        )}
                         <div className="flex items-start gap-4 mb-4">
                           <div className={`
                             w-16 h-16 rounded-2xl bg-gradient-to-br ${cat.color} 
@@ -248,7 +274,7 @@ export default function Services() {
                           </div>
                           <div>
                             <h3 className="text-xl font-heading font-bold text-text mb-2">
-                              Servicio de {cat.title}
+                              {cat.title}
                             </h3>
                             <p className="text-text-secondary text-sm leading-relaxed">
                               {cat.description}
@@ -256,19 +282,21 @@ export default function Services() {
                           </div>
                         </div>
                         
-                        <div className="mt-4 flex-1">
-                          <h4 className="text-text font-medium text-xs mb-3 uppercase tracking-wider">
-                            Incluye:
-                          </h4>
-                          <div className="grid grid-cols-2 gap-2">
-                            {cat.features.map((feature, fIndex) => (
-                              <div key={fIndex} className="flex items-center gap-2 text-sm text-text-secondary">
-                                <CheckCircle className="w-4 h-4 text-accent flex-shrink-0" />
-                                {feature}
-                              </div>
-                            ))}
+                        {cat.features.length > 0 && (
+                          <div className="mt-4 flex-1">
+                            <h4 className="text-text font-medium text-xs mb-3 uppercase tracking-wider">
+                              Incluye:
+                            </h4>
+                            <div className="grid grid-cols-2 gap-2">
+                              {cat.features.slice(0, 8).map((feature, fIndex) => (
+                                <div key={fIndex} className="flex items-center gap-2 text-sm text-text-secondary">
+                                  <CheckCircle className="w-4 h-4 text-accent flex-shrink-0" />
+                                  {feature}
+                                </div>
+                              ))}
+                            </div>
                           </div>
-                        </div>
+                        )}
                         
                         <div className="mt-6 pt-4 border-t border-border">
                           <span className="inline-flex items-center gap-2 text-accent text-sm font-medium group-hover:gap-3 transition-all">
