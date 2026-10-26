@@ -243,7 +243,7 @@ export default function Portfolio() {
   return (
     <PageTransition>
       <Seo
-        title="Portafolio de Trabajos | RS Creativ"
+        title="Portafolio de Trabajos | RS Creativ Perú"
         description="Proyectos de diseño, impresión, branding y personalizados realizados por RS Creativ."
       />
       {/* ==================== HEADER DE LA PÁGINA ==================== */}

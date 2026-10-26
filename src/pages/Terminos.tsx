@@ -114,7 +114,7 @@ export default function Terminos() {
   return (
     <PageTransition>
       <Seo
-        title="Términos y Condiciones | RS Creativ"
+        title="Términos y Condiciones | RS Creativ Perú"
         description="Condiciones de cotización, pago, diseño, aprobación y entrega de los trabajos de RS Creativ."
       />
       <section className="pt-32 pb-16 bg-gradient-to-b from-accent to-dark">

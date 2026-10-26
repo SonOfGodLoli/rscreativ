@@ -256,7 +256,7 @@ export default function Contact() {
   return (
     <PageTransition>
       <Seo
-        title="Contacto | RS Creativ"
+        title="Contacto | RS Creativ Perú"
         description="Cotiza tu proyecto de diseño, impresión o personalizados con RS Creativ. Escríbenos por WhatsApp o completa el formulario."
       />
       {/* HEADER DE LA PAGINA */}

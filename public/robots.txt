@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin
 Disallow: /admin/
 
-Sitemap: https://rscreativ.com/sitemap.xml
+Sitemap: https://rscreativ.pe/sitemap.xml

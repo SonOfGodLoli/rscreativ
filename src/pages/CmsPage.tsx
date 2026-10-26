@@ -52,7 +52,7 @@ export default function CmsPage() {
   return (
     <PageTransition>
       <Seo
-        title={`${page.title} | RS Creativ`}
+        title={`${page.title} | RS Creativ Perú`}
         description={page.description || 'Contenido de RS Creativ.'}
       />
       <section className="bg-[#040a33] pb-12 pt-32">

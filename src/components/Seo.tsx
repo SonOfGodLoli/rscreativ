@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-const SITE_URL = 'https://rscreativ.com';
+const SITE_URL = 'https://rscreativ.pe';
 const DEFAULT_IMAGE = `${SITE_URL}/apple-touch-icon.png`;
 
 type SeoProps = {

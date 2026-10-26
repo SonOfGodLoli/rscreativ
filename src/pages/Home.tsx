@@ -83,8 +83,8 @@ export default function Home() {
   return (
     <PageTransition>
       <Seo
-        title="RS Creativ | Diseño, Impresión y Personalizados en Perú"
-        description="Diseño gráfico, impresión publicitaria, celebraciones y productos personalizados en Perú. Cotiza tu proyecto con RS Creativ."
+        title="RS Creativ Perú | Diseño, Impresión y Personalizados en Lima"
+        description="Diseño gráfico, impresión publicitaria, celebraciones y productos personalizados en Lima, Perú. Cotiza tu proyecto con RS Creativ."
       />
       {/* ==================== HERO ==================== */}
       {/* Hero con imagen de fondo a pantalla completa y texto encima */}

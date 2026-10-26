@@ -195,7 +195,7 @@ export default function Services() {
   return (
     <PageTransition>
       <Seo
-        title="Servicios de Diseño e Impresión | RS Creativ"
+        title="Servicios de Diseño e Impresión | RS Creativ Perú"
         description="Impresión, diseño gráfico, celebraciones y productos personalizados. Conoce todos los servicios de RS Creativ en Perú."
       />
       <section className="pt-32 pb-16 bg-gradient-to-b from-accent to-dark">
