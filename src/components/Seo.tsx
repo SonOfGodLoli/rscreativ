@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-const SITE_URL = 'https://rscreativ.pe';
+const SITE_URL = 'https://rscreativ.netlify.app';
 const DEFAULT_IMAGE = `${SITE_URL}/apple-touch-icon.png`;
 
 type SeoProps = {
