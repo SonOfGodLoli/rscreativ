@@ -13,15 +13,29 @@
 
 import axios from 'axios';
 
+const apiOrigin = (import.meta.env.VITE_API_URL ?? '').trim().replace(/\/$/, '');
+
 /**
  * Instancia de Axios configurada con la URL base del API.
- * En desarrollo, Vite proxy redirige /api a localhost:3001
+ * - En desarrollo: Vite proxy redirige /api a localhost:3001
+ * - En producción: VITE_API_URL apunta al backend (Render)
  */
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: `${apiOrigin}/api`,
   headers: {
     'Content-Type': 'application/json',
   },
+});
+
+/** Adjunta el token del panel si existe. */
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem('rsc_token');
+
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+
+  return config;
 });
 
 /**
@@ -38,6 +52,17 @@ api.interceptors.response.use(
 
 // ==================== TIPOS ====================
 
+/** Subsección (producto) de un servicio */
+export interface ServiceSubsection {
+  id: string;
+  serviceId: string;
+  title: string;
+  description: string;
+  image: string;
+  price: string;
+  order: number;
+}
+
 /** Interfaz para los servicios ofrecidos por RS Creativ */
 export interface Service {
   id: string;
@@ -47,6 +72,7 @@ export interface Service {
   category: string;
   features: string[];
   created_at: string;
+  subsections: ServiceSubsection[];
 }
 
 /** Interfaz para los trabajos del portafolio */
@@ -130,5 +156,38 @@ export const sendMessage = (data: Omit<ContactMessage, 'id' | 'read' | 'created_
 
 /** Configuración del sitio */
 export const getSiteSettings = () => api.get<SiteSetting[]>('/settings');
+
+// ==================== PÁGINAS CMS ====================
+
+export interface CmsSectionItem {
+  title: string;
+  description: string;
+  image: string;
+}
+
+export interface CmsSection {
+  id: string;
+  kind: 'hero' | 'text' | 'gallery' | 'cards' | 'cta';
+  eyebrow: string;
+  title: string;
+  subtitle: string;
+  body: string;
+  image: string;
+  images: string[];
+  ctaLabel: string;
+  ctaUrl: string;
+  items: CmsSectionItem[] | null;
+  order: number;
+}
+
+export interface CmsPage {
+  id: string;
+  slug: string;
+  title: string;
+  description: string;
+  sections: CmsSection[];
+}
+
+export const getCmsPage = (slug: string) => api.get<CmsPage>(`/pages/${slug}`);
 
 export default api;

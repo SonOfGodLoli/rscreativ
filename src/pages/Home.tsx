@@ -32,6 +32,7 @@ import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
 import SectionTitle from '@/components/ui/SectionTitle';
 import PageTransition from '@/components/ui/PageTransition';
+import CmsSections from '@/components/cms/CmsSections';
 
 const BASE = import.meta.env.BASE_URL;
 
@@ -560,6 +561,7 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+      <CmsSections slug="home" />
     </PageTransition>
   );
 }

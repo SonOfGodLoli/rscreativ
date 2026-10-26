@@ -37,6 +37,7 @@ import {
 // Componentes UI reutilizables
 import Button from '@/components/ui/Button';
 import PageTransition from '@/components/ui/PageTransition';
+import CmsSections from '@/components/cms/CmsSections';
 
 /**
  * Categorías de filtro del portafolio.
@@ -460,6 +461,7 @@ export default function Portfolio() {
           </motion.div>
         </div>
       </section>
+      <CmsSections slug="portfolio" />
     </PageTransition>
   );
 }

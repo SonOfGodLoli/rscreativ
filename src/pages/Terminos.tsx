@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import { viewportConfig } from '@/animations/variants';
 import PageTransition from '@/components/ui/PageTransition';
+import CmsSections from '@/components/cms/CmsSections';
 
 const sections = [
   {
@@ -190,6 +191,7 @@ export default function Terminos() {
           </motion.div>
         </div>
       </section>
+      <CmsSections slug="terminos-y-condiciones" />
     </PageTransition>
   );
 }

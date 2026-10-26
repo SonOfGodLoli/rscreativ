@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Printer, 
@@ -21,6 +21,8 @@ import {
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
 import PageTransition from '@/components/ui/PageTransition';
+import CmsSections from '@/components/cms/CmsSections';
+import { getServices } from '@/services/api';
 
 const categories = [
   { id: 'all', name: 'Todos', icon: Filter },
@@ -112,9 +114,44 @@ const serviceImages: Record<string, string> = {
   'Vinil sobre Foam': 'impresion vinil sobre foam.png',
 };
 
+type SubEntry = { title: string; description: string; image?: string };
+
 export default function Services() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
+  const [apiSubs, setApiSubs] = useState<Record<string, SubEntry[]>>({});
+
+  useEffect(() => {
+    let alive = true;
+
+    getServices()
+      .then(({ data }) => {
+        if (!alive) return;
+
+        const grouped: Record<string, SubEntry[]> = {};
+
+        for (const service of data) {
+          if (service.subsections.length === 0) continue;
+
+          grouped[service.category] = service.subsections.map((sub) => ({
+            title: sub.title,
+            description: sub.description,
+            image: sub.image || undefined,
+          }));
+        }
+
+        setApiSubs(grouped);
+      })
+      .catch(() => {
+        // Si el API no está disponible se mantiene el contenido estático.
+      });
+
+    return () => {
+      alive = false;
+    };
+  }, []);
+
+  const categoryServices: SubEntry[] = (apiSubs[activeCategory] ?? subServices[activeCategory] ?? []) as SubEntry[];
 
   return (
     <PageTransition>
@@ -262,7 +299,7 @@ export default function Services() {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {subServices[activeCategory]?.map((service, index) => (
+                  {categoryServices.map((service, index) => (
                     <motion.div
                       key={index}
                       initial={{ opacity: 0, y: 20 }}
@@ -270,14 +307,22 @@ export default function Services() {
                       transition={{ delay: index * 0.05 }}
                     >
                       <Card className="h-full group" hover padding="md">
-                        {serviceImages[service.title] && (
-                          <img
-                            src={`${import.meta.env.BASE_URL}impresion/${serviceImages[service.title]}`}
-                            alt={service.title}
-                            className="w-full rounded-lg mb-4 cursor-pointer hover:opacity-80 transition-opacity shadow-md"
-                            onClick={() => setLightboxImage(`${import.meta.env.BASE_URL}impresion/${serviceImages[service.title]}`)}
-                          />
-                        )}
+                        {(() => {
+                          const staticImage = serviceImages[service.title];
+                          const imageSrc = service.image
+                            || (staticImage ? `${import.meta.env.BASE_URL}impresion/${staticImage}` : '');
+
+                          if (!imageSrc) return null;
+
+                          return (
+                            <img
+                              src={imageSrc}
+                              alt={service.title}
+                              className="w-full rounded-lg mb-4 cursor-pointer hover:opacity-80 transition-opacity shadow-md"
+                              onClick={() => setLightboxImage(imageSrc)}
+                            />
+                          );
+                        })()}
                         <div className={`
                           w-10 h-10 rounded-xl bg-gradient-to-br ${mainCategories.find(c => c.id === activeCategory)?.color} 
                           flex items-center justify-center mb-4
@@ -378,6 +423,8 @@ export default function Services() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <CmsSections slug="servicios" />
     </PageTransition>
   );
 }

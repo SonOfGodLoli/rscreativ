@@ -72,6 +72,7 @@ import {
 // Componentes UI reutilizables
 import Card from '@/components/ui/Card';
 import PageTransition from '@/components/ui/PageTransition';
+import CmsSections from '@/components/cms/CmsSections';
 import { sendMessage } from '@/services/api';
 
 /**
@@ -463,6 +464,7 @@ export default function Contact() {
           </div>
         </div>
       </section>
+      <CmsSections slug="contacto" />
     </PageTransition>
   );
 }
