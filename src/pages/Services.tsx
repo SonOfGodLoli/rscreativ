@@ -133,13 +133,13 @@ export default function Services() {
         const grouped: Record<string, SubEntry[]> = {};
 
         for (const service of data) {
-          if (service.subsections.length === 0) continue;
-
-          grouped[service.category] = service.subsections.map((sub) => ({
-            title: sub.title,
-            description: sub.description,
-            image: sub.image || undefined,
-          }));
+          for (const sub of service.subsections) {
+            (grouped[service.category] ??= []).push({
+              title: sub.title,
+              description: sub.description,
+              image: sub.image || undefined,
+            });
+          }
         }
 
         setApiSubs(grouped);
@@ -154,7 +154,14 @@ export default function Services() {
     };
   }, []);
 
-  const categoryServices: SubEntry[] = (apiSubs[activeCategory] ?? subServices[activeCategory] ?? []) as SubEntry[];
+  const apiCategoryServices = apiSubs[activeCategory] ?? [];
+  const apiTitles = new Set(apiCategoryServices.map((item) => item.title.trim().toLowerCase()));
+  const categoryServices: SubEntry[] = [
+    ...apiCategoryServices,
+    ...(subServices[activeCategory] ?? []).filter(
+      (item) => !apiTitles.has(item.title.trim().toLowerCase())
+    ),
+  ];
 
   const serviceCards = apiServices.length > 0
     ? apiServices.map((service) => {
