@@ -55,6 +55,14 @@ D:\RS CREATIV\RSCREATIV.COM\
 │   │   │   └── api.ts          # Cliente Axios + interfaces TypeScript
 │   │   └── assets/
 │   │       └── hero.png
+│   ├── public/
+│   │   └── impresion/             # Imágenes de servicios de impresión
+│   │       ├── impresion banner.png
+│   │       ├── impresion volantes.png
+│   │       ├── impresion tarjetas.png
+│   │       ├── impresion stickers.png
+│   │       ├── impresion vinil.png
+│   │       └── impresion vinil sobre foam.png
 │   ├── .github/workflows/
 │   │   └── deploy.yml          # GitHub Actions → GitHub Pages
 │   ├── index.html
@@ -83,14 +91,47 @@ D:\RS CREATIV\RSCREATIV.COM\
 
 ---
 
-## Páginas (4 rutas)
+## Páginas (5 rutas)
 
 | Página | Ruta | Descripción |
 |---|---|---|
 | Inicio | `#/` | Hero con fondo navy, sección About, servicios destacados, equipo, clientes, CTA |
-| Servicios | `#/servicios` | Filtro por categorías (Todos, Impresión, Diseño, Celebraciones, Personalizados), grid de tarjetas |
+| Servicios | `#/servicios` | Filtro por categorías (Todos, Impresión, Diseño, Celebraciones, Personalizados), grid de tarjetas con imágenes y lightbox |
 | Portafolio | `#/portfolio` | Grid masonry con filtro, modal/lightbox para ver detalles de proyectos |
 | Contacto | `#/contacto` | Formulario validado (Zod + React Hook Form), información de contacto, redes sociales |
+| Términos | `#/terminos-y-condiciones` | Términos y condiciones |
+| Panel | `#/admin` | Dashboard del equipo (login en `#/admin/login`) |
+| Página CMS | `#/p/:slug` | Páginas creadas desde el panel |
+
+---
+
+## Imágenes de Servicios (Impresión)
+
+Cada sub-servicio de la categoría "Impresión" tiene una imagen representativa con las siguientes características:
+- **Ubicación**: `frontend/public/impresion/`
+- **Formato**: PNG
+- **Visualización**: Imagen completa sin recorte, con `shadow-md`
+- **Interacción**: Lightbox al hacer clic (imagen ampliada con fondo oscuro)
+
+| Servicio | Archivo |
+|----------|---------|
+| Impresión de Banner | `impresion banner.png` |
+| Impresión de Volante | `impresion volantes.png` |
+| Impresión de Tarjetas | `impresion tarjetas.png` |
+| Impresión de Stickers | `impresion stickers.png` |
+| Impresión en Vinil | `impresion vinil.png` |
+| Vinil sobre Foam | `impresion vinil sobre foam.png` |
+
+### Colores de Iconos de Categoría
+
+Los iconos de las categorías de servicios usan los colores oficiales de marca:
+
+| Categoría | Color |
+|-----------|-------|
+| Impresión | `#9a171c` (rojo profundo) |
+| Diseño | `#b24940` (rojo medio) |
+| Celebraciones | `#eb9192` (rosa claro) |
+| Personalizados | Degradado `#9a171c` → `#b24940` |
 
 ---
 
@@ -124,38 +165,99 @@ D:\RS CREATIV\RSCREATIV.COM\
 
 ---
 
-## Backend (Pendiente)
+## Backend y despliegue
 
-El backend está creado pero requiere:
+El backend usa **Prisma ORM 7** (ESM, driver adapter `@prisma/adapter-pg`) y requiere Node >= 20.19.
+Repositorio privado: https://github.com/SonOfGodLoli/rscreativ-api
+
+### Desarrollo local
+
 1. Instalar PostgreSQL
-2. Configurar `DATABASE_URL` en `backend/.env`
-3. Ejecutar `npx prisma migrate dev`
-4. Ejecutar `npx prisma db seed`
-5. Ejecutar `npm run dev` en backend
+2. Copiar `backend/.env.example` a `backend/.env` y configurar `DATABASE_URL`, `JWT_SECRET`
+3. Ejecutar `npm install`
+4. Ejecutar `npx prisma db push` (o `npx prisma migrate dev` si usas migraciones)
+5. Ejecutar `npm run prisma:seed`
+6. Ejecutar `npm run dev` en backend
+
+La URL de la base de datos se configura en `backend/prisma.config.ts` y el cliente se genera en `backend/src/generated/prisma` (ignorado por Git).
+
+### Producción (Render)
+
+- `backend/render.yaml` define el servicio web `rscreativ-api` y la base `rscreativ-db`.
+- Al crear el Blueprint en Render se piden `ADMIN_PASSWORD`; `JWT_SECRET` se genera solo.
+- `startCommand` ejecuta `prisma db push` + seed idempotente antes de iniciar.
+- URL esperada del API: `https://rscreativ-api.onrender.com`
+- El frontend recibe `VITE_API_URL` como variable del repositorio en GitHub Actions.
+- La base gratuita de Render caduca a los 30 días; para producción conviene un Postgres gestionado (Neon, Supabase) cambiando `DATABASE_URL`.
+
+Variables de entorno del backend:
+
+| Variable | Descripción |
+|---|---|
+| `PORT` | Puerto del servidor (por defecto 3001) |
+| `NODE_ENV` | `development` o `production` |
+| `DATABASE_URL` | Cadena de conexión de PostgreSQL |
+| `CORS_ORIGINS` | Orígenes permitidos, separados por coma |
+| `TRUST_PROXY` | `true` solo si hay nginx/Cloudflare/Render delante |
+| `JWT_SECRET` | Secreto para firmar tokens del panel (mín. 32 caracteres) |
+| `ADMIN_EMAIL` / `ADMIN_PASSWORD` | Administrador inicial creado por el seed |
+| `MEDIA_BASE_URL` | URL pública para imágenes (opcional) |
 
 Las rutas del API son:
-- `GET /api/services` - Servicios
+- `GET /api/services` - Servicios con sus subsecciones
 - `GET /api/portfolio` - Portafolio
 - `GET /api/team` - Equipo
 - `GET /api/clients` - Clientes
 - `POST /api/contact` - Enviar mensaje de contacto (validado y con rate limit)
-- `GET /api/contact` - Listar mensajes (requiere `Authorization: Bearer <ADMIN_API_KEY>`)
+- `GET /api/contact` - Listar mensajes (requiere sesión de administrador)
 - `GET /api/settings` - Configuración del sitio
+- `GET /api/pages` / `GET /api/pages/:slug` - Páginas y secciones publicadas
+- `GET /api/media/:id` - Imágenes subidas
+- `POST /api/auth/login` - Inicio de sesión del panel
+- `/api/admin/*` - CRUD protegido por JWT (páginas, secciones, servicios, subsecciones, portafolio, equipo, clientes, mensajes, imágenes, configuración, usuarios)
 
-Variables de entorno: `PORT`, `NODE_ENV`, `DATABASE_URL`, `CORS_ORIGINS`, `TRUST_PROXY` y `ADMIN_API_KEY` (ver `backend/.env.example`).
+---
 
-El backend usa Prisma ORM 7 (ESM + `@prisma/adapter-pg`), con configuración en `prisma.config.ts` y cliente generado en `src/generated/prisma`. Requiere Node >= 20.19 y `npm run prisma:generate` tras instalar o migrar.
+## Panel de administración (CMS)
+
+Disponible en `#/admin` (login: `#/admin/login`).
+
+- **Roles**: `ADMIN` (todo, incluida gestión de usuarios) y `EDITOR` (contenido).
+- **Páginas**: crear páginas, publicarlas/ocultarlas y agregar secciones ordenables.
+- **Secciones**: tipos `hero`, `text`, `gallery`, `cards`, `cta`; con imagen principal, galería, botón, tarjetas y visibilidad.
+- **Servicios y productos**: CRUD de servicios y subsecciones (productos) con imagen, descripción y precio.
+- **Portafolio, equipo, clientes y configuración**: CRUD completo.
+- **Imágenes**: subida con compresión a WebP (Sharp) guardada en PostgreSQL y servida en `/api/media/:id`.
+- **Mensajes**: bandeja con marcar leído/responder/eliminar.
+- **Mi cuenta**: cambio de contraseña.
+
+Las secciones creadas para `home`, `servicios`, `portfolio`, `contacto` y `terminos-y-condiciones` se renderizan al final de esas páginas públicas. Las páginas nuevas se ven en `#/p/:slug`.
 
 ---
 
 ## Seguridad
 
-- `helmet`, `x-powered-by` deshabilitado, CORS por `CORS_ORIGINS` y límites de payload/tasa.
-- Validación con Zod de contacto, categorías e IDs UUID.
-- `GET /api/contact` protegido con `ADMIN_API_KEY`; ya no es público.
-- `backend/.env` fuera de Git (`.gitignore` + `.env.example`); nunca guardar PATs en la URL del remoto.
-- Formulario conectado al API sin registrar datos personales en consola.
-- Pendiente: revocar tokens expuestos, CAPTCHA/honeypot, Dependabot/CodeQL y CSP en producción.
+Medidas implementadas:
+
+- **Secretos fuera del repositorio**: `backend/.env` está en `.gitignore` y se provee `.env.example`. Nunca versionar tokens ni claves.
+- **Tokens de GitHub**: usar `gh auth login` o el Credential Manager. No incluir PATs en la URL del remoto ni tokens con permisos amplios.
+- **Autenticación del panel**: contraseñas con `scrypt` y tokens JWT HS256 firmados con `JWT_SECRET` (expiran en 12 h).
+- **Autorización por roles**: middleware `requireAuth` y `requireRole('ADMIN')` en rutas administrativas.
+- **Cabeceras HTTP**: `helmet` y `x-powered-by` deshabilitado.
+- **CORS**: lista de orígenes configurable con `CORS_ORIGINS`.
+- **Límites**: body JSON de 256 KB, 300 peticiones/15 min por IP, 5 mensajes/15 min y 10 intentos de login/15 min.
+- **Validación**: Zod valida payloads, categorías, slugs e IDs UUID.
+- **Subidas**: solo imágenes JPG/PNG/WEBP/GIF/AVIF, máximo 8 MB, nombres y contenido procesados con Sharp.
+- **Privacidad**: los mensajes solo se listan con sesión de administrador; los logs del frontend no incluyen datos personales.
+- **Prisma**: v7.10.1 con driver adapter y cliente generado fuera de `node_modules`; una sola instancia por proceso.
+- **CI de seguridad**: Dependabot y CodeQL en ambos repositorios.
+- **0 vulnerabilidades** reportadas por `npm audit` en frontend y backend.
+
+Pendiente recomendado:
+- Revocar cualquier token de GitHub que haya estado expuesto y rotarlo.
+- Añadir CAPTCHA/honeypot al formulario.
+- Usar un Postgres gestionado con copias de seguridad y migraciones versionadas (`prisma migrate deploy`).
+- Servir el sitio con cabeceras de seguridad (Cloudflare o hosting propio).
 
 ---
 
@@ -189,6 +291,37 @@ git push
 # Ver estado del deploy
 gh run list --repo SonOfGodLoli/rscreativ --limit 5
 ```
+
+---
+
+## Changelog
+
+### 25/10/2026
+- Backend: añadidos `helmet`, rate limiting y límites de tamaño de payload
+- Backend: CORS configurable por `CORS_ORIGINS` y `TRUST_PROXY`
+- Backend: validación con Zod de contacto, categorías e IDs UUID
+- Backend: `GET /api/contact` protegido con sesión de administrador
+- Backend: cliente Prisma singleton y manejo de errores sin filtrar detalles internos
+- Backend: `.gitignore` y `.env.example` añadidos
+- Frontend: formulario de contacto conectado al API y sin logs de datos personales
+- Dependencias: eliminado `to-ico`, actualizados paquetes vulnerables y `zod` a v4
+- Backend: migrado a Prisma ORM 7.10.1 (ESM, `prisma.config.ts`, `@prisma/adapter-pg`), 0 vulnerabilidades
+- Seguridad: PAT eliminado de la URL del remoto de Git (requiere revocación manual)
+- Backend: desplegado en Render (`render.yaml`, seed idempotente, `VITE_API_URL`)
+- CMS: modelos `User`, `Page`, `Section`, `ServiceSubsection` y `Media`
+- CMS: login JWT + scrypt, roles ADMIN/EDITOR y CRUD administrativo
+- CMS: biblioteca de imágenes con subida, compresión WebP y servido en `/api/media/:id`
+- Frontend: panel `#/admin` con páginas, secciones, productos/subsecciones, portafolio, equipo, clientes, mensajes, imágenes, configuración y usuarios
+- Frontend: secciones CMS renderizadas en las páginas públicas y páginas nuevas en `#/p/:slug`
+- Servicios: subsecciones administrables desde el panel con imagen y precio
+- CI: Dependabot y CodeQL añadidos a ambos repositorios
+
+### 06/09/2026
+- Agregadas 6 imágenes de servicios de impresión en `public/impresion/`
+- Implementado lightbox para ver imágenes ampliadas al hacer clic
+- Aplicados colores oficiales de marca a los iconos de categorías de servicios
+- Eliminados colores genéricos (azul, púrpura, rosa, ámbar) de categorías
+- Cada imagen tiene `shadow-md` para delimitar bordes
 
 ---
 
