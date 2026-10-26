@@ -72,6 +72,7 @@ import {
 // Componentes UI reutilizables
 import Card from '@/components/ui/Card';
 import PageTransition from '@/components/ui/PageTransition';
+import { sendMessage } from '@/services/api';
 
 /**
  * Esquema de validacion con Zod para el formulario de contacto.
@@ -177,9 +178,13 @@ export default function Contact() {
     try {
       setIsSubmitting(true);
       setSubmitError(null);
-      // Simular delay de red
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      console.log('Datos del formulario:', data);
+      await sendMessage({
+        name: data.name,
+        email: data.email,
+        phone: data.phone ?? '',
+        subject: data.subject,
+        message: data.message,
+      });
       setSubmitSuccess(true);
       reset();
       setTimeout(() => setSubmitSuccess(false), 5000);

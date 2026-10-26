@@ -99,6 +99,13 @@ export interface SiteSetting {
   value: string;
 }
 
+/** Respuesta del envío de un mensaje de contacto */
+export interface ContactResponse {
+  success: boolean;
+  id: string;
+  created_at: string;
+}
+
 // ==================== FUNCIONES API ====================
 
 /** Servicios */
@@ -119,7 +126,7 @@ export const getClients = () => api.get<Client[]>('/clients');
 
 /** Contacto */
 export const sendMessage = (data: Omit<ContactMessage, 'id' | 'read' | 'created_at'>) => 
-  api.post<ContactMessage>('/contact', data);
+  api.post<ContactResponse>('/contact', data);
 
 /** Configuración del sitio */
 export const getSiteSettings = () => api.get<SiteSetting[]>('/settings');

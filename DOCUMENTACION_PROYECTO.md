@@ -138,8 +138,24 @@ Las rutas del API son:
 - `GET /api/portfolio` - Portafolio
 - `GET /api/team` - Equipo
 - `GET /api/clients` - Clientes
-- `POST /api/contact` - Enviar mensaje de contacto
+- `POST /api/contact` - Enviar mensaje de contacto (validado y con rate limit)
+- `GET /api/contact` - Listar mensajes (requiere `Authorization: Bearer <ADMIN_API_KEY>`)
 - `GET /api/settings` - Configuración del sitio
+
+Variables de entorno: `PORT`, `NODE_ENV`, `DATABASE_URL`, `CORS_ORIGINS`, `TRUST_PROXY` y `ADMIN_API_KEY` (ver `backend/.env.example`).
+
+El backend usa Prisma ORM 7 (ESM + `@prisma/adapter-pg`), con configuración en `prisma.config.ts` y cliente generado en `src/generated/prisma`. Requiere Node >= 20.19 y `npm run prisma:generate` tras instalar o migrar.
+
+---
+
+## Seguridad
+
+- `helmet`, `x-powered-by` deshabilitado, CORS por `CORS_ORIGINS` y límites de payload/tasa.
+- Validación con Zod de contacto, categorías e IDs UUID.
+- `GET /api/contact` protegido con `ADMIN_API_KEY`; ya no es público.
+- `backend/.env` fuera de Git (`.gitignore` + `.env.example`); nunca guardar PATs en la URL del remoto.
+- Formulario conectado al API sin registrar datos personales en consola.
+- Pendiente: revocar tokens expuestos, CAPTCHA/honeypot, Dependabot/CodeQL y CSP en producción.
 
 ---
 
@@ -151,7 +167,7 @@ Las rutas del API son:
 
 3. **Error 404 en GitHub Pages**: `BrowserRouter` no funciona con GitHub Pages porque no maneja rutas SPA. Solución: cambiar a `HashRouter`.
 
-4. **Token sin permisos `workflow`**: El primer token no tenía el scope `workflow` para subir archivos de GitHub Actions. Se pidió un nuevo token con permisos completos.
+4. **Token sin permisos `workflow`**: El primer token no tenía el scope `workflow` para subir archivos de GitHub Actions. Se reemplazó usando autenticación de GitHub CLI; no se deben guardar PATs en el repositorio ni en la URL del remoto.
 
 ---
 
