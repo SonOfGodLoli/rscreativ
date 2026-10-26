@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react';
 import { Pencil, Plus, Save, Trash2, X } from 'lucide-react';
 import { Alert, Button, Field, Input, Panel, Select, Textarea } from './ui';
 import ImageUploader from './ImageUploader';
+import MultiImageUploader from './MultiImageUploader';
 
 export interface CrudField {
   key: string;
   label: string;
-  type: 'text' | 'textarea' | 'image' | 'checkbox' | 'number' | 'lines' | 'select';
+  type: 'text' | 'textarea' | 'image' | 'images' | 'checkbox' | 'number' | 'lines' | 'select';
   options?: string[];
   required?: boolean;
   placeholder?: string;
@@ -126,6 +127,18 @@ export default function CrudManager<T extends { id: string }>({
       );
     }
 
+    if (field.type === 'images') {
+      return (
+        <div key={field.key} className="sm:col-span-2">
+          <MultiImageUploader
+            label={field.label}
+            value={Array.isArray(value) ? (value as string[]) : []}
+            onChange={(urls) => set(field.key, urls)}
+          />
+        </div>
+      );
+    }
+
     return (
       <Field key={field.key} label={field.label}>
         {field.type === 'textarea' ? (
@@ -173,6 +186,7 @@ export default function CrudManager<T extends { id: string }>({
   }
 
   const imageField = fields.find((field) => field.type === 'image');
+  const imagesField = fields.find((field) => field.type === 'images');
 
   return (
     <div className="mx-auto max-w-6xl space-y-6">
@@ -214,13 +228,24 @@ export default function CrudManager<T extends { id: string }>({
         <div className="divide-y divide-gray-100">
           {items.map((item) => {
             const record = item as unknown as Record<string, unknown>;
-            const image = imageField ? String(record[imageField.key] ?? '') : '';
+            const singleImage = imageField ? String(record[imageField.key] ?? '') : '';
+            const gallery = imagesField && Array.isArray(record[imagesField.key])
+              ? (record[imagesField.key] as string[])
+              : [];
+            const image = singleImage || gallery[0] || '';
 
             return (
               <div key={item.id} className="flex flex-wrap items-center justify-between gap-3 py-3">
                 <div className="flex min-w-0 items-center gap-3">
                   {image && (
-                    <img src={image} alt="" className="h-12 w-12 rounded-lg border border-gray-200 object-cover" />
+                    <div className="relative">
+                      <img src={image} alt="" className="h-12 w-12 rounded-lg border border-gray-200 object-cover" />
+                      {gallery.length > 1 && (
+                        <span className="absolute -bottom-1 -right-1 rounded-full bg-[#9a171c] px-1.5 py-0.5 text-[10px] font-bold text-white">
+                          {gallery.length}
+                        </span>
+                      )}
+                    </div>
                   )}
                   <div className="min-w-0">
                     <p className="truncate font-semibold text-gray-900">{itemTitle(item)}</p>

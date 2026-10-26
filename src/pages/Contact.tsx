@@ -143,7 +143,7 @@ const contactInfo = [
 const socialLinks = [
   { name: 'Facebook', url: 'https://www.facebook.com/profile.php?id=61562236591988', color: 'hover:bg-blue-500/20' },
   { name: 'Instagram', url: 'https://www.instagram.com/rs.creativ', color: 'hover:bg-pink-500/20' },
-  { name: 'TikTok', url: 'https://www.tiktok.com/@rs.creativ', color: 'hover:bg-gray-500/20' },
+  { name: 'TikTok', url: 'https://www.tiktok.com/@rs_creativ', color: 'hover:bg-gray-500/20' },
 ];
 
 /**

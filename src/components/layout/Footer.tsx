@@ -19,7 +19,7 @@ const schedule = [
 const socialLinks = [
   { name: 'Facebook', url: 'https://www.facebook.com/profile.php?id=61562236591988' },
   { name: 'Instagram', url: 'https://www.instagram.com/rs.creativ' },
-  { name: 'TikTok', url: 'https://www.tiktok.com/@rs.creativ' },
+  { name: 'TikTok', url: 'https://www.tiktok.com/@rs_creativ' },
   { name: 'WhatsApp', url: 'https://wa.me/51933866156' },
 ];
 

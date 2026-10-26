@@ -14,7 +14,7 @@ const FIELDS: CrudField[] = [
   },
   { key: 'featured', label: 'Destacado', type: 'checkbox' },
   { key: 'description', label: 'Descripción', type: 'textarea', required: true },
-  { key: 'images', label: 'Imágenes (una URL por línea)', type: 'lines' },
+  { key: 'images', label: 'Imágenes del trabajo', type: 'images' },
 ];
 
 const EMPTY = {
