@@ -122,6 +122,7 @@ export default function Services() {
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
   const [apiSubs, setApiSubs] = useState<Record<string, SubEntry[]>>({});
   const [apiServices, setApiServices] = useState<Service[]>([]);
+  const [apiLoaded, setApiLoaded] = useState(false);
 
   useEffect(() => {
     let alive = true;
@@ -144,6 +145,7 @@ export default function Services() {
 
         setApiSubs(grouped);
         setApiServices(data);
+        setApiLoaded(true);
       })
       .catch(() => {
         // Si el API no está disponible se mantiene el contenido estático.
@@ -154,14 +156,9 @@ export default function Services() {
     };
   }, []);
 
-  const apiCategoryServices = apiSubs[activeCategory] ?? [];
-  const apiTitles = new Set(apiCategoryServices.map((item) => item.title.trim().toLowerCase()));
-  const categoryServices: SubEntry[] = [
-    ...apiCategoryServices,
-    ...(subServices[activeCategory] ?? []).filter(
-      (item) => !apiTitles.has(item.title.trim().toLowerCase())
-    ),
-  ];
+  const categoryServices: SubEntry[] = apiLoaded
+    ? (apiSubs[activeCategory] ?? [])
+    : (subServices[activeCategory] ?? []);
 
   const serviceCards = apiServices.length > 0
     ? apiServices.map((service) => {
