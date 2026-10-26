@@ -15,7 +15,7 @@ import tailwindcss from '@tailwindcss/vite'
 import path from 'path'
 
 export default defineConfig({
-  base: '/rscreativ/',
+  base: '/',
   // Plugins de Vite: React y Tailwind CSS
   plugins: [react(), tailwindcss()],
   
