@@ -41,6 +41,15 @@ export interface Page {
   _count?: { sections: number };
 }
 
+export interface SubsectionSection {
+  id: string;
+  subsectionId: string;
+  title: string;
+  body: string;
+  image: string;
+  order: number;
+}
+
 export interface Subsection {
   id: string;
   serviceId: string;
@@ -49,6 +58,7 @@ export interface Subsection {
   image: string;
   price: string;
   order: number;
+  sections: SubsectionSection[];
 }
 
 export interface Service {
@@ -181,6 +191,20 @@ export const updateSubsection = (serviceId: string, id: string, data: Partial<Su
   api.patch(`/admin/services/${serviceId}/subsections/${id}`, data);
 export const deleteSubsection = (serviceId: string, id: string) =>
   api.delete(`/admin/services/${serviceId}/subsections/${id}`);
+
+export const createSubsectionSection = (
+  serviceId: string,
+  subsectionId: string,
+  data: Partial<SubsectionSection>
+) => api.post<SubsectionSection>(`/admin/services/${serviceId}/subsections/${subsectionId}/sections`, data);
+export const updateSubsectionSection = (
+  serviceId: string,
+  subsectionId: string,
+  id: string,
+  data: Partial<SubsectionSection>
+) => api.patch(`/admin/services/${serviceId}/subsections/${subsectionId}/sections/${id}`, data);
+export const deleteSubsectionSection = (serviceId: string, subsectionId: string, id: string) =>
+  api.delete(`/admin/services/${serviceId}/subsections/${subsectionId}/sections/${id}`);
 
 // ==================== PORTAFOLIO ====================
 

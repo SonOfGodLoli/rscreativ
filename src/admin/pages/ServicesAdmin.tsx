@@ -3,13 +3,16 @@ import { Plus, Save, Trash2 } from 'lucide-react';
 import {
   createService,
   createSubsection,
+  createSubsectionSection,
   deleteService,
   deleteSubsection,
+  deleteSubsectionSection,
   listServices,
   updateService,
   updateSubsection,
+  updateSubsectionSection,
 } from '../api';
-import type { Service, Subsection } from '../api';
+import type { Service, Subsection, SubsectionSection } from '../api';
 import { useAsyncData } from '../useAsyncData';
 import { Alert, Badge, Button, Field, Input, Panel, Select, Textarea } from '../components/ui';
 import ImageUploader from '../components/ImageUploader';
@@ -92,6 +95,26 @@ function SubsectionRow({
         </Button>
         {message && <Alert tone={message === 'Guardado' ? 'success' : 'error'}>{message}</Alert>}
       </div>
+
+      <div className="space-y-3 border-t border-gray-200 pt-4">
+        <h5 className="text-sm font-semibold text-gray-700">Secciones internas</h5>
+
+        {(subsection.sections ?? []).map((section) => (
+          <SubsectionSectionRow
+            key={section.id}
+            serviceId={serviceId}
+            subsectionId={subsection.id}
+            section={section}
+            onChanged={onChanged}
+          />
+        ))}
+
+        <NewSubsectionSection
+          serviceId={serviceId}
+          subsectionId={subsection.id}
+          onCreated={onChanged}
+        />
+      </div>
     </div>
   );
 }
@@ -138,6 +161,144 @@ function NewSubsection({ serviceId, onCreated }: { serviceId: string; onCreated:
       <div className="flex gap-2">
         <Button onClick={create} disabled={saving || !title}>
           <Plus className="h-4 w-4" /> Crear
+        </Button>
+        <Button variant="secondary" onClick={() => setOpen(false)}>
+          Cancelar
+        </Button>
+      </div>
+    </div>
+  );
+}
+
+function SubsectionSectionRow({
+  serviceId,
+  subsectionId,
+  section,
+  onChanged,
+}: {
+  serviceId: string;
+  subsectionId: string;
+  section: SubsectionSection;
+  onChanged: () => void;
+}) {
+  const [form, setForm] = useState(section);
+  const [saving, setSaving] = useState(false);
+  const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    setForm(section);
+  }, [section]);
+
+  async function save() {
+    setSaving(true);
+    setMessage('');
+
+    try {
+      await updateSubsectionSection(serviceId, subsectionId, section.id, {
+        title: form.title,
+        body: form.body,
+        image: form.image,
+        order: form.order,
+      });
+      setMessage('Guardado');
+      onChanged();
+    } catch {
+      setMessage('Error al guardar');
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  async function remove() {
+    if (!window.confirm(`¿Eliminar la sección "${section.title || 'sin título'}"?`)) return;
+    await deleteSubsectionSection(serviceId, subsectionId, section.id);
+    onChanged();
+  }
+
+  return (
+    <div className="space-y-3 rounded-lg border border-gray-200 bg-white p-3">
+      <div className="flex items-center justify-between">
+        <Badge tone="gray">Sección interna</Badge>
+        <Button variant="danger" onClick={remove} title="Eliminar">
+          <Trash2 className="h-4 w-4" />
+        </Button>
+      </div>
+
+      <Field label="Título">
+        <Input value={form.title} onChange={(event) => setForm({ ...form, title: event.target.value })} />
+      </Field>
+
+      <Field label="Contenido">
+        <Textarea value={form.body} onChange={(event) => setForm({ ...form, body: event.target.value })} />
+      </Field>
+
+      <ImageUploader value={form.image} onChange={(value) => setForm({ ...form, image: value })} />
+
+      <div className="flex items-center gap-3">
+        <Button onClick={save} disabled={saving}>
+          <Save className="h-4 w-4" /> {saving ? 'Guardando...' : 'Guardar sección'}
+        </Button>
+        {message && <Alert tone={message === 'Guardado' ? 'success' : 'error'}>{message}</Alert>}
+      </div>
+    </div>
+  );
+}
+
+function NewSubsectionSection({
+  serviceId,
+  subsectionId,
+  onCreated,
+}: {
+  serviceId: string;
+  subsectionId: string;
+  onCreated: () => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const [title, setTitle] = useState('');
+  const [body, setBody] = useState('');
+  const [image, setImage] = useState('');
+  const [saving, setSaving] = useState(false);
+
+  if (!open) {
+    return (
+      <Button variant="secondary" onClick={() => setOpen(true)}>
+        <Plus className="h-4 w-4" /> Agregar sección interna
+      </Button>
+    );
+  }
+
+  async function create() {
+    setSaving(true);
+
+    try {
+      await createSubsectionSection(serviceId, subsectionId, {
+        title,
+        body,
+        image,
+        order: 99,
+      });
+      setTitle('');
+      setBody('');
+      setImage('');
+      setOpen(false);
+      onCreated();
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  return (
+    <div className="space-y-3 rounded-lg border border-dashed border-[#eb9192] p-3">
+      <Field label="Título">
+        <Input value={title} onChange={(event) => setTitle(event.target.value)} />
+      </Field>
+      <Field label="Contenido">
+        <Textarea value={body} onChange={(event) => setBody(event.target.value)} />
+      </Field>
+      <ImageUploader value={image} onChange={setImage} />
+      <div className="flex gap-2">
+        <Button onClick={create} disabled={saving || !title}>
+          <Plus className="h-4 w-4" /> Crear sección
         </Button>
         <Button variant="secondary" onClick={() => setOpen(false)}>
           Cancelar

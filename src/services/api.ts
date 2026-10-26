@@ -52,6 +52,16 @@ api.interceptors.response.use(
 
 // ==================== TIPOS ====================
 
+/** Sección interna de una subsección (producto) */
+export interface SubsectionSection {
+  id: string;
+  subsectionId: string;
+  title: string;
+  body: string;
+  image: string;
+  order: number;
+}
+
 /** Subsección (producto) de un servicio */
 export interface ServiceSubsection {
   id: string;
@@ -61,6 +71,7 @@ export interface ServiceSubsection {
   image: string;
   price: string;
   order: number;
+  sections: SubsectionSection[];
 }
 
 /** Interfaz para los servicios ofrecidos por RS Creativ */

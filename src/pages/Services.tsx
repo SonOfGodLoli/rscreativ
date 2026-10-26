@@ -115,11 +115,19 @@ const serviceImages: Record<string, string> = {
   'Vinil sobre Foam': 'impresion vinil sobre foam.png',
 };
 
-type SubEntry = { title: string; description: string; image?: string };
+type SubSectionBlock = { id: string; title: string; body: string; image: string };
+type SubEntry = {
+  title: string;
+  description: string;
+  image?: string;
+  price?: string;
+  sections?: SubSectionBlock[];
+};
 
 export default function Services() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
+  const [detailService, setDetailService] = useState<SubEntry | null>(null);
   const [apiSubs, setApiSubs] = useState<Record<string, SubEntry[]>>({});
   const [apiServices, setApiServices] = useState<Service[]>([]);
   const [apiLoaded, setApiLoaded] = useState(false);
@@ -139,6 +147,13 @@ export default function Services() {
               title: sub.title,
               description: sub.description,
               image: sub.image || undefined,
+              price: sub.price || undefined,
+              sections: (sub.sections ?? []).map((section) => ({
+                id: section.id,
+                title: section.title,
+                body: section.body,
+                image: section.image,
+              })),
             });
           }
         }
@@ -376,7 +391,13 @@ export default function Services() {
                           {service.description}
                         </p>
                         
-                        <div className="mt-4 pt-4 border-t border-border">
+                        <div className="mt-4 pt-4 border-t border-border flex items-center justify-between gap-3">
+                          <button
+                            onClick={() => setDetailService(service)}
+                            className="inline-flex items-center gap-2 text-accent text-sm font-medium hover:text-accent-hover transition-colors cursor-pointer"
+                          >
+                            Ver detalle
+                          </button>
                           <Link 
                             to="/contacto"
                             className="inline-flex items-center gap-2 text-accent text-sm font-medium hover:text-accent-hover transition-colors"
@@ -452,6 +473,87 @@ export default function Services() {
               className="max-w-full max-h-[90vh] object-contain rounded-lg"
               onClick={(e) => e.stopPropagation()}
             />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {detailService && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/80 flex items-start justify-center p-4 overflow-y-auto"
+            onClick={() => setDetailService(null)}
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 30 }}
+              className="bg-white rounded-2xl max-w-2xl w-full my-10 overflow-hidden shadow-2xl"
+              onClick={(event) => event.stopPropagation()}
+            >
+              <div className="relative">
+                {detailService.image && (
+                  <img
+                    src={detailService.image}
+                    alt={detailService.title}
+                    className="w-full h-64 sm:h-80 object-cover"
+                  />
+                )}
+                <button
+                  onClick={() => setDetailService(null)}
+                  className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/90 flex items-center justify-center text-text hover:bg-white transition-colors cursor-pointer"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              <div className="p-6 sm:p-8">
+                <h2 className="text-2xl md:text-3xl font-heading font-bold text-text mb-2">
+                  {detailService.title}
+                </h2>
+
+                {detailService.price && (
+                  <p className="text-accent font-semibold mb-4">{detailService.price}</p>
+                )}
+
+                {detailService.description && (
+                  <p className="text-text-secondary leading-relaxed mb-6">
+                    {detailService.description}
+                  </p>
+                )}
+
+                {(detailService.sections ?? []).map((section) => (
+                  <div key={section.id} className="border-t border-border pt-5 mt-5 space-y-3">
+                    {section.title && (
+                      <h3 className="text-lg font-heading font-bold text-text">{section.title}</h3>
+                    )}
+                    {section.image && (
+                      <img
+                        src={section.image}
+                        alt={section.title}
+                        className="w-full rounded-lg object-cover"
+                      />
+                    )}
+                    {section.body && (
+                      <p className="text-text-secondary leading-relaxed whitespace-pre-line">
+                        {section.body}
+                      </p>
+                    )}
+                  </div>
+                ))}
+
+                <div className="mt-8">
+                  <Link to="/contacto" onClick={() => setDetailService(null)}>
+                    <Button variant="primary" size="md">
+                      Solicitar
+                      <ArrowRight className="ml-2 w-4 h-4" />
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

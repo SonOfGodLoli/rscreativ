@@ -15,7 +15,7 @@
  * En producción, estos datos se obtendrían del API endpoint /portfolio.
  */
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Eye, 
@@ -38,6 +38,7 @@ import {
 import Button from '@/components/ui/Button';
 import PageTransition from '@/components/ui/PageTransition';
 import CmsSections from '@/components/cms/CmsSections';
+import { getPortfolio } from '@/services/api';
 
 /**
  * Categorías de filtro del portafolio.
@@ -143,7 +144,7 @@ const portfolioItems = [
  * Define la estructura de cada proyecto.
  */
 interface PortfolioItemData {
-  id: number;
+  id: number | string;
   title: string;
   description: string;
   category: string;
@@ -159,16 +160,60 @@ interface PortfolioItemData {
 export default function Portfolio() {
   /** Categoría activa para filtrar proyectos */
   const [activeCategory, setActiveCategory] = useState('all');
+
+  /** Proyectos cargados desde el panel (null mientras carga o si falla) */
+  const [apiItems, setApiItems] = useState<PortfolioItemData[] | null>(null);
   
   /** Item seleccionado para el lightbox/modal */
   const [selectedItem, setSelectedItem] = useState<PortfolioItemData | null>(null);
+
+  useEffect(() => {
+    let alive = true;
+
+    const categoryColors: Record<string, string> = {
+      branding: 'bg-amber-900/30',
+      impresion: 'bg-blue-900/30',
+      diseno: 'bg-blue-900/30',
+      digital: 'bg-green-900/30',
+      celebraciones: 'bg-pink-900/30',
+      eventos: 'bg-pink-900/30',
+      personalizados: 'bg-purple-900/30',
+    };
+
+    getPortfolio()
+      .then(({ data }) => {
+        if (!alive) return;
+
+        setApiItems(
+          data.map((item) => ({
+            id: item.id,
+            title: item.title,
+            description: item.description,
+            category: item.category,
+            client: item.client_name,
+            image: item.images[0] ?? '',
+            featured: item.featured,
+            color: categoryColors[item.category] ?? 'bg-accent/20',
+          }))
+        );
+      })
+      .catch(() => {
+        // Si el API no está disponible se mantiene el contenido estático.
+      });
+
+    return () => {
+      alive = false;
+    };
+  }, []);
+
+  const items = apiItems && apiItems.length > 0 ? apiItems : portfolioItems;
 
   /**
    * Filtra los items del portafolio según la categoría seleccionada.
    */
   const filteredItems = activeCategory === 'all'
-    ? portfolioItems
-    : portfolioItems.filter(item => item.category === activeCategory);
+    ? items
+    : items.filter(item => item.category === activeCategory);
 
   /**
    * Abre el modal con los detalles del proyecto seleccionado.

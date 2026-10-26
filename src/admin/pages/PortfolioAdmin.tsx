@@ -10,7 +10,7 @@ const FIELDS: CrudField[] = [
     key: 'category',
     label: 'Categoría',
     type: 'select',
-    options: ['impresion', 'diseno', 'celebraciones', 'personalizados'],
+    options: ['branding', 'impresion', 'digital', 'eventos', 'diseno', 'celebraciones', 'personalizados'],
   },
   { key: 'featured', label: 'Destacado', type: 'checkbox' },
   { key: 'description', label: 'Descripción', type: 'textarea', required: true },
