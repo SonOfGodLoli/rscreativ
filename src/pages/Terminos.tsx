@@ -4,6 +4,7 @@ import { ArrowLeft } from 'lucide-react';
 import { viewportConfig } from '@/animations/variants';
 import PageTransition from '@/components/ui/PageTransition';
 import CmsSections from '@/components/cms/CmsSections';
+import Seo from '@/components/Seo';
 
 const sections = [
   {
@@ -112,6 +113,10 @@ const sections = [
 export default function Terminos() {
   return (
     <PageTransition>
+      <Seo
+        title="Términos y Condiciones | RS Creativ"
+        description="Condiciones de cotización, pago, diseño, aprobación y entrega de los trabajos de RS Creativ."
+      />
       <section className="pt-32 pb-16 bg-gradient-to-b from-accent to-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div

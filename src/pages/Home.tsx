@@ -33,6 +33,7 @@ import Card from '@/components/ui/Card';
 import SectionTitle from '@/components/ui/SectionTitle';
 import PageTransition from '@/components/ui/PageTransition';
 import CmsSections from '@/components/cms/CmsSections';
+import Seo from '@/components/Seo';
 
 const BASE = import.meta.env.BASE_URL;
 
@@ -81,6 +82,10 @@ const teamMembers = [
 export default function Home() {
   return (
     <PageTransition>
+      <Seo
+        title="RS Creativ | Diseño, Impresión y Personalizados en Perú"
+        description="Diseño gráfico, impresión publicitaria, celebraciones y productos personalizados en Perú. Cotiza tu proyecto con RS Creativ."
+      />
       {/* ==================== HERO ==================== */}
       {/* Hero con imagen de fondo a pantalla completa y texto encima */}
       <section className="relative min-h-screen overflow-hidden">

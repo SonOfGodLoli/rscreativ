@@ -5,6 +5,7 @@ import { getCmsPage } from '@/services/api';
 import type { CmsPage as CmsPageType } from '@/services/api';
 import CmsSections from '@/components/cms/CmsSections';
 import PageTransition from '@/components/ui/PageTransition';
+import Seo from '@/components/Seo';
 
 export default function CmsPage() {
   const { slug = '' } = useParams();
@@ -50,6 +51,10 @@ export default function CmsPage() {
 
   return (
     <PageTransition>
+      <Seo
+        title={`${page.title} | RS Creativ`}
+        description={page.description || 'Contenido de RS Creativ.'}
+      />
       <section className="bg-[#040a33] pb-12 pt-32">
         <div className="mx-auto max-w-4xl px-4 text-center sm:px-6">
           <h1 className="text-4xl font-bold text-white md:text-5xl">{page.title}</h1>

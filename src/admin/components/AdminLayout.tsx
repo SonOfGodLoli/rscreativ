@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { useAuth } from '../AuthContext';
 import { Button } from './ui';
+import Seo from '@/components/Seo';
 
 const links = [
   { to: '/admin', label: 'Resumen', icon: LayoutDashboard, end: true },
@@ -34,6 +35,7 @@ export default function AdminLayout() {
 
   return (
     <div className="flex min-h-screen flex-col bg-gray-50 lg:flex-row">
+      <Seo title="Panel | RS Creativ" description="Panel de administración de contenido." noindex />
       <aside className="border-b border-gray-200 bg-[#040a33] text-white lg:min-h-screen lg:w-64 lg:shrink-0 lg:border-b-0">
         <div className="flex items-center justify-between px-5 py-4 lg:block">
           <Link to="/admin" className="block">

@@ -2,12 +2,12 @@
  * Componente principal de la aplicación RS Creativ.
  *
  * Incluye:
- * - Sitio público con HashRouter (GitHub Pages)
+ * - Sitio público con BrowserRouter (dominio propio)
  * - Panel de administración en /admin (login + dashboard)
  * - Páginas creadas desde el panel en /p/:slug
  */
 
-import { HashRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate, Navigate } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { useEffect } from 'react';
 
@@ -56,6 +56,21 @@ function ScrollToTop() {
 }
 
 /**
+ * Redirige enlaces antiguos con hash (/#/servicios) a rutas limpias.
+ */
+function LegacyHashRedirect() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (window.location.hash.startsWith('#/')) {
+      navigate(window.location.hash.slice(1), { replace: true });
+    }
+  }, [navigate]);
+
+  return null;
+}
+
+/**
  * Rutas públicas con transiciones animadas entre páginas.
  */
 function AnimatedRoutes() {
@@ -97,6 +112,7 @@ function App() {
     <Router>
       <AuthProvider>
         <ScrollToTop />
+        <LegacyHashRedirect />
         <Routes>
           <Route path="/admin/login" element={<Login />} />
 

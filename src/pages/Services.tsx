@@ -22,6 +22,7 @@ import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
 import PageTransition from '@/components/ui/PageTransition';
 import CmsSections from '@/components/cms/CmsSections';
+import Seo from '@/components/Seo';
 import { getServices } from '@/services/api';
 import type { Service } from '@/services/api';
 
@@ -193,6 +194,10 @@ export default function Services() {
 
   return (
     <PageTransition>
+      <Seo
+        title="Servicios de Diseño e Impresión | RS Creativ"
+        description="Impresión, diseño gráfico, celebraciones y productos personalizados. Conoce todos los servicios de RS Creativ en Perú."
+      />
       <section className="pt-32 pb-16 bg-gradient-to-b from-accent to-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div

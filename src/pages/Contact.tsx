@@ -73,6 +73,7 @@ import {
 import Card from '@/components/ui/Card';
 import PageTransition from '@/components/ui/PageTransition';
 import CmsSections from '@/components/cms/CmsSections';
+import Seo from '@/components/Seo';
 import { sendMessage } from '@/services/api';
 
 /**
@@ -254,6 +255,10 @@ export default function Contact() {
 
   return (
     <PageTransition>
+      <Seo
+        title="Contacto | RS Creativ"
+        description="Cotiza tu proyecto de diseño, impresión o personalizados con RS Creativ. Escríbenos por WhatsApp o completa el formulario."
+      />
       {/* HEADER DE LA PAGINA */}
       <section className="pt-32 pb-16 bg-gradient-to-b from-accent to-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

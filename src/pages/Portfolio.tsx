@@ -38,6 +38,7 @@ import {
 import Button from '@/components/ui/Button';
 import PageTransition from '@/components/ui/PageTransition';
 import CmsSections from '@/components/cms/CmsSections';
+import Seo from '@/components/Seo';
 import { getPortfolio } from '@/services/api';
 
 /**
@@ -241,6 +242,10 @@ export default function Portfolio() {
 
   return (
     <PageTransition>
+      <Seo
+        title="Portafolio de Trabajos | RS Creativ"
+        description="Proyectos de diseño, impresión, branding y personalizados realizados por RS Creativ."
+      />
       {/* ==================== HEADER DE LA PÁGINA ==================== */}
       <section className="pt-32 pb-16 bg-gradient-to-b from-accent to-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -3,6 +3,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import { Loader2, Lock } from 'lucide-react';
 import { useAuth } from '../AuthContext';
 import { Alert, Button, Field, Input } from '../components/ui';
+import Seo from '@/components/Seo';
 
 export default function Login() {
   const { user, loading, signIn } = useAuth();
@@ -34,6 +35,7 @@ export default function Login() {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-[#040a33] px-4">
+      <Seo title="Acceso al panel | RS Creativ" description="Área privada de administración." noindex />
       <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-xl">
         <div className="mb-6 text-center">
           <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-[#9a171c] text-white">
