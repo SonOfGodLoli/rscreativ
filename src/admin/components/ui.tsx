@@ -4,7 +4,7 @@ import type { LucideIcon } from 'lucide-react';
 export function Panel({ children, className = '' }: { children: ReactNode; className?: string }) {
   return (
     <div
-      className={`rounded-2xl border border-[#9a171c]/10 bg-white p-5 shadow-[0_1px_2px_rgba(16,24,40,0.04),0_18px_40px_-28px_rgba(154,23,28,0.35)] ${className}`}
+      className={`min-w-0 rounded-2xl border border-gray-200/80 bg-white p-6 shadow-[0_1px_2px_rgba(16,24,40,0.03),0_12px_32px_-24px_rgba(16,24,40,0.28)] ${className}`}
     >
       {children}
     </div>
@@ -24,19 +24,19 @@ export function PageHeader({
 }) {
   return (
     <div className="flex flex-wrap items-end justify-between gap-4">
-      <div className="flex min-w-0 items-start gap-3">
+      <div className="flex min-w-0 flex-1 items-start gap-3">
         {Icon && (
-          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#9a171c]/10 text-[#9a171c]">
+          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#9a171c]/[0.08] text-[#9a171c] ring-1 ring-[#9a171c]/10">
             <Icon className="h-5 w-5" />
           </span>
         )}
         <div className="min-w-0">
           <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-[1.7rem]">{title}</h1>
-          {description && <p className="mt-1 max-w-2xl text-sm text-gray-500">{description}</p>}
+          {description && <p className="mt-1 max-w-2xl text-sm leading-relaxed text-gray-500">{description}</p>}
         </div>
       </div>
 
-      {actions && <div className="flex flex-wrap items-center gap-2">{actions}</div>}
+      {actions && <div className="flex shrink-0 flex-wrap items-center gap-2">{actions}</div>}
     </div>
   );
 }
@@ -106,7 +106,11 @@ export function Badge({
     brand: 'bg-[#fbe9e9] text-[#9a171c]',
   };
 
-  return <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${tones[tone]}`}>{children}</span>;
+  return (
+    <span className={`inline-flex shrink-0 items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold ${tones[tone]}`}>
+      {children}
+    </span>
+  );
 }
 
 export function Alert({ children, tone = 'error' }: { children: ReactNode; tone?: 'error' | 'success' | 'info' }) {

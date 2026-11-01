@@ -88,6 +88,14 @@ export default function AdminLayout() {
     setOpen(false);
   }, [pathname]);
 
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : '';
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [open]);
+
   const allLinks = [...groups.flatMap((group) => group.links), ...adminGroup.links];
   const current =
     allLinks
@@ -106,14 +114,18 @@ export default function AdminLayout() {
         className={({ isActive }) =>
           `group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition ${
             isActive
-              ? 'bg-white font-semibold text-[#7a1216] shadow-sm'
-              : 'text-white/75 hover:bg-white/10 hover:text-white'
+              ? 'bg-[#fbe9e9] font-semibold text-[#9a171c]'
+              : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
           }`
         }
       >
         {({ isActive }) => (
           <>
-            <Icon className={`h-4 w-4 shrink-0 ${isActive ? 'text-[#9a171c]' : 'text-white/60 group-hover:text-white'}`} />
+            <Icon
+              className={`h-4 w-4 shrink-0 ${
+                isActive ? 'text-[#9a171c]' : 'text-gray-400 group-hover:text-gray-600'
+              }`}
+            />
             <span className="truncate">{label}</span>
           </>
         )}
@@ -122,7 +134,7 @@ export default function AdminLayout() {
   }
 
   return (
-    <div className="admin-shell flex min-h-screen flex-col lg:flex-row">
+    <div className="admin-shell flex min-h-screen flex-col overflow-x-clip lg:flex-row">
       <Seo title="Panel | RS Creativ" description="Panel de administración de contenido." noindex />
 
       {open && (
@@ -135,18 +147,18 @@ export default function AdminLayout() {
       )}
 
       <aside
-        className={`brand-gradient fixed inset-y-0 left-0 z-40 flex w-72 max-w-[85vw] flex-col overflow-y-auto text-white shadow-2xl transition-transform duration-300 lg:sticky lg:top-0 lg:z-auto lg:h-screen lg:w-64 lg:translate-x-0 lg:shadow-none ${
+        className={`fixed inset-y-0 left-0 z-40 flex w-72 max-w-[85vw] flex-col overflow-y-auto border-r border-gray-200 bg-white shadow-2xl transition-transform duration-300 lg:sticky lg:top-0 lg:z-auto lg:h-screen lg:w-64 lg:translate-x-0 lg:shadow-none ${
           open ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         <div className="flex items-center justify-between px-5 py-5">
-          <Link to="/admin" className="flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/15 text-sm font-extrabold ring-1 ring-white/25">
+          <Link to="/admin" className="flex min-w-0 items-center gap-3">
+            <span className="brand-gradient flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-sm font-extrabold text-white shadow-sm">
               RS
             </span>
-            <span>
-              <span className="block text-base font-bold tracking-tight">RS Creativ</span>
-              <span className="block text-[10px] uppercase tracking-[0.22em] text-white/60">Contenido</span>
+            <span className="min-w-0">
+              <span className="block truncate text-base font-bold tracking-tight text-gray-900">RS Creativ</span>
+              <span className="block text-[10px] uppercase tracking-[0.22em] text-gray-400">Contenido</span>
             </span>
           </Link>
 
@@ -154,16 +166,16 @@ export default function AdminLayout() {
             type="button"
             aria-label="Cerrar menú"
             onClick={() => setOpen(false)}
-            className="rounded-lg p-2 text-white/80 transition hover:bg-white/10 hover:text-white lg:hidden"
+            className="rounded-lg p-2 text-gray-400 transition hover:bg-gray-100 hover:text-gray-700 lg:hidden"
           >
             <X className="h-5 w-5" />
           </button>
         </div>
 
-        <nav className="flex-1 space-y-5 px-3 pb-4">
+        <nav className="flex-1 space-y-6 px-3 pb-6 pt-2">
           {visibleGroups.map((group) => (
             <div key={group.title}>
-              <p className="px-3 pb-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/45">
+              <p className="px-3 pb-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-gray-400">
                 {group.title}
               </p>
               <div className="space-y-1">{group.links.map(renderLink)}</div>
@@ -171,28 +183,28 @@ export default function AdminLayout() {
           ))}
         </nav>
 
-        <div className="border-t border-white/15 p-3">
+        <div className="border-t border-gray-200 p-3">
           <Link
             to="/"
             target="_blank"
-            className="flex items-center justify-between rounded-xl px-3 py-2.5 text-sm text-white/75 transition hover:bg-white/10 hover:text-white"
+            className="flex items-center justify-between rounded-xl px-3 py-2.5 text-sm text-gray-500 transition hover:bg-gray-100 hover:text-[#9a171c]"
           >
             Ver sitio público
             <ExternalLink className="h-4 w-4" />
           </Link>
-          <p className="px-3 pt-2 text-[11px] text-white/45">© RS Creativ · Panel</p>
+          <p className="px-3 pt-2 text-[11px] text-gray-400">© RS Creativ · Panel</p>
         </div>
       </aside>
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="sticky top-0 z-20 border-b border-[#9a171c]/10 bg-white/85 backdrop-blur">
-          <div className="flex items-center justify-between gap-3 px-4 py-3 sm:px-6">
+        <header className="sticky top-0 z-20 border-b border-gray-200/80 bg-white/80 backdrop-blur">
+          <div className="flex flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
             <div className="flex min-w-0 items-center gap-3">
               <button
                 type="button"
                 aria-label="Abrir menú"
                 onClick={() => setOpen(true)}
-                className="rounded-lg border border-[#9a171c]/15 p-2 text-[#9a171c] transition hover:bg-[#9a171c]/5 lg:hidden"
+                className="rounded-lg border border-gray-200 p-2 text-gray-600 transition hover:bg-gray-100 lg:hidden"
               >
                 <Menu className="h-5 w-5" />
               </button>
@@ -203,20 +215,20 @@ export default function AdminLayout() {
               </div>
             </div>
 
-            <div className="flex items-center gap-2 sm:gap-3">
+            <div className="flex shrink-0 items-center gap-2 sm:gap-3">
               <Link
                 to="/"
                 target="_blank"
-                className="hidden items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-semibold text-gray-600 transition hover:bg-[#9a171c]/5 hover:text-[#9a171c] sm:inline-flex"
+                className="hidden items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-semibold text-gray-500 transition hover:bg-gray-100 hover:text-[#9a171c] lg:inline-flex"
               >
                 Ver sitio <ExternalLink className="h-3.5 w-3.5" />
               </Link>
 
-              <div className="hidden items-center gap-2 md:flex">
-                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#9a171c] text-xs font-bold text-white">
+              <div className="hidden items-center gap-2.5 lg:flex">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#9a171c] text-xs font-bold text-white">
                   {initials(user?.name)}
                 </span>
-                <div className="leading-tight">
+                <div className="min-w-0 leading-tight">
                   <p className="max-w-32 truncate text-sm font-semibold text-gray-800">{user?.name}</p>
                   <p className="text-[11px] font-medium uppercase tracking-wide text-[#b24940]">{user?.role}</p>
                 </div>
@@ -230,7 +242,7 @@ export default function AdminLayout() {
           </div>
         </header>
 
-        <main className="flex-1 p-4 sm:p-6 lg:p-8">
+        <main className="min-w-0 flex-1 px-4 py-6 sm:px-6 lg:px-8 lg:py-8 xl:px-10">
           <Outlet />
         </main>
       </div>

@@ -3,10 +3,10 @@ import {
   ArrowRight,
   Building2,
   CheckCircle2,
+  ExternalLink,
   FileText,
   Image as ImageIcon,
   Images,
-  LayoutDashboard,
   Layers,
   MessageSquare,
   Package,
@@ -31,7 +31,7 @@ import {
   mediaUrl,
 } from '../api';
 import type { AdminUser } from '../api';
-import { Badge, Button, EmptyState, PageHeader, Panel } from '../components/ui';
+import { Badge, Button, EmptyState, Panel } from '../components/ui';
 
 interface StatCardProps {
   label: string;
@@ -43,17 +43,17 @@ interface StatCardProps {
 
 function StatCard({ label, value, hint, icon: Icon, to }: StatCardProps) {
   return (
-    <Link to={to} className="group">
-      <Panel className="h-full transition duration-200 group-hover:-translate-y-0.5 group-hover:border-[#9a171c]/25 group-hover:shadow-lg">
-        <div className="flex items-start justify-between gap-2">
-          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#9a171c]/10 text-[#9a171c] transition group-hover:bg-[#9a171c] group-hover:text-white">
+    <Link to={to} className="group min-w-0">
+      <Panel className="h-full transition duration-200 group-hover:-translate-y-0.5 group-hover:border-[#9a171c]/20 group-hover:shadow-md">
+        <div className="flex items-start justify-between gap-3">
+          <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#9a171c]/[0.08] text-[#9a171c] transition group-hover:bg-[#9a171c] group-hover:text-white">
             <Icon className="h-5 w-5" />
           </span>
-          <ArrowRight className="h-4 w-4 text-gray-300 transition group-hover:translate-x-0.5 group-hover:text-[#9a171c]" />
+          <ArrowRight className="mt-1 h-4 w-4 shrink-0 text-gray-300 transition group-hover:translate-x-0.5 group-hover:text-[#9a171c]" />
         </div>
-        <p className="mt-3 text-2xl font-bold text-gray-900">{value}</p>
-        <p className="text-sm font-medium text-gray-700">{label}</p>
-        <p className="text-xs text-gray-400">{hint}</p>
+        <p className="mt-4 text-3xl font-bold tracking-tight text-gray-900">{value}</p>
+        <p className="mt-1 text-sm font-medium text-gray-700">{label}</p>
+        <p className="mt-0.5 truncate text-xs text-gray-400">{hint}</p>
       </Panel>
     </Link>
   );
@@ -112,29 +112,44 @@ export default function Dashboard() {
   ];
 
   return (
-    <div className="mx-auto max-w-7xl space-y-6">
-      <PageHeader
-        icon={LayoutDashboard}
-        title={`Hola, ${firstName}`}
-        description={`Resumen de tu contenido · ${today}`}
-        actions={
-          <Link to="/admin/imagenes">
-            <Button>
-              <Upload className="h-4 w-4" /> Subir imágenes
-            </Button>
-          </Link>
-        }
-      />
+    <div className="mx-auto w-full max-w-[1400px] space-y-6">
+      <section className="relative overflow-hidden rounded-2xl border border-[#9a171c]/10 bg-white p-6 shadow-[0_1px_2px_rgba(16,24,40,0.03),0_16px_40px_-28px_rgba(16,24,40,0.3)] sm:p-8">
+        <div className="pointer-events-none absolute -right-16 -top-20 h-56 w-56 rounded-full bg-[#eb9192]/25 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-24 right-28 h-48 w-48 rounded-full bg-[#9a171c]/10 blur-3xl" />
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+        <div className="relative flex flex-wrap items-end justify-between gap-6">
+          <div className="min-w-0">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-[#fbe9e9] px-3 py-1 text-xs font-semibold text-[#9a171c]">
+              <Sparkles className="h-3.5 w-3.5" /> Panel de contenido
+            </span>
+            <h1 className="mt-3 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">Hola, {firstName}</h1>
+            <p className="mt-1 max-w-xl text-sm leading-relaxed text-gray-500">Resumen de tu contenido · {today}</p>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2">
+            <Link to="/admin/imagenes">
+              <Button>
+                <Upload className="h-4 w-4" /> Subir imágenes
+              </Button>
+            </Link>
+            <Link to="/" target="_blank">
+              <Button variant="outline">
+                Ver sitio <ExternalLink className="h-4 w-4" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5 2xl:grid-cols-6">
         {stats.map((stat) => (
           <StatCard key={stat.label} {...stat} />
         ))}
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-3">
-        <Panel className="lg:col-span-2">
-          <div className="mb-4 flex items-center justify-between">
+      <div className="grid gap-5 xl:grid-cols-3">
+        <Panel className="xl:col-span-2">
+          <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
             <div>
               <h2 className="font-semibold text-gray-900">Accesos rápidos</h2>
               <p className="text-sm text-gray-500">Lo que más se usa en el día a día.</p>
@@ -142,19 +157,19 @@ export default function Dashboard() {
             <Badge tone="brand">Atajos</Badge>
           </div>
 
-          <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-3 sm:grid-cols-2 2xl:grid-cols-3">
             {quickActions.map(({ to, label, description, icon: Icon }) => (
               <Link
                 key={to}
                 to={to}
-                className="group flex items-start gap-3 rounded-xl border border-transparent bg-[#faf7f6] p-3 transition hover:border-[#9a171c]/20 hover:bg-white hover:shadow-sm"
+                className="group flex min-w-0 items-start gap-3 rounded-xl border border-gray-100 bg-gray-50/70 p-4 transition hover:border-[#9a171c]/20 hover:bg-white hover:shadow-sm"
               >
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white text-[#9a171c] shadow-sm transition group-hover:bg-[#9a171c] group-hover:text-white">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white text-[#9a171c] shadow-sm ring-1 ring-gray-100 transition group-hover:bg-[#9a171c] group-hover:text-white">
                   <Icon className="h-4 w-4" />
                 </span>
                 <span className="min-w-0">
                   <span className="block text-sm font-semibold text-gray-800">{label}</span>
-                  <span className="block text-xs text-gray-500">{description}</span>
+                  <span className="mt-0.5 block text-xs leading-relaxed text-gray-500">{description}</span>
                 </span>
               </Link>
             ))}
@@ -163,56 +178,68 @@ export default function Dashboard() {
 
         <Panel>
           <h2 className="font-semibold text-gray-900">Estado del sitio</h2>
-          <p className="mb-3 text-sm text-gray-500">Contenido activo en este momento.</p>
+          <p className="mb-4 text-sm text-gray-500">Contenido activo en este momento.</p>
 
-          <ul className="space-y-2">
+          <ul className="space-y-2.5">
             {statusRows.map(({ label, value, icon: Icon }) => (
-              <li key={label} className="flex items-center justify-between gap-3 rounded-lg bg-[#faf7f6] px-3 py-2">
-                <span className="flex items-center gap-2 text-sm text-gray-600">
-                  <Icon className="h-4 w-4 text-[#b24940]" />
-                  {label}
+              <li
+                key={label}
+                className="flex items-center justify-between gap-3 rounded-xl bg-gray-50/80 px-3.5 py-2.5"
+              >
+                <span className="flex min-w-0 items-center gap-2 text-sm text-gray-600">
+                  <Icon className="h-4 w-4 shrink-0 text-[#b24940]" />
+                  <span className="truncate">{label}</span>
                 </span>
-                <span className="text-sm font-bold text-gray-900">{value}</span>
+                <span className="shrink-0 text-sm font-bold text-gray-900">{value}</span>
               </li>
             ))}
           </ul>
         </Panel>
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-2">
+      <div className="grid gap-5 lg:grid-cols-2">
         <Panel>
-          <div className="mb-3 flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <MessageSquare className="h-5 w-5 text-[#9a171c]" />
-              <h2 className="font-semibold text-gray-900">Mensajes recientes</h2>
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+            <div className="flex min-w-0 items-center gap-2">
+              <MessageSquare className="h-5 w-5 shrink-0 text-[#9a171c]" />
+              <h2 className="truncate font-semibold text-gray-900">Mensajes recientes</h2>
             </div>
             {unread > 0 ? <Badge tone="red">{unread} sin leer</Badge> : <Badge tone="green">Al día</Badge>}
           </div>
 
-          {(messages.data ?? []).slice(0, 5).map((message) => (
-            <div key={message.id} className="border-t border-gray-100 py-2.5 text-sm first:border-t-0">
-              <div className="flex items-center justify-between gap-2">
-                <span className="font-medium text-gray-800">{message.name}</span>
+          <div className="divide-y divide-gray-100">
+            {(messages.data ?? []).slice(0, 5).map((message) => (
+              <div key={message.id} className="flex min-w-0 items-center justify-between gap-3 py-3">
+                <div className="min-w-0">
+                  <p className="truncate text-sm font-medium text-gray-800">{message.name}</p>
+                  <p className="truncate text-sm text-gray-500">{message.subject}</p>
+                </div>
                 {!message.read && <Badge tone="amber">Nuevo</Badge>}
               </div>
-              <p className="truncate text-gray-500">{message.subject}</p>
-            </div>
-          ))}
+            ))}
+          </div>
 
           {messages.data?.length === 0 && (
-            <EmptyState icon={MessageSquare} title="Sin mensajes todavía" description="Los mensajes del formulario aparecerán aquí." />
+            <EmptyState
+              icon={MessageSquare}
+              title="Sin mensajes todavía"
+              description="Los mensajes del formulario aparecerán aquí."
+            />
           )}
 
-          <Link to="/admin/mensajes" className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-[#9a171c] hover:underline">
+          <Link
+            to="/admin/mensajes"
+            className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[#9a171c] hover:underline"
+          >
             Ver todos <ArrowRight className="h-4 w-4" />
           </Link>
         </Panel>
 
         <Panel>
-          <div className="mb-3 flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <ImageIcon className="h-5 w-5 text-[#9a171c]" />
-              <h2 className="font-semibold text-gray-900">Últimas imágenes</h2>
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+            <div className="flex min-w-0 items-center gap-2">
+              <ImageIcon className="h-5 w-5 shrink-0 text-[#9a171c]" />
+              <h2 className="truncate font-semibold text-gray-900">Últimas imágenes</h2>
             </div>
             <Link to="/admin/imagenes" className="text-sm font-semibold text-[#9a171c] hover:underline">
               Biblioteca
@@ -220,28 +247,32 @@ export default function Dashboard() {
           </div>
 
           {(media.data ?? []).length > 0 ? (
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
               {(media.data ?? []).slice(0, 6).map((item) => (
-                <div key={item.id} className="overflow-hidden rounded-lg border border-gray-200 bg-gray-50">
+                <div key={item.id} className="min-w-0 overflow-hidden rounded-xl border border-gray-100 bg-gray-50">
                   <img
                     src={mediaUrl(item.id)}
                     alt={item.filename}
                     loading="lazy"
-                    className="h-24 w-full object-cover"
+                    className="aspect-[4/3] w-full object-cover"
                   />
-                  <p className="truncate px-2 py-1 text-[11px] text-gray-500" title={item.filename}>
+                  <p className="truncate px-2.5 py-1.5 text-[11px] text-gray-500" title={item.filename}>
                     {item.filename}
                   </p>
                 </div>
               ))}
             </div>
           ) : (
-            <EmptyState icon={ImageIcon} title="Aún no hay imágenes" description="Sube tu primera imagen desde la biblioteca." />
+            <EmptyState
+              icon={ImageIcon}
+              title="Aún no hay imágenes"
+              description="Sube tu primera imagen desde la biblioteca."
+            />
           )}
 
           <Link
             to="/admin/imagenes"
-            className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-[#9a171c] hover:underline"
+            className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[#9a171c] hover:underline"
           >
             Gestionar imágenes <ArrowRight className="h-4 w-4" />
           </Link>
