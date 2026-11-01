@@ -46,14 +46,14 @@ function StatCard({ label, value, hint, icon: Icon, to }: StatCardProps) {
     <Link to={to} className="group min-w-0">
       <Panel className="h-full transition duration-200 group-hover:-translate-y-0.5 group-hover:border-[#9a171c]/20 group-hover:shadow-md">
         <div className="flex items-start justify-between gap-3">
-          <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#9a171c]/[0.08] text-[#9a171c] transition group-hover:bg-[#9a171c] group-hover:text-white">
-            <Icon className="h-5 w-5" />
+          <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#9a171c]/[0.08] text-[#9a171c] transition group-hover:bg-[#9a171c] group-hover:text-white">
+            <Icon className="h-6 w-6" />
           </span>
-          <ArrowRight className="mt-1 h-4 w-4 shrink-0 text-gray-300 transition group-hover:translate-x-0.5 group-hover:text-[#9a171c]" />
+          <ArrowRight className="mt-1.5 h-4 w-4 shrink-0 text-gray-300 transition group-hover:translate-x-0.5 group-hover:text-[#9a171c]" />
         </div>
-        <p className="mt-4 text-3xl font-bold tracking-tight text-gray-900">{value}</p>
-        <p className="mt-1 text-sm font-medium text-gray-700">{label}</p>
-        <p className="mt-0.5 truncate text-xs text-gray-400">{hint}</p>
+        <p className="mt-5 text-4xl font-bold tracking-tight text-gray-900">{value}</p>
+        <p className="mt-2 text-base font-medium text-gray-700">{label}</p>
+        <p className="mt-1 truncate text-sm text-gray-400">{hint}</p>
       </Panel>
     </Link>
   );
@@ -112,18 +112,18 @@ export default function Dashboard() {
   ];
 
   return (
-    <div className="mx-auto w-full max-w-[1400px] space-y-6">
-      <section className="relative overflow-hidden rounded-2xl border border-[#9a171c]/10 bg-white p-6 shadow-[0_1px_2px_rgba(16,24,40,0.03),0_16px_40px_-28px_rgba(16,24,40,0.3)] sm:p-8">
+    <div className="mx-auto min-w-0 w-full max-w-[1400px] space-y-8">
+      <section className="relative overflow-hidden rounded-2xl border border-[#9a171c]/10 bg-white p-7 shadow-[0_1px_2px_rgba(16,24,40,0.03),0_16px_40px_-28px_rgba(16,24,40,0.3)] sm:p-9">
         <div className="pointer-events-none absolute -right-16 -top-20 h-56 w-56 rounded-full bg-[#eb9192]/25 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-24 right-28 h-48 w-48 rounded-full bg-[#9a171c]/10 blur-3xl" />
 
-        <div className="relative flex flex-wrap items-end justify-between gap-6">
+        <div className="relative flex flex-wrap items-end justify-between gap-8">
           <div className="min-w-0">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-[#fbe9e9] px-3 py-1 text-xs font-semibold text-[#9a171c]">
               <Sparkles className="h-3.5 w-3.5" /> Panel de contenido
             </span>
-            <h1 className="mt-3 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">Hola, {firstName}</h1>
-            <p className="mt-1 max-w-xl text-sm leading-relaxed text-gray-500">Resumen de tu contenido · {today}</p>
+            <h1 className="mt-4 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">Hola, {firstName}</h1>
+            <p className="mt-2 max-w-xl text-sm leading-relaxed text-gray-500">Resumen de tu contenido · {today}</p>
           </div>
 
           <div className="flex flex-wrap items-center gap-2">
@@ -141,15 +141,15 @@ export default function Dashboard() {
         </div>
       </section>
 
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5 2xl:grid-cols-6">
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 xl:grid-cols-3">
         {stats.map((stat) => (
           <StatCard key={stat.label} {...stat} />
         ))}
       </div>
 
-      <div className="grid gap-5 xl:grid-cols-3">
+      <div className="grid gap-6 xl:grid-cols-3">
         <Panel className="xl:col-span-2">
-          <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
+          <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
             <div>
               <h2 className="font-semibold text-gray-900">Accesos rápidos</h2>
               <p className="text-sm text-gray-500">Lo que más se usa en el día a día.</p>
@@ -157,19 +157,19 @@ export default function Dashboard() {
             <Badge tone="brand">Atajos</Badge>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-2 2xl:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2">
             {quickActions.map(({ to, label, description, icon: Icon }) => (
               <Link
                 key={to}
                 to={to}
-                className="group flex min-w-0 items-start gap-3 rounded-xl border border-gray-100 bg-gray-50/70 p-4 transition hover:border-[#9a171c]/20 hover:bg-white hover:shadow-sm"
+                className="group flex min-w-0 items-start gap-3.5 rounded-xl border border-gray-100 bg-gray-50/70 p-5 transition hover:border-[#9a171c]/20 hover:bg-white hover:shadow-sm"
               >
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white text-[#9a171c] shadow-sm ring-1 ring-gray-100 transition group-hover:bg-[#9a171c] group-hover:text-white">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-white text-[#9a171c] shadow-sm ring-1 ring-gray-100 transition group-hover:bg-[#9a171c] group-hover:text-white">
                   <Icon className="h-4 w-4" />
                 </span>
                 <span className="min-w-0">
                   <span className="block text-sm font-semibold text-gray-800">{label}</span>
-                  <span className="mt-0.5 block text-xs leading-relaxed text-gray-500">{description}</span>
+                  <span className="mt-1 block text-xs leading-relaxed text-gray-500">{description}</span>
                 </span>
               </Link>
             ))}
@@ -178,13 +178,13 @@ export default function Dashboard() {
 
         <Panel>
           <h2 className="font-semibold text-gray-900">Estado del sitio</h2>
-          <p className="mb-4 text-sm text-gray-500">Contenido activo en este momento.</p>
+          <p className="mb-5 text-sm text-gray-500">Contenido activo en este momento.</p>
 
-          <ul className="space-y-2.5">
+          <ul className="space-y-3">
             {statusRows.map(({ label, value, icon: Icon }) => (
               <li
                 key={label}
-                className="flex items-center justify-between gap-3 rounded-xl bg-gray-50/80 px-3.5 py-2.5"
+                className="flex items-center justify-between gap-3 rounded-xl bg-gray-50/80 px-4 py-3"
               >
                 <span className="flex min-w-0 items-center gap-2 text-sm text-gray-600">
                   <Icon className="h-4 w-4 shrink-0 text-[#b24940]" />
@@ -197,9 +197,9 @@ export default function Dashboard() {
         </Panel>
       </div>
 
-      <div className="grid gap-5 lg:grid-cols-2">
+      <div className="grid gap-6 lg:grid-cols-2">
         <Panel>
-          <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+          <div className="mb-5 flex flex-wrap items-center justify-between gap-2">
             <div className="flex min-w-0 items-center gap-2">
               <MessageSquare className="h-5 w-5 shrink-0 text-[#9a171c]" />
               <h2 className="truncate font-semibold text-gray-900">Mensajes recientes</h2>
@@ -209,7 +209,7 @@ export default function Dashboard() {
 
           <div className="divide-y divide-gray-100">
             {(messages.data ?? []).slice(0, 5).map((message) => (
-              <div key={message.id} className="flex min-w-0 items-center justify-between gap-3 py-3">
+              <div key={message.id} className="flex min-w-0 items-center justify-between gap-3 py-3.5">
                 <div className="min-w-0">
                   <p className="truncate text-sm font-medium text-gray-800">{message.name}</p>
                   <p className="truncate text-sm text-gray-500">{message.subject}</p>
@@ -229,14 +229,14 @@ export default function Dashboard() {
 
           <Link
             to="/admin/mensajes"
-            className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[#9a171c] hover:underline"
+            className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-[#9a171c] hover:underline"
           >
             Ver todos <ArrowRight className="h-4 w-4" />
           </Link>
         </Panel>
 
         <Panel>
-          <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+          <div className="mb-5 flex flex-wrap items-center justify-between gap-2">
             <div className="flex min-w-0 items-center gap-2">
               <ImageIcon className="h-5 w-5 shrink-0 text-[#9a171c]" />
               <h2 className="truncate font-semibold text-gray-900">Últimas imágenes</h2>
@@ -247,7 +247,7 @@ export default function Dashboard() {
           </div>
 
           {(media.data ?? []).length > 0 ? (
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
               {(media.data ?? []).slice(0, 6).map((item) => (
                 <div key={item.id} className="min-w-0 overflow-hidden rounded-xl border border-gray-100 bg-gray-50">
                   <img
@@ -272,7 +272,7 @@ export default function Dashboard() {
 
           <Link
             to="/admin/imagenes"
-            className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[#9a171c] hover:underline"
+            className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-[#9a171c] hover:underline"
           >
             Gestionar imágenes <ArrowRight className="h-4 w-4" />
           </Link>

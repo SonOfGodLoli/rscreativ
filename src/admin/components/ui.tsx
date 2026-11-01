@@ -4,7 +4,7 @@ import type { LucideIcon } from 'lucide-react';
 export function Panel({ children, className = '' }: { children: ReactNode; className?: string }) {
   return (
     <div
-      className={`min-w-0 rounded-2xl border border-gray-200/80 bg-white p-6 shadow-[0_1px_2px_rgba(16,24,40,0.03),0_12px_32px_-24px_rgba(16,24,40,0.28)] ${className}`}
+      className={`min-w-0 rounded-2xl border border-gray-200/80 bg-white p-7 shadow-[0_1px_2px_rgba(16,24,40,0.03),0_12px_32px_-24px_rgba(16,24,40,0.28)] ${className}`}
     >
       {children}
     </div>
@@ -23,20 +23,20 @@ export function PageHeader({
   actions?: ReactNode;
 }) {
   return (
-    <div className="flex flex-wrap items-end justify-between gap-4">
-      <div className="flex min-w-0 flex-1 items-start gap-3">
+    <div className="flex flex-wrap items-end justify-between gap-5">
+      <div className="flex min-w-0 flex-1 items-start gap-4">
         {Icon && (
-          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#9a171c]/[0.08] text-[#9a171c] ring-1 ring-[#9a171c]/10">
+          <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#9a171c]/[0.08] text-[#9a171c] ring-1 ring-[#9a171c]/10">
             <Icon className="h-5 w-5" />
           </span>
         )}
         <div className="min-w-0">
           <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-[1.7rem]">{title}</h1>
-          {description && <p className="mt-1 max-w-2xl text-sm leading-relaxed text-gray-500">{description}</p>}
+          {description && <p className="mt-2 max-w-2xl text-sm leading-relaxed text-gray-500">{description}</p>}
         </div>
       </div>
 
-      {actions && <div className="flex shrink-0 flex-wrap items-center gap-2">{actions}</div>}
+      {actions && <div className="flex min-w-0 shrink-0 flex-wrap items-center gap-3">{actions}</div>}
     </div>
   );
 }
@@ -86,7 +86,7 @@ export function Button({
   return (
     <button
       {...props}
-      className={`inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-50 ${styles[variant]} ${className}`}
+      className={`inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-50 ${styles[variant]} ${className}`}
     />
   );
 }

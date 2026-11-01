@@ -112,7 +112,7 @@ export default function AdminLayout() {
         end={end}
         onClick={() => setOpen(false)}
         className={({ isActive }) =>
-          `group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition ${
+          `group flex items-center gap-3 rounded-xl px-3 py-3 text-sm transition ${
             isActive
               ? 'bg-[#fbe9e9] font-semibold text-[#9a171c]'
               : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
@@ -172,10 +172,10 @@ export default function AdminLayout() {
           </button>
         </div>
 
-        <nav className="flex-1 space-y-6 px-3 pb-6 pt-2">
+        <nav className="flex-1 space-y-7 px-3 pb-6 pt-2">
           {visibleGroups.map((group) => (
             <div key={group.title}>
-              <p className="px-3 pb-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-gray-400">
+              <p className="px-3 pb-2.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-gray-400">
                 {group.title}
               </p>
               <div className="space-y-1">{group.links.map(renderLink)}</div>
@@ -187,7 +187,7 @@ export default function AdminLayout() {
           <Link
             to="/"
             target="_blank"
-            className="flex items-center justify-between rounded-xl px-3 py-2.5 text-sm text-gray-500 transition hover:bg-gray-100 hover:text-[#9a171c]"
+            className="flex items-center justify-between rounded-xl px-3 py-3 text-sm text-gray-500 transition hover:bg-gray-100 hover:text-[#9a171c]"
           >
             Ver sitio público
             <ExternalLink className="h-4 w-4" />
@@ -198,7 +198,7 @@ export default function AdminLayout() {
 
       <div className="flex min-w-0 flex-1 flex-col">
         <header className="sticky top-0 z-20 border-b border-gray-200/80 bg-white/80 backdrop-blur">
-          <div className="flex flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
+          <div className="flex flex-wrap items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8 xl:px-10">
             <div className="flex min-w-0 items-center gap-3">
               <button
                 type="button"
@@ -215,16 +215,16 @@ export default function AdminLayout() {
               </div>
             </div>
 
-            <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+            <div className="flex min-w-0 max-w-full flex-wrap items-center justify-end gap-2 sm:gap-3">
               <Link
                 to="/"
                 target="_blank"
-                className="hidden items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-semibold text-gray-500 transition hover:bg-gray-100 hover:text-[#9a171c] lg:inline-flex"
+                className="hidden items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-semibold text-gray-500 transition hover:bg-gray-100 hover:text-[#9a171c] xl:inline-flex"
               >
                 Ver sitio <ExternalLink className="h-3.5 w-3.5" />
               </Link>
 
-              <div className="hidden items-center gap-2.5 lg:flex">
+              <div className="hidden items-center gap-2.5 xl:flex">
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#9a171c] text-xs font-bold text-white">
                   {initials(user?.name)}
                 </span>
@@ -242,7 +242,7 @@ export default function AdminLayout() {
           </div>
         </header>
 
-        <main className="min-w-0 flex-1 px-4 py-6 sm:px-6 lg:px-8 lg:py-8 xl:px-10">
+        <main className="min-w-0 flex-1 px-4 py-8 sm:px-6 lg:px-8 lg:py-10 xl:px-10">
           <Outlet />
         </main>
       </div>
