@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { Plus, Save, Trash2 } from 'lucide-react';
+import { Plus, Save, Shield, Trash2 } from 'lucide-react';
 import { createUser, deleteUser, listUsers, updateUser } from '../api';
 import type { AdminUser } from '../api';
 import { useAsyncData } from '../useAsyncData';
-import { Alert, Badge, Button, Field, Input, Panel, Select } from '../components/ui';
+import { Alert, Badge, Button, Field, Input, PageHeader, Panel, Select } from '../components/ui';
 
 const EMPTY = { email: '', name: '', password: '', role: 'EDITOR' };
 
@@ -63,12 +63,11 @@ export default function UsersAdmin() {
 
   return (
     <div className="mx-auto max-w-5xl space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold text-gray-900">Usuarios</h1>
-        <p className="text-sm text-gray-500">
-          Crea cuentas para tus trabajadores. Los editores gestionan contenido; los administradores también gestionan usuarios.
-        </p>
-      </div>
+      <PageHeader
+        icon={Shield}
+        title="Usuarios"
+        description="Crea cuentas para tus trabajadores. Los editores gestionan contenido; los administradores también gestionan usuarios."
+      />
 
       <Panel>
         <h2 className="mb-3 flex items-center gap-2 font-semibold text-gray-900">

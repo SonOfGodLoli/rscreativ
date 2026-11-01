@@ -1,8 +1,11 @@
 import { useRef, useState } from 'react';
-import { Copy, Trash2, Upload } from 'lucide-react';
+import { Copy, Image as ImageIcon, Trash2, Upload } from 'lucide-react';
+import { isAxiosError } from 'axios';
 import { deleteMedia, listMedia, mediaUrl, uploadMedia } from '../api';
 import { useAsyncData } from '../useAsyncData';
-import { Alert, Button, Panel } from '../components/ui';
+import { Alert, Button, PageHeader, Panel } from '../components/ui';
+
+const MAX_FILE_SIZE = 8 * 1024 * 1024;
 
 export default function MediaLibrary() {
   const { data, loading, error, reload } = useAsyncData(listMedia);
@@ -19,13 +22,21 @@ export default function MediaLibrary() {
 
     try {
       for (const file of Array.from(files).slice(0, 10)) {
+        if (file.size > MAX_FILE_SIZE) {
+          throw new Error(`${file.name} supera el máximo de 8 MB`);
+        }
+
         await uploadMedia(file);
       }
 
       setMessage('Imágenes subidas');
       reload();
-    } catch {
-      setMessage('Alguna imagen no se pudo subir');
+    } catch (caught) {
+      const serverMessage = isAxiosError(caught)
+        ? (caught.response?.data as { error?: string } | undefined)?.error
+        : undefined;
+
+      setMessage(serverMessage ?? (caught instanceof Error ? caught.message : 'Alguna imagen no se pudo subir'));
     } finally {
       setUploading(false);
 
@@ -49,26 +60,26 @@ export default function MediaLibrary() {
 
   return (
     <div className="mx-auto max-w-6xl space-y-6">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">Imágenes</h1>
-          <p className="text-sm text-gray-500">Sube imágenes y copia su URL para usarlas en cualquier sección.</p>
-        </div>
-
-        <div>
-          <input
-            ref={inputRef}
-            type="file"
-            multiple
-            accept="image/jpeg,image/png,image/webp,image/gif,image/avif"
-            className="hidden"
-            onChange={(event) => handleFiles(event.target.files)}
-          />
-          <Button disabled={uploading} onClick={() => inputRef.current?.click()}>
-            <Upload className="h-4 w-4" /> {uploading ? 'Subiendo...' : 'Subir imágenes'}
-          </Button>
-        </div>
-      </div>
+      <PageHeader
+        icon={ImageIcon}
+        title="Imágenes"
+        description="Sube imágenes y copia su URL para usarlas en cualquier sección."
+        actions={
+          <>
+            <input
+              ref={inputRef}
+              type="file"
+              multiple
+              accept="image/jpeg,image/png,image/webp,image/gif,image/avif"
+              className="hidden"
+              onChange={(event) => handleFiles(event.target.files)}
+            />
+            <Button disabled={uploading} onClick={() => inputRef.current?.click()}>
+              <Upload className="h-4 w-4" /> {uploading ? 'Subiendo...' : 'Subir imágenes'}
+            </Button>
+          </>
+        }
+      />
 
       {message && <Alert tone={message === 'Imágenes subidas' ? 'success' : 'error'}>{message}</Alert>}
       {error && <Alert>{error}</Alert>}

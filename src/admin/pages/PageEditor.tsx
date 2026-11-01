@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ArrowDown, ArrowUp, ChevronLeft, Plus, Save, Trash2 } from 'lucide-react';
+import { ArrowDown, ArrowUp, ChevronLeft, FileText, Plus, Save, Trash2 } from 'lucide-react';
 import {
   createSection,
   deleteSection,
@@ -11,7 +11,7 @@ import {
 } from '../api';
 import type { Page, Section, SectionItem } from '../api';
 import { useAsyncData } from '../useAsyncData';
-import { Alert, Badge, Button, Field, Input, Panel, Select, Textarea } from '../components/ui';
+import { Alert, Badge, Button, Field, Input, PageHeader, Panel, Select, Textarea } from '../components/ui';
 import ImageUploader from '../components/ImageUploader';
 
 const KINDS: { value: Section['kind']; label: string }[] = [
@@ -303,6 +303,12 @@ export default function PageEditor() {
           </Button>
         </Link>
       </div>
+
+      <PageHeader
+        icon={FileText}
+        title={meta.title}
+        description={`/${meta.slug} · ${data.sections?.length ?? 0} sección(es)`}
+      />
 
       <Panel>
         <form className="space-y-3" onSubmit={saveMeta}>

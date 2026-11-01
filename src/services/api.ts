@@ -22,9 +22,6 @@ const apiOrigin = (import.meta.env.VITE_API_URL ?? '').trim().replace(/\/$/, '')
  */
 const api = axios.create({
   baseURL: `${apiOrigin}/api`,
-  headers: {
-    'Content-Type': 'application/json',
-  },
 });
 
 /** Adjunta el token del panel si existe. */

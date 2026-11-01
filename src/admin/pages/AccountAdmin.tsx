@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { KeyRound } from 'lucide-react';
 import { changePassword } from '../api';
 import { useAuth } from '../AuthContext';
-import { Alert, Button, Field, Input, Panel } from '../components/ui';
+import { Alert, Button, Field, Input, PageHeader, Panel } from '../components/ui';
 
 export default function AccountAdmin() {
   const { user } = useAuth();
@@ -38,12 +38,11 @@ export default function AccountAdmin() {
 
   return (
     <div className="mx-auto max-w-xl space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold text-gray-900">Mi cuenta</h1>
-        <p className="text-sm text-gray-500">
-          {user?.name} · {user?.email} · {user?.role}
-        </p>
-      </div>
+      <PageHeader
+        icon={KeyRound}
+        title="Mi cuenta"
+        description={`${user?.name} · ${user?.email} · ${user?.role}`}
+      />
 
       <Panel>
         <h2 className="mb-3 flex items-center gap-2 font-semibold text-gray-900">

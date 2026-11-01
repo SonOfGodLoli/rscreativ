@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ExternalLink, Plus, Trash2 } from 'lucide-react';
+import { ExternalLink, FileText, Plus, Trash2 } from 'lucide-react';
 import { createPage, deletePage, listPages, updatePage } from '../api';
 import type { Page } from '../api';
 import { useAsyncData } from '../useAsyncData';
-import { Alert, Badge, Button, Field, Input, Panel, Textarea } from '../components/ui';
+import { Alert, Badge, Button, Field, Input, PageHeader, Panel, Textarea } from '../components/ui';
 
 const EMPTY = { slug: '', title: '', description: '' };
 
@@ -44,13 +44,11 @@ export default function PagesList() {
 
   return (
     <div className="mx-auto max-w-6xl space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold text-gray-900">Páginas y secciones</h1>
-        <p className="text-sm text-gray-500">
-          Las secciones de la página "home", "servicios", "portfolio" y "contacto" se muestran en el sitio público.
-          También puedes crear páginas nuevas.
-        </p>
-      </div>
+      <PageHeader
+        icon={FileText}
+        title="Páginas y secciones"
+        description='Las secciones de "home", "servicios", "portfolio" y "contacto" se muestran en el sitio público. También puedes crear páginas nuevas.'
+      />
 
       <Panel>
         <h2 className="mb-3 flex items-center gap-2 font-semibold text-gray-900">

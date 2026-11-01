@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { Check, Mail, Trash2 } from 'lucide-react';
+import { Check, Mail, MessageSquare, Trash2 } from 'lucide-react';
 import { deleteMessage, listMessages, setMessageRead } from '../api';
 import { useAsyncData } from '../useAsyncData';
-import { Alert, Badge, Button, Panel } from '../components/ui';
+import { Alert, Badge, Button, PageHeader, Panel } from '../components/ui';
 
 export default function MessagesAdmin() {
   const { data, loading, error, reload } = useAsyncData(listMessages);
@@ -24,22 +24,22 @@ export default function MessagesAdmin() {
 
   return (
     <div className="mx-auto max-w-5xl space-y-6">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">Mensajes</h1>
-          <p className="text-sm text-gray-500">Mensajes enviados desde el formulario de contacto.</p>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <Badge tone={unread > 0 ? 'red' : 'green'}>{unread} sin leer</Badge>
-          <Button variant={filter === 'all' ? 'primary' : 'secondary'} onClick={() => setFilter('all')}>
-            Todos
-          </Button>
-          <Button variant={filter === 'unread' ? 'primary' : 'secondary'} onClick={() => setFilter('unread')}>
-            Sin leer
-          </Button>
-        </div>
-      </div>
+      <PageHeader
+        icon={MessageSquare}
+        title="Mensajes"
+        description="Mensajes enviados desde el formulario de contacto."
+        actions={
+          <>
+            <Badge tone={unread > 0 ? 'red' : 'green'}>{unread} sin leer</Badge>
+            <Button variant={filter === 'all' ? 'primary' : 'secondary'} onClick={() => setFilter('all')}>
+              Todos
+            </Button>
+            <Button variant={filter === 'unread' ? 'primary' : 'secondary'} onClick={() => setFilter('unread')}>
+              Sin leer
+            </Button>
+          </>
+        }
+      />
 
       {error && <Alert>{error}</Alert>}
       {loading && <p className="text-sm text-gray-500">Cargando...</p>}

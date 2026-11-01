@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Pencil, Plus, Save, Trash2, X } from 'lucide-react';
-import { Alert, Button, Field, Input, Panel, Select, Textarea } from './ui';
+import { LayoutGrid, Pencil, Plus, Save, Trash2, X } from 'lucide-react';
+import { Alert, Button, Field, Input, PageHeader, Panel, Select, Textarea } from './ui';
 import ImageUploader from './ImageUploader';
 import MultiImageUploader from './MultiImageUploader';
 
@@ -190,10 +190,7 @@ export default function CrudManager<T extends { id: string }>({
 
   return (
     <div className="mx-auto max-w-6xl space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold text-gray-900">{title}</h1>
-        {description && <p className="text-sm text-gray-500">{description}</p>}
-      </div>
+      <PageHeader icon={LayoutGrid} title={title} description={description} />
 
       <Panel>
         <div className="mb-3 flex items-center justify-between">

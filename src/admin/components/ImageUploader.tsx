@@ -1,7 +1,10 @@
 import { useRef, useState } from 'react';
 import { ImagePlus, Trash2, Upload } from 'lucide-react';
+import { isAxiosError } from 'axios';
 import { uploadMedia } from '../api';
 import { Alert, Button, Field, Input } from './ui';
+
+const MAX_FILE_SIZE = 8 * 1024 * 1024;
 
 interface ImageUploaderProps {
   value: string;
@@ -17,14 +20,23 @@ export default function ImageUploader({ value, onChange, label = 'Imagen' }: Ima
   async function handleFile(file: File | undefined) {
     if (!file) return;
 
+    if (file.size > MAX_FILE_SIZE) {
+      setError('La imagen supera el máximo de 8 MB');
+      return;
+    }
+
     setUploading(true);
     setError('');
 
     try {
       const response = await uploadMedia(file);
       onChange(response.data.url);
-    } catch {
-      setError('No se pudo subir la imagen (máx. 8 MB, JPG/PNG/WEBP/GIF/AVIF)');
+    } catch (caught) {
+      const serverMessage = isAxiosError(caught)
+        ? (caught.response?.data as { error?: string } | undefined)?.error
+        : undefined;
+
+      setError(serverMessage ?? 'No se pudo subir la imagen (máx. 8 MB, JPG/PNG/WEBP/GIF/AVIF)');
     } finally {
       setUploading(false);
 

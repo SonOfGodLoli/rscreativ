@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Plus, Save, Trash2 } from 'lucide-react';
+import { Package, Plus, Save, Trash2 } from 'lucide-react';
 import {
   createService,
   createSubsection,
@@ -14,7 +14,7 @@ import {
 } from '../api';
 import type { Service, Subsection, SubsectionSection } from '../api';
 import { useAsyncData } from '../useAsyncData';
-import { Alert, Badge, Button, Field, Input, Panel, Select, Textarea } from '../components/ui';
+import { Alert, Badge, Button, Field, Input, PageHeader, Panel, Select, Textarea } from '../components/ui';
 import ImageUploader from '../components/ImageUploader';
 
 const CATEGORIES = ['impresion', 'diseno', 'celebraciones', 'personalizados'];
@@ -438,12 +438,11 @@ export default function ServicesAdmin() {
 
   return (
     <div className="mx-auto max-w-5xl space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold text-gray-900">Servicios y productos</h1>
-        <p className="text-sm text-gray-500">
-          Cada servicio puede tener subsecciones (productos) con su propia imagen, descripción y precio.
-        </p>
-      </div>
+      <PageHeader
+        icon={Package}
+        title="Servicios y productos"
+        description="Cada servicio puede tener subsecciones (productos) con su propia imagen, descripción y precio."
+      />
 
       <Panel>
         <h2 className="mb-3 flex items-center gap-2 font-semibold text-gray-900">
